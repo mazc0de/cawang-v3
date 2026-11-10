@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils'
 import { useUser } from '@/providers/auth-provider'
 import { MORE_ITEMS, NAV, type NavItem, SIDEBAR_GROUPS } from './nav-items'
 import { APP_VERSION_LABEL } from '@/lib/version'
+import { InstallAppMenuItem } from '@/features/install/install-app'
 
 function useSignOut() {
   const navigate = useNavigate()
@@ -65,6 +66,10 @@ function Sidebar() {
         ))}
       </nav>
       <div className="flex flex-col gap-2">
+        <InstallAppMenuItem
+          className="flex h-8 items-center gap-2.5 rounded-lg px-2.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent/60 hover:text-foreground"
+          iconClassName="size-4 shrink-0"
+        />
         <SidebarLink item={NAV.settings} />
         <div className="flex items-center gap-2.5 rounded-lg px-2.5 py-1.5">
           <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand-ink uppercase">
@@ -160,6 +165,12 @@ function BottomNav() {
                   </NavLink>
                 </li>
               ))}
+              {/* The sheet stays open: closing it would unmount the iOS steps dialog. */}
+              <InstallAppMenuItem
+                listItem
+                className="flex h-12 w-full items-center gap-3 rounded-lg px-3 text-[15px] hover:bg-muted"
+                iconClassName="size-5 text-muted-foreground"
+              />
               <li>
                 <button
                   type="button"

@@ -580,6 +580,22 @@ export const en = {
     choose: 'Pick a date',
     clear: 'Clear date',
   },
+  install: {
+    title: 'Install app',
+    body: 'Open Cawang from your home screen or desktop like a regular app, full screen and readable offline.',
+    button: 'Install app',
+    promptHint: 'Your browser can install Cawang right away.',
+    iosHint: 'On iPhone and iPad, Cawang is added from the Share menu. We\'ll show you how.',
+    installed: 'Cawang is installed on this device.',
+    unsupported:
+      "This browser can't install Cawang. Open it in Chrome or Edge, or in Safari on iPhone and iPad. If Cawang is already installed, open it from your home screen.",
+    done: 'Cawang is installed.',
+    iosTitle: 'Add Cawang to your Home Screen',
+    iosBody: 'Safari installs apps from the Share menu, in three steps.',
+    iosStepShare: 'Tap the Share button in Safari\'s toolbar.',
+    iosStepAdd: 'Scroll down and choose "Add to Home Screen".',
+    iosStepConfirm: 'Tap "Add". Cawang appears on your Home Screen.',
+  },
   offline: {
     banner: "You're offline. You're seeing the last saved data; changes can't be saved until you reconnect.",
   },

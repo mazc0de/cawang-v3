@@ -580,6 +580,22 @@ export const id: Messages = {
     choose: 'Pilih tanggal',
     clear: 'Hapus tanggal',
   },
+  install: {
+    title: 'Install aplikasi',
+    body: 'Buka Cawang dari layar utama atau desktop seperti aplikasi biasa, layar penuh dan tetap bisa dibaca saat offline.',
+    button: 'Install aplikasi',
+    promptHint: 'Browser kamu bisa langsung meng-install Cawang.',
+    iosHint: 'Di iPhone dan iPad, Cawang ditambahkan lewat menu Share. Kami tunjukkan caranya.',
+    installed: 'Cawang sudah ter-install di perangkat ini.',
+    unsupported:
+      'Browser ini tidak bisa meng-install Cawang. Buka di Chrome atau Edge, atau Safari di iPhone dan iPad. Kalau Cawang sudah ter-install, buka dari layar utama.',
+    done: 'Cawang berhasil di-install.',
+    iosTitle: 'Tambahkan Cawang ke Layar Utama',
+    iosBody: 'Safari meng-install aplikasi lewat menu Share, dalam tiga langkah.',
+    iosStepShare: 'Ketuk tombol Share di toolbar Safari.',
+    iosStepAdd: 'Gulir ke bawah, pilih "Tambahkan ke Layar Utama".',
+    iosStepConfirm: 'Ketuk "Tambah". Cawang muncul di Layar Utama.',
+  },
   offline: {
     banner: 'Kamu sedang offline. Yang tampil adalah data tersimpan terakhir; perubahan baru bisa disimpan setelah online lagi.',
   },

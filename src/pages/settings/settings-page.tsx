@@ -30,6 +30,7 @@ import { Switch } from '@/components/ui/switch'
 import { useAmountVisibility } from '@/providers/amount-visibility'
 import { AmountPresetsSetting } from '@/features/profile/amount-presets-setting'
 import { APP_VERSION_LABEL } from '@/lib/version'
+import { InstallAppSetting } from '@/features/install/install-app'
 
 const OTHER_TIMEZONES = otherTimezones()
 
@@ -197,6 +198,10 @@ export function SettingsPage() {
             className="w-full sm:w-auto"
             options={THEME_OPTIONS.map((option) => ({ value: option.value, label: t(option.label), icon: option.icon }))}
           />
+        </SettingsSection>
+
+        <SettingsSection title={t('install.title')} description={t('install.body')}>
+          <InstallAppSetting />
         </SettingsSection>
 
         <SettingsSection title={t('settings.passwordTitle')} description={t('settings.passwordBody')}>
