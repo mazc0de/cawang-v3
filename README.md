@@ -41,7 +41,6 @@ pnpm dev        # http://localhost:8888
 | `src/components/ui/` | shadcn/ui components (generated, lightly tuned) |
 | `src/i18n/` | EN/ID messages; `en.ts` defines the keys |
 | `src/pages/landing/` | Public landing page |
-| `public/landing/` | Landing photographs from Wikimedia Commons, credits in `credits.json` and the page footer |
 | `.claude/skills/` | Project-local Claude skills: `impeccable`, `frontend-design`, `web-design-guidelines` |
 
 UI follows the **Tanggal Gajian** direction (tokens in `src/index.css`, rules in `DESIGN.md`). The app is a PWA

@@ -213,6 +213,9 @@
 .unshell {
   color: var(--foreground);
 }
+html.dark {
+  color-scheme: dark;
+}
 
 @layer base {
   * {
@@ -220,6 +223,7 @@
   }
   html {
     @apply font-sans;
+    color-scheme: light;
     -webkit-tap-highlight-color: transparent;
     accent-color: var(--brand);
     caret-color: var(--brand);
@@ -245,46 +249,34 @@
   @apply num h-10 rounded-lg bg-card text-[15px] transition-colors outline-none hover:bg-accent focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95;
 }
 
-/* Landing page motion: the masked hero headline is the page's one entrance; sections render at rest. */
-@keyframes rise-from-baseline {
+/*
+ * Landing page motion, its one orchestrated moment: the logo's branch draws upward, then the
+ * three balance coins settle in. Coins are visible from the first frame; only their scale moves.
+ */
+@keyframes branch-draw {
   from {
-    transform: translateY(105%);
+    stroke-dashoffset: 1;
   }
   to {
-    transform: translateY(0);
+    stroke-dashoffset: 0;
   }
 }
-@keyframes fade-up {
+@keyframes coin-settle {
   from {
-    opacity: 0;
-    transform: translateY(16px);
+    transform: scale(0.82);
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
-.masked-line {
-  display: block;
-  overflow: hidden;
-  /* Room for descenders (g, j, y) inside the mask, given back so line spacing is unchanged. */
-  padding-bottom: 0.16em;
-  margin-bottom: -0.16em;
-}
-.masked-line > span {
-  display: block;
-  animation: rise-from-baseline 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.masked-line:nth-child(2) > span {
-  animation-delay: 110ms;
-}
-.after-headline {
-  animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 650ms both;
-}
-@media (prefers-reduced-motion: reduce) {
-  .masked-line > span,
-  .after-headline {
-    animation: none;
+@media (prefers-reduced-motion: no-preference) {
+  .branch-path {
+    stroke-dasharray: 1;
+    animation: branch-draw 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .coin-settle {
+    animation: coin-settle 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--settle-delay, 500ms);
   }
 }
 

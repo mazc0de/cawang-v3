@@ -1,168 +1,489 @@
-import { ArrowUp, Minus, Plus } from 'lucide-react'
-import { type ReactNode, useState } from 'react'
+import {
+  ArrowLeftRight,
+  CalendarDays,
+  ChartPie,
+  Minus,
+  PiggyBank,
+  Plus,
+  Repeat,
+  RotateCcw,
+  ShieldCheck,
+  Smartphone,
+  TableProperties,
+  type LucideIcon,
+} from 'lucide-react'
+import { type CSSProperties, type ReactNode, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
-import { BrandMark } from '@/components/brand-mark'
+import { AmountPresets } from '@/components/amount-presets'
+import { BrandMark, Wordmark } from '@/components/brand-mark'
 import { LanguageSwitch } from '@/components/header/language-switch'
 import { ThemeToggle } from '@/components/header/theme-toggle'
 import { Money } from '@/components/money'
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
+import { CategoryTile } from '@/features/categories/category-tile'
+import { CycleStrip } from '@/features/cycle/cycle-strip'
 import { currentLanguage } from '@/i18n'
-import { cycleContaining, daysUntilNextCycle } from '@/lib/cycle'
-import { todayIn } from '@/lib/dates'
-import { formatCycleRange, formatIDR } from '@/lib/format'
+import { DEFAULT_AMOUNT_PRESETS } from '@/lib/amount-presets'
+import { type Cycle, cycleContaining, daysUntilNextCycle } from '@/lib/cycle'
+import type { Transaction } from '@/lib/database'
+import { addDays, diffInDays, type IsoDate, todayIn, zonedTimestamp } from '@/lib/dates'
+import { formatCycleRange } from '@/lib/format'
 import { cn } from '@/lib/utils'
-import { useAuth } from '@/providers/auth-provider'
-import {
-  BudgetFragment,
-  BulkFragment,
-  CalculatorFragment,
-  CalendarFragment,
-  RecurringFragment,
-  ReportsFragment,
-  SafePayFragment,
-} from './fragments'
-import { AlwaysShowAmounts } from '@/providers/amount-visibility'
 import { APP_VERSION_LABEL } from '@/lib/version'
+import { AlwaysShowAmounts } from '@/providers/amount-visibility'
+import { useAuth } from '@/providers/auth-provider'
 
-// Sample money for the hero's live controls; the Safe-Pay switch moves Available Balance.
+// Sample money for the page's live examples. Labelled as made up wherever it shows.
 const SAMPLE_TOTAL = 4_780_000
-const SAMPLE_SAFE_PAY = 650_000
+const SAMPLE_RENT = 650_000
+const QUICK_SPENDS = [
+  { key: 'lunch', amount: 25_000 },
+  { key: 'ride', amount: 19_000 },
+  { key: 'coffee', amount: 18_000 },
+] as const
+const SAMPLE_DAILY = [35_000, 62_000, 18_000, 120_000, 45_000, 27_000, 80_000, 54_000]
 
 const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 const COPYRIGHT_YEAR = new Date().getFullYear()
 
-/** A layout wrapper; sections render at rest (the masked hero headline is the page's one entrance). */
-function Reveal({ className, children }: { index?: number; heading?: boolean; className?: string; children: ReactNode }) {
-  return <div className={className}>{children}</div>
+/** Sign-up and sign-in, or the way back in for someone already signed in. */
+function Actions({ className }: { className?: string }) {
+  const { t } = useTranslation()
+  const { session } = useAuth()
+  if (session) {
+    return (
+      <div className={className}>
+        <Button asChild size="lg" className="h-12 px-6 text-base">
+          <Link to="/dashboard">{t('landing.openDashboard')}</Link>
+        </Button>
+      </div>
+    )
+  }
+  return (
+    <div className={cn('flex flex-wrap items-center gap-3', className)}>
+      <Button asChild size="lg" className="h-12 px-6 text-base">
+        <Link to="/register">{t('landing.register')}</Link>
+      </Button>
+      <Button asChild size="lg" variant="outline" className="h-12 px-6 text-base">
+        <Link to="/login">{t('landing.login')}</Link>
+      </Button>
+    </div>
+  )
 }
 
-/** The hero's three working controls, each a real piece of the product (data-ui). */
-function Chip({ className, children }: { className?: string; children: ReactNode }) {
+function Header() {
+  const { t } = useTranslation()
+  const { session } = useAuth()
+  return (
+    <header className="mx-auto flex h-16 max-w-[1280px] items-center justify-between gap-2 px-4 sm:h-20 sm:px-8">
+      <Link to="/" className="shrink-0 rounded-lg">
+        <Wordmark />
+      </Link>
+      <nav aria-label={t('nav.mainMenu')} className="flex items-center gap-0.5 sm:gap-1">
+        <a href="#fitur" className="hidden rounded-lg px-3 py-2 text-sm font-semibold hover:bg-muted md:inline-block">
+          {t('landing.nav.features')}
+        </a>
+        <LanguageSwitch />
+        <ThemeToggle />
+        {session ? (
+          <Button asChild size="sm" className="ml-1">
+            <Link to="/dashboard">{t('landing.openDashboard')}</Link>
+          </Button>
+        ) : (
+          <>
+            <Link to="/login" className="hidden rounded-lg px-3 py-2 text-sm font-semibold hover:bg-muted sm:inline-block">
+              {t('landing.login')}
+            </Link>
+            <Button asChild size="sm" className="ml-1">
+              <Link to="/register">
+                <span className="sm:hidden">{t('landing.registerShort')}</span>
+                <span className="hidden sm:inline">{t('landing.register')}</span>
+              </Link>
+            </Button>
+          </>
+        )}
+      </nav>
+    </header>
+  )
+}
+
+/** One of the logo's coins, holding a live balance. Sizes use container units so it scales with the branch. */
+function Coin({
+  label,
+  amount,
+  empty = false,
+  className,
+  style,
+  amountClassName,
+  live = false,
+  children,
+}: {
+  label: string
+  amount: number
+  empty?: boolean
+  className?: string
+  style?: CSSProperties
+  amountClassName?: string
+  /** Announce changes to screen readers (only the balance the examples move). */
+  live?: boolean
+  children?: ReactNode
+}) {
   return (
     <div
-      data-ui
       className={cn(
-        'rounded-(--radius-card) bg-shell-raised px-4 py-3 text-foreground shadow-[0_10px_30px_-12px_rgb(0_0_0/0.35)]',
+        'coin-settle absolute flex aspect-square flex-col items-center justify-center rounded-full text-center transition-[background-color,box-shadow] duration-300',
+        empty
+          ? 'border-[0.5cqi] border-dashed border-gold bg-transparent text-foreground'
+          : 'bg-gold text-[#4d3800] shadow-[0_18px_40px_-18px_rgb(120_90_0/0.6)]',
         className,
       )}
+      style={style}
     >
+      {!empty && <span aria-hidden="true" className="absolute inset-[7%] rounded-full border-[0.9cqi] border-white/55" />}
+      <span className="relative text-[max(11px,2.3cqi)] leading-tight font-bold">{label}</span>
+      <span aria-live={live ? 'polite' : undefined} className="relative">
+        <Money amount={amount} className={cn('mt-[0.4cqi] font-extrabold tracking-tight', amountClassName)} />
+      </span>
       {children}
     </div>
   )
 }
 
-function Hero({ payday, onPaydayChange }: { payday: number; onPaydayChange: (day: number) => void }) {
+function Hero() {
   const { t } = useTranslation()
-  const { session } = useAuth()
-  const language = currentLanguage()
   const [locked, setLocked] = useState(true)
+  const [spends, setSpends] = useState<number[]>([])
   const today = todayIn(browserTimezone)
-  const cycle = cycleContaining(today, payday)
-  const daysLeft = daysUntilNextCycle(today, payday)
-  const step = (delta: number) => onPaydayChange(((payday - 1 + delta + 31) % 31) + 1)
+  const daysLeft = daysUntilNextCycle(today, 25)
+  const total = SAMPLE_TOTAL - spends.reduce((sum, amount) => sum + amount, 0)
+  const lockedAmount = locked ? SAMPLE_RENT : 0
 
   return (
-    <section className="shell relative flex min-h-svh flex-col px-4 py-5 sm:px-7" aria-labelledby="hero-title">
-      <div className="flex items-center justify-between gap-3">
-        <Link to="/" className="inline-flex shrink-0 items-center gap-1.5 rounded-lg text-[15px] font-extrabold tracking-tight sm:gap-2 sm:text-[17px]">
-          <BrandMark className="size-7 sm:size-8" />
-          Cawang
-        </Link>
-        <div className="flex items-center gap-1">
-          <LanguageSwitch />
-          <ThemeToggle />
-          {session ? (
-            <Button asChild className="ml-2 bg-white text-shell hover:bg-white/90">
-              <Link to="/dashboard">{t('landing.openDashboard')}</Link>
-            </Button>
-          ) : (
-            <>
-              <Link to="/login" className="hidden px-3 text-sm underline-offset-4 hover:underline sm:inline">
-                {t('landing.login')}
-              </Link>
-              <Button asChild className="ml-1 bg-white text-shell hover:bg-white/90">
-                <Link to="/register">
-                  <span className="sm:hidden">{t('landing.registerShort')}</span>
-                  <span className="hidden sm:inline">{t('landing.register')}</span>
-                </Link>
+    <section
+      aria-labelledby="hero-title"
+      className="mx-auto grid max-w-[1280px] grid-cols-1 gap-4 px-4 pt-2 sm:gap-8 sm:px-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:grid-rows-[1fr_auto] lg:gap-y-0 lg:pt-6"
+    >
+      {/* Phones read: promise, action, the coins, then the chips that move them. Desktop keeps copy left, branch right. */}
+      <div className="max-w-[560px] lg:col-start-1 lg:row-start-1 lg:self-end">
+        <h1 id="hero-title" className="text-[clamp(36px,5.6vw,4.5rem)] leading-[1.02] font-extrabold tracking-[-0.035em] text-balance">
+          {t('landing.hero.title')}
+        </h1>
+        <p className="mt-4 max-w-[48ch] text-[17px] leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg">{t('landing.hero.lead')}</p>
+        <Actions className="mt-6 sm:mt-7" />
+      </div>
+      <div className="max-w-[560px] lg:col-start-1 lg:row-start-2 lg:pt-10 lg:pb-14">
+        <div>
+          <p className="mb-3 text-xs text-muted-foreground">{t('landing.hero.sampleNote')}</p>
+          <p className="text-sm font-semibold">{t('landing.hero.tryLabel')}</p>
+          <div className="mt-2.5 flex flex-wrap items-center gap-1.5 sm:gap-2">
+            {QUICK_SPENDS.map((spend) => (
+              <button
+                key={spend.key}
+                type="button"
+                onClick={() => setSpends((list) => [...list, spend.amount])}
+                className="inline-flex h-9 touch-manipulation items-center gap-1.5 rounded-full border bg-card px-3 text-[13px] font-semibold transition-colors sm:h-10 sm:gap-2 sm:px-4 sm:text-sm outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95"
+              >
+                {t(`landing.hero.${spend.key}`)}
+                <Money amount={spend.amount} tone="expense" signed className="text-[12px] sm:text-[13px]" />
+              </button>
+            ))}
+            {spends.length > 0 && (
+              <Button variant="ghost" size="icon" aria-label={t('landing.hero.reset')} onClick={() => setSpends([])}>
+                <RotateCcw />
               </Button>
-            </>
-          )}
+            )}
+          </div>
         </div>
       </div>
 
-      <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col items-center justify-center pt-10 pb-14">
-        <Chip className="w-full max-w-[300px] self-start sm:-rotate-2 lg:ml-[6%]">
-          <p className="text-[15px] opacity-75">{t('landing.hero.paydayChip')}</p>
-          <div className="mt-1 flex items-center justify-between gap-3">
-            <button
-              type="button"
-              aria-label={t('landing.hero.paydayEarlier')}
-              onClick={() => step(-1)}
-              className="inline-flex size-9 items-center justify-center rounded-full bg-white/10 transition-transform hover:bg-white/20 active:scale-95"
-            >
-              <Minus className="size-4" />
-            </button>
-            <output className="num text-[28px] leading-none font-semibold" aria-live="polite">
-              {payday}
-            </output>
-            <button
-              type="button"
-              aria-label={t('landing.hero.paydayLater')}
-              onClick={() => step(1)}
-              className="inline-flex size-9 items-center justify-center rounded-full bg-white/10 transition-transform hover:bg-white/20 active:scale-95"
-            >
-              <Plus className="size-4" />
-            </button>
-          </div>
-          <p className="mt-2 text-[15px] opacity-75">{formatCycleRange(cycle, language)}</p>
-        </Chip>
-
-        <h1 id="hero-title" className="my-8 text-center text-[min(11.5vw,6rem)] leading-[0.98] font-extrabold tracking-[-0.04em] sm:my-10 lg:text-[clamp(64px,7vw,6rem)]">
-          <span className="masked-line">
-            <span>{t('landing.hero.line1')}</span>
+      {/* The logo, drawn at the scale of the page: a branch growing the three balances, rooted on the next section's rule. */}
+      <div className="relative row-start-2 mx-auto aspect-[100/88] w-[88%] max-w-[560px] self-end sm:w-[80%] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mx-0 lg:aspect-square lg:w-[min(760px,calc(100%+max(0px,(100vw-1280px)/2)+2rem))] lg:max-w-none">
+        <div className="@container absolute inset-x-0 top-0 aspect-square">
+        <svg viewBox="0 0 100 100" aria-hidden="true" className="absolute inset-0 size-full" style={{ stroke: 'var(--logo-stem, #2f6b2f)' }}>
+          <g fill="none" strokeLinecap="round">
+            {/* Desktop: the trunk runs to the hero's bottom rule. Phones: it ends on a round cap like the mark's strokes. */}
+            <path className="branch-path hidden lg:block" pathLength={1} d="M50 100V40" strokeWidth="7" />
+            <path className="branch-path lg:hidden" pathLength={1} d="M50 86V40" strokeWidth="7" />
+            <path className="branch-path" pathLength={1} d="M50 84C50 70 38 62 25 58" strokeWidth="6" style={{ animationDelay: '250ms' }} />
+            <path
+              className="branch-path transition-[stroke-opacity] duration-500"
+              pathLength={1}
+              d="M50 73C50 61 62 53 76 50"
+              strokeWidth="6"
+              strokeOpacity={locked ? 1 : 0.3}
+              style={{ animationDelay: '350ms' }}
+            />
+          </g>
+        </svg>
+        <Coin
+          label={t('landing.hero.available')}
+          amount={total - lockedAmount}
+          className="top-0 left-[24%] w-[52%] lg:top-[6%] lg:left-[30%] lg:w-[40%]"
+          amountClassName="text-[max(22px,5cqi)]"
+          live
+          style={{ '--settle-delay': '850ms' } as CSSProperties}
+        >
+          <span className="relative mt-[0.6cqi] text-[max(11px,2.1cqi)] font-semibold">{t('dashboard.paydayIn', { count: daysLeft })}</span>
+        </Coin>
+        <Coin
+          label={t('landing.hero.total')}
+          amount={total}
+          className="top-[48%] left-0 w-[36%] lg:top-[41%] lg:left-[4%] lg:w-[30%]"
+          amountClassName="text-[max(15px,3.9cqi)]"
+          style={{ '--settle-delay': '600ms' } as CSSProperties}
+        >
+          <span className="relative mt-[0.4cqi] hidden text-[max(11px,1.9cqi)] font-semibold @md:block">{t('landing.hero.accounts')}</span>
+        </Coin>
+        <Coin
+          label={t('landing.hero.locked')}
+          amount={lockedAmount}
+          empty={!locked}
+          className="top-[44%] left-[62%] w-[37%] lg:top-[33%] lg:left-[63%] lg:w-[33%]"
+          amountClassName="text-[max(15px,3.9cqi)]"
+          style={{ '--settle-delay': '700ms' } as CSSProperties}
+        >
+          <span className="relative mt-[0.4cqi] hidden text-[max(11px,1.9cqi)] font-semibold @md:block">
+            {locked ? t('landing.hero.rent') : t('landing.hero.nothingLocked')}
           </span>
-          <span className="masked-line">
-            <span>{t('landing.hero.line2')}</span>
-          </span>
-        </h1>
-
-        <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:items-start sm:justify-between lg:px-[6%]">
-          <Chip className="w-full max-w-[300px] sm:rotate-1">
-            <p className="text-[15px] opacity-75">{t('money.availableBalance')}</p>
-            <Money amount={SAMPLE_TOTAL - (locked ? SAMPLE_SAFE_PAY : 0)} className="mt-1 block text-[28px] leading-8 font-semibold" />
-            <p className="mt-1 text-[15px] opacity-75">{t('landing.hero.daysToPayday', { count: daysLeft })}</p>
-          </Chip>
-          <Chip className="w-full max-w-[300px] sm:rotate-2">
-            <label className="flex items-center justify-between gap-4">
-              <span>
-                <span className="block text-[15px] opacity-75">Safe-Pay</span>
-                <span className="block text-[15px] font-medium">{t('landing.hero.lockRent', { amount: formatIDR(SAMPLE_SAFE_PAY) })}</span>
-              </span>
-              <Switch checked={locked} onCheckedChange={setLocked} className="data-checked:bg-gold data-unchecked:bg-white/25 dark:data-unchecked:bg-white/25" />
-            </label>
-          </Chip>
+          <Switch
+            checked={locked}
+            onCheckedChange={setLocked}
+            aria-label={t('landing.hero.lockRent')}
+            className="relative mt-[1cqi] data-checked:bg-shell data-unchecked:bg-black/25 dark:data-unchecked:bg-white/30"
+          />
+        </Coin>
         </div>
+      </div>
+    </section>
+  )
+}
 
-        <p className="mt-4 w-full text-center text-xs text-muted-foreground">{t('landing.hero.sampleNote')}</p>
-        <p className="after-headline mt-10 max-w-[40ch] text-center text-[17px] leading-relaxed text-muted-foreground">{t('landing.hero.supporting')}</p>
-        <div className="after-headline mt-8 flex w-full max-w-[72%] flex-col items-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+/** A Cycle of made-up spending: one expense a day up to today, so the strip has something to draw. */
+function sampleTransactions(cycle: Cycle, today: IsoDate): Transaction[] {
+  const days = Math.min(diffInDays(today, cycle.start), diffInDays(cycle.end, cycle.start)) + 1
+  return Array.from({ length: days }, (_, index) => {
+    const date = addDays(cycle.start, index)
+    return {
+      id: date,
+      user_id: '',
+      type: 'expense',
+      amount: SAMPLE_DAILY[(index * 5) % SAMPLE_DAILY.length],
+      occurred_at: zonedTimestamp(date, '12:00', browserTimezone),
+      account_id: '',
+      to_account_id: null,
+      category_id: null,
+      note: null,
+      parent_transaction_id: null,
+      created_at: '',
+      updated_at: '',
+    }
+  })
+}
+
+function SectionHeading({ id, title, body }: { id: string; title: string; body: string }) {
+  return (
+    <div className="max-w-[560px]">
+      <h2 id={id} className="text-[clamp(30px,3.6vw,3rem)] leading-[1.06] font-extrabold tracking-[-0.03em] text-balance">
+        {title}
+      </h2>
+      <p className="mt-4 text-[17px] leading-relaxed text-muted-foreground">{body}</p>
+    </div>
+  )
+}
+
+function CycleSection() {
+  const { t } = useTranslation()
+  const language = currentLanguage()
+  const [payday, setPayday] = useState(25)
+  const today = todayIn(browserTimezone)
+  const cycle = cycleContaining(today, payday)
+  const transactions = useMemo(() => sampleTransactions(cycle, today), [cycle.start, cycle.end, today]) // eslint-disable-line react-hooks/exhaustive-deps
+  const due = addDays(today, 3) <= cycle.end ? addDays(today, 3) : cycle.end
+  const step = (delta: number) => setPayday((day) => ((day - 1 + delta + 31) % 31) + 1)
+
+  return (
+    <section id="fitur" aria-labelledby="cycle-title" className="scroll-mt-4 border-t">
+      <div className="mx-auto max-w-[1280px] px-4 py-16 sm:px-8 lg:py-24">
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <SectionHeading id="cycle-title" title={t('landing.cycle.title')} body={t('landing.cycle.body')} />
+        <div className="flex items-center gap-4 self-start rounded-(--radius-card) border bg-card px-4 py-3 lg:self-auto">
+          <span className="text-sm font-semibold text-muted-foreground">{t('landing.cycle.payday')}</span>
+          <Button variant="secondary" size="icon" aria-label={t('landing.cycle.earlier')} onClick={() => step(-1)}>
+            <Minus />
+          </Button>
+          <output aria-live="polite" className="num w-9 text-center text-[28px] leading-none font-extrabold">
+            {payday}
+          </output>
+          <Button variant="secondary" size="icon" aria-label={t('landing.cycle.later')} onClick={() => step(1)}>
+            <Plus />
+          </Button>
+        </div>
+      </div>
+      <div className="mt-10 overflow-hidden rounded-(--radius-card) border bg-card">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-4 pt-4 sm:px-5">
+          <p className="num text-base font-bold">Cycle {formatCycleRange(cycle, language)}</p>
+          <p className="text-sm font-semibold text-brand-ink dark:text-brand">{t('dashboard.paydayIn', { count: daysUntilNextCycle(today, payday) })}</p>
+        </div>
+        <CycleStrip
+          cycle={cycle}
+          today={today}
+          transactions={transactions}
+          timezone={browserTimezone}
+          dueDates={new Set([due])}
+          linkDays={false}
+          className="mt-3 px-3 pb-2 sm:px-4"
+        />
+        <div className="flex flex-wrap gap-x-6 gap-y-2 border-t px-4 py-3 text-[13px] text-muted-foreground sm:px-5">
+          <span className="inline-flex items-center gap-2">
+            <span aria-hidden="true" className="h-3 w-2.5 rounded-t-[3px] bg-expense/60" />
+            {t('landing.cycle.legendSpend')}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <span aria-hidden="true" className="size-2 rounded-full bg-gold" />
+            {t('landing.cycle.legendDue')}
+          </span>
+          <span className="sm:ml-auto">{t('landing.hero.sampleNote')}</span>
+        </div>
+      </div>
+      </div>
+    </section>
+  )
+}
+
+const LOG_CATEGORIES = [
+  { key: 'food', icon: 'utensils', color: 'orange' },
+  { key: 'transport', icon: 'bus', color: 'sky' },
+  { key: 'groceries', icon: 'shopping-basket', color: 'teal' },
+] as const
+type LogCategory = (typeof LOG_CATEGORIES)[number]
+
+function LogSection() {
+  const { t } = useTranslation()
+  const [amount, setAmount] = useState<number | null>(null)
+  const [category, setCategory] = useState<LogCategory | null>(null)
+  const [saved, setSaved] = useState<Array<{ id: number; amount: number; category: LogCategory }>>([])
+
+  const save = () => {
+    if (!amount || !category) return
+    setSaved((list) => [{ id: Date.now(), amount, category }, ...list].slice(0, 3))
+    setAmount(null)
+    setCategory(null)
+  }
+
+  return (
+    <section aria-labelledby="log-title" className="border-y bg-raised">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-10 px-4 py-16 sm:px-8 lg:grid-cols-2 lg:py-24">
+        <SectionHeading id="log-title" title={t('landing.log.title')} body={t('landing.log.body')} />
+        <div className="w-full max-w-[520px] justify-self-center rounded-(--radius-card) border bg-card p-4 sm:p-6 lg:justify-self-end">
+          <p className="text-sm font-semibold text-muted-foreground">{t('landing.log.amount')}</p>
+          <Money amount={amount ?? 0} tone={amount ? 'expense' : 'muted'} className="mt-1 block text-[36px] leading-tight font-extrabold tracking-tight" />
+          <AmountPresets presets={DEFAULT_AMOUNT_PRESETS} amount={amount} onChange={setAmount} wrap className="mt-3" />
+          <p className="mt-5 text-sm font-semibold text-muted-foreground">{t('landing.log.category')}</p>
+          <div className="mt-2 grid grid-cols-3 gap-2">
+            {LOG_CATEGORIES.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                aria-pressed={category?.key === item.key}
+                onClick={() => setCategory(item)}
+                className="flex touch-manipulation flex-col items-center gap-1.5 rounded-xl border bg-card px-2 py-3 text-sm font-semibold transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 aria-pressed:border-primary aria-pressed:bg-brand-soft"
+              >
+                <CategoryTile icon={item.icon} color={item.color} className="size-9" />
+                {t(`landing.log.${item.key}`)}
+              </button>
+            ))}
+          </div>
+          <Button className="mt-5 h-11 w-full text-base" disabled={!amount || !category} onClick={save}>
+            {t('landing.log.save')}
+          </Button>
+          <div className="mt-5 border-t pt-4">
+            <p className="text-sm font-semibold">{t('landing.log.saved')}</p>
+            {saved.length === 0 ? (
+              <p className="mt-2 text-sm text-muted-foreground">{t('landing.log.empty')}</p>
+            ) : (
+              <ul className="mt-1">
+                {saved.map((row) => (
+                  <li key={row.id} className="flex items-center gap-3 py-2">
+                    <CategoryTile icon={row.category.icon} color={row.category.color} className="size-8" />
+                    <span className="flex-1 text-sm font-semibold">{t(`landing.log.${row.category.key}`)}</span>
+                    <Money amount={row.amount} tone="expense" signed className="text-sm font-bold" />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const FEATURES: Array<{ key: 'safePay' | 'budget' | 'recurring' | 'calendar' | 'reports' | 'bulk' | 'accounts' | 'app'; icon: LucideIcon }> = [
+  { key: 'safePay', icon: ShieldCheck },
+  { key: 'budget', icon: PiggyBank },
+  { key: 'recurring', icon: Repeat },
+  { key: 'calendar', icon: CalendarDays },
+  { key: 'reports', icon: ChartPie },
+  { key: 'bulk', icon: TableProperties },
+  { key: 'accounts', icon: ArrowLeftRight },
+  { key: 'app', icon: Smartphone },
+]
+
+function FeatureList() {
+  const { t } = useTranslation()
+  return (
+    <section aria-labelledby="features-title" className="mx-auto max-w-[1280px] px-4 py-16 sm:px-8 lg:py-24">
+      <h2 id="features-title" className="text-[clamp(26px,2.8vw,2.25rem)] leading-tight font-extrabold tracking-[-0.025em] text-balance">
+        {t('landing.features.title')}
+      </h2>
+      <dl className="mt-8 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+        {FEATURES.map((feature) => (
+          <div key={feature.key} className="border-t py-5">
+            <dt className="flex items-center gap-2.5 text-base font-bold">
+              <feature.icon className="size-5 text-brand" strokeWidth={1.9} aria-hidden="true" />
+              {t(`landing.features.${feature.key}.name`)}
+            </dt>
+            <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{t(`landing.features.${feature.key}.body`)}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+function Closing() {
+  const { t } = useTranslation()
+  const { session } = useAuth()
+  const onShell = 'h-12 bg-white px-6 text-base text-shell hover:bg-white/90'
+  return (
+    <section aria-labelledby="cta-title" className="shell">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-8 px-4 py-16 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-20">
+        <div className="flex items-center gap-5">
+          <BrandMark className="size-16 shrink-0 sm:size-20" />
+          <div>
+            <h2 id="cta-title" className="text-[clamp(30px,3.6vw,3rem)] leading-[1.06] font-extrabold tracking-[-0.03em] text-balance">
+              {t('landing.cta.title')}
+            </h2>
+            <p className="mt-2 max-w-[52ch] text-[17px] text-muted-foreground">{t('landing.cta.body')}</p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-3">
           {session ? (
-            <Button asChild size="lg" className="h-12 w-full bg-white px-7 text-[17px] font-bold text-shell hover:bg-white/90 sm:w-auto">
+            <Button asChild size="lg" className={onShell}>
               <Link to="/dashboard">{t('landing.openDashboard')}</Link>
             </Button>
           ) : (
             <>
-              <Button asChild size="lg" className="h-12 w-full bg-white px-7 text-[17px] font-bold text-shell hover:bg-white/90 sm:w-auto">
+              <Button asChild size="lg" className={onShell}>
                 <Link to="/register">{t('landing.register')}</Link>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-12 w-full border-white/40 bg-transparent px-7 text-[17px] text-foreground hover:bg-white/10 hover:text-foreground sm:w-auto"
+                className="h-12 border-white/40 bg-transparent px-6 text-base text-foreground hover:bg-white/10 hover:text-foreground dark:bg-transparent"
               >
                 <Link to="/login">{t('landing.login')}</Link>
               </Button>
@@ -174,339 +495,31 @@ function Hero({ payday, onPaydayChange }: { payday: number; onPaydayChange: (day
   )
 }
 
-function Showcase({ payday }: { payday: number }) {
-  const { t } = useTranslation()
-  return (
-    <section className="overflow-hidden px-4 pt-24 sm:px-7 lg:pt-36" aria-labelledby="showcase-title">
-      <div className="mx-auto grid max-w-[1180px] gap-6 lg:grid-cols-12">
-        <Reveal heading className="lg:col-span-5">
-          <h2 id="showcase-title" className="text-[28px] leading-tight font-semibold tracking-tight sm:text-[36px]">
-            {t('landing.showcase.title')}
-          </h2>
-        </Reveal>
-        <Reveal index={1} className="lg:col-span-6 lg:col-start-7">
-          <p className="text-[17px] leading-relaxed">{t('landing.showcase.body')}</p>
-        </Reveal>
-      </div>
-      <div className="mx-auto mt-[8vh] grid max-w-[1180px] gap-16 sm:grid-cols-2 sm:gap-6">
-        {[
-          { caption: t('landing.showcase.calendarMonth'), value: 1, inverse: false },
-          { caption: t('landing.showcase.cawangCycle'), value: payday, inverse: true },
-        ].map((specimen, index) => (
-          <Reveal key={specimen.caption} index={index} className="min-w-0">
-            <div
-              className={cn(
-                'h-[28svh] overflow-hidden rounded-t-(--radius-card) px-4 text-center sm:h-[46vh] sm:px-6',
-                specimen.inverse ? 'bg-primary text-primary-foreground' : 'bg-card',
-              )}
-            >
-              <p
-                className="num pt-3 text-[60vw] leading-[0.8] font-semibold tracking-[-0.06em] sm:pt-4 sm:text-[clamp(180px,28vw,440px)]"
-              >
-                {specimen.value}
-              </p>
-            </div>
-            <p className="mt-3 text-[17px]">
-              {specimen.caption} <span className="num font-semibold">{specimen.value}</span>
-            </p>
-          </Reveal>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-const PHOTOS = [
-  { key: 'batagor', src: '/landing/batagor-vendor.jpg', width: 1920, height: 1280, category: 'food', amount: 15_000 },
-  { key: 'market', src: '/landing/market-fruit.jpg', width: 1920, height: 1080, category: 'groceries', amount: 48_000 },
-  { key: 'krl', src: '/landing/krl-gambir.jpg', width: 1920, height: 1274, category: 'transport', amount: 5_000 },
-] as const
-
-/** Real pictures of where small daily spending happens, each captioned with the line it becomes. */
-function DailySpending() {
-  const { t } = useTranslation()
-  return (
-    <section className="px-4 pt-24 sm:px-7 lg:pt-36" aria-labelledby="daily-title">
-      <div className="mx-auto max-w-[1180px]">
-        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <Reveal heading className="lg:col-span-6">
-            <h2 id="daily-title" className="text-[28px] leading-tight font-semibold tracking-tight sm:text-[36px]">
-              {t('landing.daily.title')}
-            </h2>
-          </Reveal>
-          <Reveal index={1} className="lg:col-span-5 lg:col-start-8">
-            <p className="text-[17px] leading-relaxed">{t('landing.daily.body')}</p>
-          </Reveal>
-        </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
-          {PHOTOS.map((photo, index) => (
-            <Reveal key={photo.key} index={index}>
-              <figure>
-                <img
-                  src={photo.src}
-                  width={photo.width}
-                  height={photo.height}
-                  alt={t(`landing.daily.${photo.key}.alt`)}
-                  loading="lazy"
-                  className="aspect-[4/5] w-full object-cover"
-                />
-                <figcaption className="mt-3">
-                  <span className="block text-[15px] text-muted-foreground">{t(`landing.daily.${photo.key}.alt`)}</span>
-                  <span className="mt-1 flex items-baseline justify-between gap-3 text-[17px]">
-                    {t(`landing.sample.${photo.category}`)}
-                    <Money amount={photo.amount} tone="expense" signed className="font-semibold" />
-                  </span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const FEATURES = [
-  { key: 'safePay', fragment: SafePayFragment },
-  { key: 'budget', fragment: BudgetFragment },
-  { key: 'recurring', fragment: RecurringFragment },
-  { key: 'calendar', fragment: CalendarFragment },
-  { key: 'reports', fragment: ReportsFragment },
-  { key: 'bulk', fragment: BulkFragment },
-  { key: 'calculator', fragment: CalculatorFragment },
-] as const
-
-function Features() {
-  const { t } = useTranslation()
-  const [selected, setSelected] = useState<string>('safePay')
-  const active = FEATURES.find((feature) => feature.key === selected) ?? FEATURES[0]
-  const ActiveFragment = active.fragment
-
-  return (
-    <section id="features" className="bg-muted/60 px-4 py-24 sm:px-7 lg:py-36" aria-labelledby="features-title">
-      <div className="mx-auto max-w-[1180px]">
-        <div className="grid gap-4 lg:grid-cols-12 lg:items-end">
-          <Reveal heading className="lg:col-span-7">
-            <h2 id="features-title" className="text-[28px] leading-tight font-semibold tracking-tight sm:text-[36px]">
-              {t('landing.features.title')}
-            </h2>
-          </Reveal>
-          <Reveal index={1} className="lg:col-span-5">
-            <p className="text-[17px] leading-relaxed text-muted-foreground">{t('landing.features.hint')}</p>
-          </Reveal>
-        </div>
-        <div className="mt-10 grid items-start gap-8 lg:grid-cols-12">
-          <ul className="flex flex-col gap-1 lg:col-span-6">
-            {FEATURES.map((feature) => {
-              const isActive = feature.key === active.key
-              const Fragment = feature.fragment
-              return (
-                <li key={feature.key}>
-                  <button
-                    type="button"
-                    aria-pressed={isActive}
-                    onClick={() => setSelected(feature.key)}
-                    onMouseEnter={() => setSelected(feature.key)}
-                    onFocus={() => setSelected(feature.key)}
-                    className={cn(
-                      'block w-full rounded-xl px-5 py-3 text-left transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
-                      isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-card',
-                    )}
-                  >
-                    <span className="block text-[26px] leading-tight font-semibold tracking-[-0.02em] sm:text-[clamp(26px,2.5vw,36px)]">
-                      {t(`landing.features.${feature.key}.name`)}
-                    </span>
-                    {isActive && <span className="mt-1 block max-w-[48ch] text-[17px]">{t(`landing.features.${feature.key}.body`)}</span>}
-                  </button>
-                  {isActive && (
-                    <div className="mt-3 mb-4 lg:hidden">
-                      <Fragment />
-                    </div>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-          <div className="sticky top-10 hidden lg:col-span-6 lg:block">
-            <ActiveFragment />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const STAGES = [
-  { key: 'signup', tone: 'border bg-card text-foreground' },
-  { key: 'setup', tone: 'bg-brand-soft text-brand-ink' },
-  { key: 'daily', tone: 'bg-primary text-primary-foreground' },
-] as const
-
-function HowItWorks() {
-  const { t } = useTranslation()
-  return (
-    <section className="px-4 py-24 sm:px-7 lg:py-36" aria-labelledby="how-title">
-      <div className="mx-auto max-w-[1180px]">
-        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <Reveal heading className="lg:col-span-7">
-            <h2 id="how-title" className="text-[min(11.5vw,6rem)] leading-[0.98] font-extrabold tracking-[-0.04em] lg:text-[clamp(64px,7vw,6rem)]">
-              {t('landing.how.title')}
-            </h2>
-          </Reveal>
-          <Reveal index={1} className="lg:col-span-4 lg:col-start-9">
-            <p className="text-[17px] leading-relaxed">{t('landing.how.body')}</p>
-          </Reveal>
-        </div>
-        {/* The daily block is the widest: setting up is quick, recording is the product. */}
-        <ol data-ui className="mt-16 grid gap-2 md:grid-cols-[1fr_1fr_2fr]">
-          {STAGES.map((stage) => (
-            <li
-              key={stage.key}
-              className={cn('flex min-h-44 flex-col justify-between gap-6 rounded-xl p-6', stage.tone)}
-            >
-              <span className="text-[26px] leading-tight font-semibold sm:text-[clamp(24px,2.2vw,32px)]">{t(`landing.how.${stage.key}.duration`)}</span>
-              <span className="max-w-[34ch] text-[17px]">{t(`landing.how.${stage.key}.clause`)}</span>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  )
-}
-
-function CallToAction() {
-  const { t } = useTranslation()
-  const { session } = useAuth()
-  return (
-    <section className="shell px-4 py-24 sm:px-7 lg:py-36" aria-labelledby="cta-title">
-      <div className="mx-auto flex max-w-[1180px] flex-col items-center text-center">
-        <Reveal heading>
-          <h2 id="cta-title" className="max-w-[14ch] text-[min(11.5vw,6rem)] leading-[0.98] font-extrabold tracking-[-0.04em] lg:text-[clamp(64px,7vw,6rem)]">
-            {t('landing.cta.line1')} {t('landing.cta.line2')}
-          </h2>
-        </Reveal>
-        <Reveal index={1} className="mt-10 flex w-full flex-col items-center gap-4">
-          <div className="flex w-full max-w-[72%] flex-col items-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:gap-6">
-            {session ? (
-              <Button asChild size="lg" className="h-14 w-full bg-white px-8 text-[17px] font-bold text-shell hover:bg-white/90 sm:w-[220px]">
-                <Link to="/dashboard">{t('landing.openDashboard')}</Link>
-              </Button>
-            ) : (
-              <>
-                <Button asChild size="lg" className="h-14 w-full bg-white px-8 text-[17px] font-bold text-shell hover:bg-white/90 sm:w-[220px]">
-                  <Link to="/register">{t('landing.register')}</Link>
-                </Button>
-                <span className="text-[17px] text-muted-foreground">{t('common.or')}</span>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-14 w-full border-white/40 bg-transparent px-8 text-[17px] text-foreground hover:bg-white/10 hover:text-foreground sm:w-[220px]"
-                >
-                  <Link to="/login">{t('landing.login')}</Link>
-                </Button>
-              </>
-            )}
-          </div>
-          <p className="max-w-[46ch] text-[17px] text-muted-foreground">{t('landing.cta.after')}</p>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
-// Wikimedia Commons (public/landing/credits.json).
-const PHOTO_CREDITS = [
-  { title: 'Batagor vendor 2', byline: 'by Gunawan Kartapranata, CC BY-SA 4.0', page: 'https://commons.wikimedia.org/w/index.php?curid=99474283' },
-  { title: 'Warna-Warni Buah di Pasar Tradisional', byline: 'by Febaryanto, CC BY-SA 4.0', page: 'https://commons.wikimedia.org/w/index.php?curid=73854487' },
-  { title: 'KRL Jabotabek 8500 Gambir 20111126', byline: 'by DAJF, CC BY-SA 3.0', page: 'https://commons.wikimedia.org/w/index.php?curid=17578476' },
-]
-
 function Footer() {
   const { t } = useTranslation()
   return (
-    <footer className="overflow-hidden bg-brand-soft px-4 pt-16 pb-8 text-brand-ink sm:px-7">
-      <div className="mx-auto max-w-[1180px]">
-        <p aria-hidden="true" className="flex items-center gap-[0.12em] text-[18vw] leading-[0.9] font-semibold tracking-[-0.05em] lg:text-[clamp(140px,15vw,220px)]">
-          <BrandMark className="size-[0.62em] rounded-[0.2em]" />
-          Cawang
-        </p>
-        <div className="mt-16 grid gap-10 lg:grid-cols-12">
-          <ul className="flex flex-col gap-2 lg:col-span-5">
-            <li>
-              <Link to="/register" className="text-[28px] font-semibold underline-offset-4 hover:underline sm:text-[36px]">
-                {t('landing.register')}
-              </Link>
-            </li>
-            <li>
-              <Link to="/login" className="text-[28px] font-semibold underline-offset-4 hover:underline sm:text-[36px]">
-                {t('landing.login')}
-              </Link>
-            </li>
-          </ul>
-          <div className="grid grid-cols-2 gap-8 text-[15px] lg:col-span-6 lg:col-start-7 lg:grid-cols-3">
-            <div>
-              <p className="font-semibold">{t('landing.footer.features')}</p>
-              <ul className="mt-2 flex flex-col gap-1.5">
-                {FEATURES.slice(0, 5).map((feature) => (
-                  <li key={feature.key}>
-                    <a href="#features" className="hover:underline">
-                      {t(`landing.features.${feature.key}.name`)}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="font-semibold">{t('landing.footer.about')}</p>
-              <p className="mt-2 leading-relaxed">{t('landing.footer.aboutBody')}</p>
-            </div>
-            <div className="[&_button]:text-brand-ink">
-              <p className="font-semibold">{t('landing.footer.display')}</p>
-              <div className="mt-1 -ml-2 flex items-center">
-                <LanguageSwitch />
-                <ThemeToggle />
-              </div>
-            </div>
-          </div>
-        </div>
-        <p className="mt-16 max-w-[90ch] text-[13px] leading-relaxed opacity-80">
-          {t('landing.footer.photos')}{' '}
-          {PHOTO_CREDITS.map((credit, index) => (
-            <span key={credit.page}>
-              {index > 0 && '; '}
-              <a href={credit.page} className="underline underline-offset-2" target="_blank" rel="noreferrer">
-                {credit.title}
-              </a>{' '}
-              {credit.byline}
-            </span>
-          ))}
-        </p>
-        <div className="mt-6 flex items-center justify-between gap-4 text-[13px]">
-          <p>{t('landing.footer.legal', { year: COPYRIGHT_YEAR, version: APP_VERSION_LABEL })}</p>
-          <a href="#hero-title" className="inline-flex items-center gap-1 hover:underline">
-            <ArrowUp className="size-3.5" />
-            {t('landing.footer.backToTop')}
-          </a>
-        </div>
+    <footer className="mx-auto flex max-w-[1280px] flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <p>{t('landing.footer.legal', { year: COPYRIGHT_YEAR, version: APP_VERSION_LABEL })}</p>
+      <div className="-ml-2 flex items-center sm:ml-0" role="group" aria-label={t('landing.footer.display')}>
+        <LanguageSwitch />
+        <ThemeToggle />
       </div>
     </footer>
   )
 }
 
 export function LandingPage() {
-  const [payday, setPayday] = useState(25)
   return (
     <AlwaysShowAmounts>
-    <main>
-      <Hero payday={payday} onPaydayChange={setPayday} />
-      <Showcase payday={payday} />
-      <DailySpending />
-      <Features />
-      <HowItWorks />
-      <CallToAction />
+      <Header />
+      <main className="overflow-x-clip">
+        <Hero />
+        <CycleSection />
+        <LogSection />
+        <FeatureList />
+        <Closing />
+      </main>
       <Footer />
-    </main>
     </AlwaysShowAmounts>
   )
 }

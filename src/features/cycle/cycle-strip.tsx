@@ -19,6 +19,8 @@ interface CycleStripProps {
   timezone: string
   /** Due Dates of pending Safe-Pays; those days carry a gold dot. */
   dueDates: ReadonlySet<IsoDate>
+  /** Days up to today open their Transactions; off for sample strips on public pages. */
+  linkDays?: boolean
   className?: string
 }
 
@@ -27,7 +29,7 @@ interface CycleStripProps {
  * each day's spending and a gold dot where a pending Safe-Pay falls due. Days up to today open
  * that date's Transactions. The row scrolls itself so today sits in view.
  */
-export function CycleStrip({ cycle, today, transactions, timezone, dueDates, className }: CycleStripProps) {
+export function CycleStrip({ cycle, today, transactions, timezone, dueDates, linkDays = true, className }: CycleStripProps) {
   const { t } = useTranslation()
   const language = currentLanguage()
   const listRef = useRef<HTMLOListElement>(null)
@@ -47,7 +49,12 @@ export function CycleStrip({ cycle, today, transactions, timezone, dueDates, cla
     const list = listRef.current
     const cell = todayRef.current
     if (!list || !cell) return
-    list.scrollLeft = cell.offsetLeft - list.clientWidth / 2 + cell.clientWidth / 2
+    // Centre today, then round to a cell edge so the first visible day is never cut in half.
+    const ideal = cell.offsetLeft - list.clientWidth / 2 + cell.clientWidth / 2
+    const pad = parseFloat(getComputedStyle(list).paddingLeft) || 0
+    const items = [...list.children] as HTMLElement[]
+    const first = items.reduce((best, item) => (Math.abs(item.offsetLeft - pad - ideal) < Math.abs(best.offsetLeft - pad - ideal) ? item : best), items[0])
+    list.scrollLeft = first.offsetLeft - pad
   }, [today, cycle.start])
 
   return (
@@ -55,7 +62,7 @@ export function CycleStrip({ cycle, today, transactions, timezone, dueDates, cla
       ref={listRef}
       aria-label={t('dashboard.stripLabel')}
       className={cn(
-        'flex snap-x gap-1 overflow-x-auto overscroll-x-contain [scrollbar-width:none] xl:gap-0.5 [&::-webkit-scrollbar]:hidden',
+        'relative flex snap-x scroll-px-3 gap-1 overflow-x-auto overscroll-x-contain sm:scroll-px-4 [scrollbar-width:none] xl:gap-0.5 [&::-webkit-scrollbar]:hidden',
         // Below xl the row scrolls; the edges fade so the hidden days read as more to scroll to.
         '[mask-image:linear-gradient(to_right,transparent,black_20px,black_calc(100%-20px),transparent)] xl:[mask-image:none]',
         className,
@@ -108,9 +115,9 @@ export function CycleStrip({ cycle, today, transactions, timezone, dueDates, cla
         )
 
         return (
-          <li key={date} ref={isToday ? todayRef : undefined} className="shrink-0 snap-center xl:min-w-0 xl:flex-1">
-            {isFuture ? (
-              <div className={cellClass} aria-label={label} role="img">
+          <li key={date} ref={isToday ? todayRef : undefined} className="shrink-0 snap-start xl:min-w-0 xl:flex-1">
+            {isFuture || !linkDays ? (
+              <div className={cellClass} aria-label={label} aria-current={isToday ? 'date' : undefined} role="img">
                 {body}
               </div>
             ) : (
@@ -127,7 +134,7 @@ export function CycleStrip({ cycle, today, transactions, timezone, dueDates, cla
         )
       })}
       {/* The next payday closes the row, so "N days to payday" reads as distance, not only as text. */}
-      <li className="shrink-0 snap-center xl:min-w-0 xl:flex-1">
+      <li className="shrink-0 snap-start xl:min-w-0 xl:flex-1">
         <div
           role="img"
           aria-label={`${formatDate(nextPayday, language)} · ${t('dashboard.nextPayday')}`}

@@ -8,18 +8,20 @@ interface AmountPresetsProps {
   presets: number[]
   amount: number | null
   onChange: (amount: number | null) => void
+  /** Wrap onto more lines instead of scrolling sideways (where nothing else shows that it scrolls). */
+  wrap?: boolean
   className?: string
 }
 
 /** One-tap amounts under an amount field: each tap adds its value, like counting out cash. */
-export function AmountPresets({ presets, amount, onChange, className }: AmountPresetsProps) {
+export function AmountPresets({ presets, amount, onChange, wrap = false, className }: AmountPresetsProps) {
   const { t } = useTranslation()
   const language = currentLanguage()
   if (presets.length === 0) return null
   const chip =
-    'inline-flex h-9 shrink-0 items-center rounded-full border bg-card px-3.5 text-sm font-medium whitespace-nowrap transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95'
+    'inline-flex h-9 shrink-0 touch-manipulation items-center rounded-full border bg-card px-3.5 text-sm font-medium whitespace-nowrap transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-95'
   return (
-    <div role="group" aria-label={t('amountPresets.label')} className={cn('-mx-1 flex gap-2 overflow-x-auto px-1 pb-1', className)}>
+    <div role="group" aria-label={t('amountPresets.label')} className={cn(wrap ? 'flex flex-wrap gap-2' : '-mx-1 flex gap-2 overflow-x-auto px-1 pb-1', className)}>
       {presets.map((preset) => (
         <button
           key={preset}

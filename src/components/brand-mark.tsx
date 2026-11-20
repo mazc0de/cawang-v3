@@ -35,7 +35,7 @@ export function BrandMark({ className }: { className?: string }) {
 
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <span className={cn('inline-flex items-center gap-2 text-[17px] font-extrabold tracking-tight', className)}>
+    <span translate="no" className={cn('inline-flex items-center gap-2 text-[17px] font-extrabold tracking-tight', className)}>
       <BrandMark className="size-7" />
       Cawang
     </span>

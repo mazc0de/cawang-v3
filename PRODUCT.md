@@ -64,9 +64,8 @@ Budget is left before the next payday.
 
 ## Evidence on Hand
 
-- Landing photographs (CC BY-SA, Wikimedia Commons), credited in the footer:
-  `public/landing/batagor-vendor.jpg`, `krl-gambir.jpg`, `market-fruit.jpg`, credits in
-  `public/landing/credits.json`.
+- The landing page (rebuilt 2026-11-21) proves the product with its own components and sample money,
+  labelled as made up; it uses no photographs (the earlier Wikimedia set was removed).
 - No testimonials, user counts, press, ratings or pricing exist. Do not fabricate them.
 
 ## Product Principles
