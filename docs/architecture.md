@@ -36,7 +36,7 @@ Browser (React SPA, PWA)
 ```
 app/
 ├─ supabase/schema.sql      Seluruh database dalam satu file (aman dijalankan ulang)
-├─ public/                  Favicon, ikon PWA, foto landing page (+ credits.json)
+├─ public/                  Favicon dan ikon PWA
 ├─ docs/                    Dokumentasi ini
 └─ src/
    ├─ main.tsx              Provider: Theme → AmountVisibility → QueryClient → Tooltip → Auth → Router
@@ -183,16 +183,24 @@ Pengaturan default di `main.tsx`:
 
 - Token warna, radius, dan font ada di `src/index.css` sebagai CSS variable untuk `:root` (terang) dan
   `.dark` (gelap), dipetakan ke Tailwind lewat `@theme inline`.
-- Layar app mengikuti gaya taste-skill **pastel-consumer**: Manrope, kartu putih di atas latar
-  off-white, radius kartu 20px, tile kategori pastel, dan warna dipakai untuk data, bukan dekorasi.
-  Arsipnya di `.taste-skill/direction.json`.
-- Landing page mengikuti arah taste-skill **type-only-statement** (`.taste-skill/landing/`).
+- Arah desain **Tanggal Gajian** (redesign 2026-11-20 dengan skill Impeccable; aturan lengkap di
+  `DESIGN.md`, catatan produk di `PRODUCT.md`): hijau cabang dari logo menjadi shell (sidebar desktop,
+  top bar mobile, pita saldo di Dasbor), latar hijau daun pucat dengan kartu putih, dan emas logo hanya
+  untuk logo serta Dana Terkunci/Safe-Pay. Ciri khasnya Cycle strip di Dasbor
+  (`features/cycle/cycle-strip.tsx`): semua hari dari gajian ke gajian dalam satu baris.
+- Di dalam pita hijau, kelas `.shell` mengganti token (`--foreground`, `--muted`, …) dengan warna shell
+  sehingga komponen header tetap memakai kelas biasa. Kartu putih di dalam pita memakai `.unshell`
+  untuk kembali ke token halaman.
+- Landing page (struktur "Cabang tumbuh"): hero menggambar cabang logo dengan tiga koin sebagai
+  saldo yang bisa dicoba (Total, Dana terkunci dengan switch Safe-Pay, Saldo Tersedia), lalu demo
+  Cycle strip, demo catat cepat, daftar fitur, dan pita hijau penutup. Semua angka adalah contoh.
 - Warna semantik tetap: Income hijau, Expense merah, Transfer biru, Locked Funds/Safe-Pay amber, dan
   status "Hampir habis" pada budget memakai oranye (`caution`).
 - Tema: `ThemeProvider` menyimpan pilihan di localStorage `cawang-theme` dan di profil. Skrip kecil di
   `index.html` memasang kelas `dark` sebelum render pertama supaya tidak berkedip.
-- Logo (`components/brand-mark.tsx`) digambar khusus: huruf C dengan dua candlestick naik. Bukan ikon
-  library.
+- Logo (`components/brand-mark.tsx`): batang cabang hijau dengan tiga koin emas, digambar dari
+  `public/favicon.svg`. Warna batang mengikuti `--logo-stem` (hijau tua di latar terang, hijau muda di
+  shell dan dark mode). Favicon dan ikon PWA ada di `public/`.
 
 ## Visibilitas nominal (privasi)
 

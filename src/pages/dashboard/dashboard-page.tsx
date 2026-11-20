@@ -1,6 +1,7 @@
 import { Lock, Plus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
+import { AmountToggle } from '@/components/amount-toggle'
 import { Money } from '@/components/money'
 import { PageHeader } from '@/components/page-header'
 import { Button } from '@/components/ui/button'
@@ -10,9 +11,11 @@ import { CycleSummary } from '@/features/budgets/cycle-summary'
 import { useBudgetProgress } from '@/features/budgets/queries'
 import { BudgetStatusPill } from '@/features/budgets/status-pill'
 import { CategoryTile } from '@/features/categories/category-tile'
+import { CycleStrip } from '@/features/cycle/cycle-strip'
 import { useCurrentCycle, useCycleTransactions } from '@/features/cycle/use-cycle'
 import { PendingOccurrenceList } from '@/features/recurring/pending-list'
 import { usePendingOccurrences } from '@/features/recurring/queries'
+import { useSafePays } from '@/features/safe-pay/queries'
 import { useLookups } from '@/features/transactions/lookups'
 import { TransactionRow } from '@/features/transactions/transaction-row'
 import { currentLanguage } from '@/i18n'
@@ -20,7 +23,6 @@ import { daysUntilNextCycle } from '@/lib/cycle'
 import type { Transaction } from '@/lib/database'
 import { diffInDays, zonedParts } from '@/lib/dates'
 import { formatCycleRange } from '@/lib/format'
-import { AmountToggle } from '@/components/amount-toggle'
 
 const TODAY_ROWS = 5
 const SIDE_ROWS = 4
@@ -32,24 +34,22 @@ function totalsOf(rows: Transaction[]) {
   )
 }
 
-function Figure({ label, amount, tone, size = 'md' }: { label: string; amount: number; tone?: 'income' | 'expense'; size?: 'md' | 'lg' }) {
+function Figure({ label, amount, tone }: { label: string; amount: number; tone?: 'income' | 'expense' }) {
   return (
-    <div>
-      <p className="text-sm text-muted-foreground">{label}</p>
-      <Money
-        amount={amount}
-        tone={amount === 0 ? 'muted' : tone}
-        className={size === 'lg' ? 'mt-1 block text-2xl font-semibold' : 'mt-1 block text-xl font-semibold'}
-      />
+    <div className="min-w-0">
+      <p className="text-[13px] text-muted-foreground">{label}</p>
+      <Money amount={amount} tone={amount === 0 ? 'muted' : tone} className="mt-0.5 block text-[17px] font-bold" />
     </div>
   )
 }
 
-function CardHeader({ title, to, linkLabel }: { title: string; to: string; linkLabel: string }) {
+function CardHeader({ id, title, to, linkLabel }: { id: string; title: string; to: string; linkLabel: string }) {
   return (
     <div className="flex items-baseline justify-between gap-3 px-4 pt-4 sm:px-5">
-      <h2 className="text-base font-semibold">{title}</h2>
-      <Link to={to} className="text-sm text-muted-foreground hover:text-foreground">
+      <h2 id={id} className="text-base font-bold">
+        {title}
+      </h2>
+      <Link to={to} className="text-sm font-semibold text-brand-ink hover:underline dark:text-brand">
         {linkLabel}
       </Link>
     </div>
@@ -66,6 +66,7 @@ export function DashboardPage() {
   const cycleTransactions = useCycleTransactions(cycle, timezone)
   const budgets = useBudgetProgress(cycle, timezone)
   const pending = usePendingOccurrences(today)
+  const safePays = useSafePays()
 
   const balance = (accounts.data ?? []).reduce(
     (sum, account) => {
@@ -87,14 +88,19 @@ export function DashboardPage() {
   const dayNumber = diffInDays(today, cycle.start) + 1
   const atRisk = (budgets.data ?? []).filter((row) => row.status !== 'safe')
   const waiting = pending.data ?? []
+  const dueDates = new Set(
+    (safePays.data ?? [])
+      .filter((item) => item.status === 'pending' && item.due_date && item.due_date >= cycle.start && item.due_date <= cycle.end)
+      .map((item) => item.due_date!),
+  )
 
   return (
     <>
       <PageHeader
+        className="hidden lg:flex"
         title={t('nav.dashboard')}
-        description={t('dashboard.subtitle', { range: formatCycleRange(cycle, language), count: daysLeft })}
         actions={
-          <Button asChild className="hidden sm:inline-flex">
+          <Button asChild>
             <Link to="/transactions?new=1">
               <Plus />
               {t('nav.addTransaction')}
@@ -102,49 +108,94 @@ export function DashboardPage() {
           </Button>
         }
       />
+      <h1 className="sr-only lg:hidden">{t('nav.dashboard')}</h1>
 
+      {/* The green band continues the mobile top bar; on desktop it is the first card. */}
       <section
-        className="mt-6 grid overflow-hidden rounded-(--radius-card) border bg-card sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]"
-        aria-label={t('money.totalBalance')}
+        className="shell -mx-4 -mt-4 rounded-b-[28px] px-5 pt-2 pb-5 sm:-mx-6 sm:px-7 lg:mx-0 lg:mt-6 lg:flex lg:items-end lg:justify-between lg:gap-10 lg:rounded-(--radius-card) lg:px-7 lg:py-6"
+        aria-label={t('money.availableBalance')}
       >
-        <div className="p-5">
+        <div className="min-w-0">
           <div className="-my-1.5 flex items-center gap-1">
-            <p className="text-sm text-muted-foreground">{t('money.totalBalance')}</p>
-            <AmountToggle privacyKey="summary" name={t('money.totalBalance')} />
+            <p className="text-sm font-medium text-muted-foreground">{t('money.availableBalance')}</p>
+            <AmountToggle privacyKey="summary" name={t('money.availableBalance')} />
           </div>
           {accounts.isPending ? (
-            <Skeleton className="mt-2 h-10 w-52" />
+            <Skeleton className="mt-2 h-11 w-56" />
           ) : (
-            <Money amount={balance.total} privacyKey="summary" className="mt-1 block text-[34px] leading-10 font-semibold tracking-tight" />
+            <Money
+              amount={balance.total - balance.locked}
+              privacyKey="summary"
+              className="mt-1 block text-[38px] leading-[44px] font-extrabold tracking-tight lg:text-[44px] lg:leading-[52px]"
+            />
           )}
-          <p className="mt-1 text-[13px] text-muted-foreground">{t('dashboard.accountsCount', { count: accounts.data?.length ?? 0 })}</p>
         </div>
-        <div className="grid grid-cols-2 border-t sm:col-span-2 sm:border-t-0 sm:border-l">
-          <div className="border-r p-5">
-            <p className="text-sm text-muted-foreground">{t('money.availableBalance')}</p>
-            <Money amount={balance.total - balance.locked} privacyKey="summary" className="mt-1 block text-xl font-semibold" />
+        <div className="mt-4 grid grid-cols-2 gap-2.5 lg:mt-0 lg:w-[420px] lg:shrink-0">
+          <div className="rounded-2xl bg-shell-raised px-3.5 py-2.5">
+            <p className="text-xs font-medium text-muted-foreground">{t('money.totalBalance')}</p>
+            <Money amount={balance.total} privacyKey="summary" className="mt-0.5 block text-base font-bold" />
+            <p className="mt-0.5 text-[11px] text-muted-foreground">{t('dashboard.accountsCount', { count: accounts.data?.length ?? 0 })}</p>
           </div>
-          <Link to="/safe-pay" className="p-5 transition-colors hover:bg-muted/50">
-            <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
-              <Lock className="size-3.5" />
+          <Link to="/safe-pay" className="rounded-2xl bg-shell-raised px-3.5 py-2.5 transition-colors hover:bg-white/10 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none">
+            <p className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+              <Lock className="size-3" />
               {t('money.lockedFunds')}
             </p>
-            <Money amount={balance.locked} privacyKey="summary" tone={balance.locked ? 'locked' : 'muted'} className="mt-1 block text-xl font-semibold" />
+            <Money
+              amount={balance.locked}
+              privacyKey="summary"
+              tone={balance.locked ? 'locked' : 'muted'}
+              className="mt-0.5 block text-base font-bold"
+            />
           </Link>
         </div>
       </section>
 
-      <div className="mt-6 grid items-start gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-        <section className="overflow-hidden rounded-(--radius-card) border bg-card" aria-labelledby="today">
-          <div className="flex items-baseline justify-between gap-3 px-4 pt-4 sm:px-5">
-            <h2 id="today" className="text-base font-semibold">
-              {t('dashboard.today')}
+      <section className="mt-4 overflow-hidden rounded-(--radius-card) border bg-card lg:mt-6" aria-labelledby="this-cycle">
+        <div className="px-4 pt-4 sm:px-5">
+          <div className="flex items-baseline justify-between gap-3">
+            <h2 id="this-cycle" className="text-base font-bold">
+              {t('dashboard.thisCycle')}
             </h2>
-            <Link to="/transactions" className="text-sm text-muted-foreground hover:text-foreground">
-              {todayRows.length > TODAY_ROWS ? t('dashboard.viewAllCount', { count: todayRows.length }) : t('dashboard.openTransactions')}
-            </Link>
+            <span className="num text-sm text-muted-foreground">{formatCycleRange(cycle, language)}</span>
           </div>
-          <div className="mt-3 grid grid-cols-2 gap-4 px-4 sm:px-5">
+          <p className="mt-0.5 text-[13px] text-muted-foreground">
+            {t('dashboard.dayOfCycle', { day: dayNumber, total: cycleLength })} ·{' '}
+            <span className="font-semibold text-brand-ink dark:text-brand">{t('dashboard.paydayIn', { count: daysLeft })}</span>
+          </p>
+        </div>
+        {cycleTransactions.isPending ? (
+          <Skeleton className="mx-4 mt-3 mb-2 h-[86px] rounded-xl sm:mx-5" />
+        ) : (
+          <CycleStrip
+            cycle={cycle}
+            today={today}
+            transactions={cycleRows}
+            timezone={timezone}
+            dueDates={dueDates}
+            className="mt-3 px-3 pb-2 sm:px-4"
+          />
+        )}
+        {/* Phones get two columns and Selisih on its own row: an 8-digit salary must never collide. */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t px-4 py-3.5 sm:grid-cols-3 sm:px-5">
+          <Figure label={t('transactionTypes.income')} amount={cycleTotals.income} tone="income" />
+          <Figure label={t('transactionTypes.expense')} amount={cycleTotals.expense} tone="expense" />
+          <div className="col-span-2 min-w-0 sm:col-span-1">
+            <p className="text-[13px] text-muted-foreground">{t('dashboard.net')}</p>
+            <Money amount={cycleTotals.income - cycleTotals.expense} className="mt-0.5 block text-[17px] font-bold" />
+          </div>
+        </div>
+      </section>
+
+      <div className="mt-4 grid items-start gap-4 lg:mt-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-6">
+        <section className="overflow-hidden rounded-(--radius-card) border bg-card" aria-labelledby="today">
+          <CardHeader
+            id="today"
+            title={t('dashboard.today')}
+            to="/transactions"
+            linkLabel={todayRows.length > TODAY_ROWS ? t('dashboard.viewAllCount', { count: todayRows.length }) : t('dashboard.openTransactions')}
+          />
+          <div className="mt-2 grid grid-cols-2 gap-4 px-4 sm:px-5">
             <Figure label={t('transactionTypes.income')} amount={todayTotals.income} tone="income" />
             <Figure label={t('transactionTypes.expense')} amount={todayTotals.expense} tone="expense" />
           </div>
@@ -154,9 +205,9 @@ export function DashboardPage() {
               <Skeleton className="h-12 rounded-xl" />
             </div>
           ) : todayRows.length === 0 ? (
-            <div className="m-4 flex flex-col items-start gap-3 rounded-xl border border-dashed px-4 py-4 sm:m-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-3 flex flex-col items-start gap-3 border-t px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
               <p className="text-sm text-muted-foreground">{t('dashboard.nothingToday')}</p>
-              <Button variant="outline" size="sm" asChild>
+              <Button size="sm" asChild className="lg:hidden">
                 <Link to="/transactions?new=1">
                   <Plus />
                   {t('nav.addTransaction')}
@@ -172,98 +223,70 @@ export function DashboardPage() {
           )}
         </section>
 
-        <section className="rounded-(--radius-card) border bg-card p-4 sm:p-5" aria-labelledby="this-cycle">
-          <h2 id="this-cycle" className="text-base font-semibold">
-            {t('dashboard.thisCycle')}
-          </h2>
-          <div className="mt-3 grid grid-cols-2 gap-4">
-            <Figure label={t('transactionTypes.income')} amount={cycleTotals.income} tone="income" size="lg" />
-            <Figure label={t('transactionTypes.expense')} amount={cycleTotals.expense} tone="expense" size="lg" />
-          </div>
-          <div className="mt-5 border-t pt-4">
-            <div className="flex items-baseline justify-between gap-3 text-sm">
-              <span className="text-muted-foreground">{t('dashboard.dayOfCycle', { day: dayNumber, total: cycleLength })}</span>
-              <span className="font-medium">{t('cycle.nextIn', { count: daysLeft })}</span>
-            </div>
-            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
-              <div className="h-full rounded-full bg-foreground/70" style={{ width: `${(dayNumber / cycleLength) * 100}%` }} />
-            </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              {t('dashboard.netThisCycle')}{' '}
-              <Money amount={cycleTotals.income - cycleTotals.expense} className="font-medium text-foreground" />
-            </p>
-          </div>
-        </section>
-      </div>
-
-      <div className="mt-6 grid items-start gap-6 lg:grid-cols-2">
-        <section className="overflow-hidden rounded-(--radius-card) border bg-card" aria-labelledby="budget-overview">
-          <CardHeader title={t('nav.budgets')} to="/budgets" linkLabel={t('dashboard.manageBudgets')} />
-          <h2 id="budget-overview" className="sr-only">
-            {t('nav.budgets')}
-          </h2>
-          {budgets.isPending ? (
-            <div className="p-5">
-              <Skeleton className="h-24 rounded-xl" />
-            </div>
-          ) : (budgets.data ?? []).length === 0 ? (
-            <p className="m-4 rounded-xl border border-dashed px-4 py-4 text-sm text-muted-foreground sm:m-5">{t('dashboard.noBudgets')}</p>
-          ) : (
-            <>
-              <div className="px-4 pt-3 sm:px-5">
-                <CycleSummary rows={budgets.data!} compact />
+        <div className="flex flex-col gap-4 lg:gap-6">
+          <section className="overflow-hidden rounded-(--radius-card) border bg-card" aria-labelledby="budget-overview">
+            <CardHeader id="budget-overview" title={t('nav.budgets')} to="/budgets" linkLabel={t('dashboard.manageBudgets')} />
+            {budgets.isPending ? (
+              <div className="p-5">
+                <Skeleton className="h-24 rounded-xl" />
               </div>
-              {atRisk.length === 0 ? (
-                <p className="px-4 py-4 text-sm text-muted-foreground sm:px-5">{t('dashboard.allBudgetsSafe')}</p>
-              ) : (
-                <ul className="mt-3 border-t pb-2">
-                  {atRisk.slice(0, SIDE_ROWS).map((row) => {
-                    const left = row.budget.amount - row.spent
-                    return (
-                      <li key={row.budget.id} className="flex items-center gap-3 px-4 py-2.5 sm:px-5">
-                        <CategoryTile icon={row.category?.icon ?? 'tag'} color={row.category?.color ?? 'slate'} className="size-8" />
-                        <span className="min-w-0 flex-1 truncate text-sm font-medium">{row.category?.name}</span>
-                        <BudgetStatusPill status={row.status} />
-                        <span className="w-28 text-right text-sm">
-                          {left < 0 ? (
-                            <Money amount={-left} tone="expense" signed />
-                          ) : (
-                            <>
-                              <span className="text-muted-foreground">{t('budgets.leftShort')} </span>
-                              <Money amount={left} />
-                            </>
-                          )}
-                        </span>
-                      </li>
-                    )
-                  })}
-                </ul>
-              )}
-            </>
-          )}
-        </section>
+            ) : (budgets.data ?? []).length === 0 ? (
+              <p className="px-4 pt-2 pb-4 text-sm text-muted-foreground sm:px-5">{t('dashboard.noBudgets')}</p>
+            ) : (
+              <>
+                <div className="px-4 pt-3 sm:px-5">
+                  <CycleSummary rows={budgets.data!} compact />
+                </div>
+                {atRisk.length === 0 ? (
+                  <p className="px-4 py-4 text-sm text-muted-foreground sm:px-5">{t('dashboard.allBudgetsSafe')}</p>
+                ) : (
+                  <ul className="mt-3 border-t pb-2">
+                    {atRisk.slice(0, SIDE_ROWS).map((row) => {
+                      const left = row.budget.amount - row.spent
+                      return (
+                        <li key={row.budget.id} className="flex items-center gap-3 px-4 py-2.5 sm:px-5">
+                          <CategoryTile icon={row.category?.icon ?? 'tag'} color={row.category?.color ?? 'slate'} className="size-8" />
+                          <span className="min-w-0 flex-1 truncate text-sm font-semibold">{row.category?.name}</span>
+                          <BudgetStatusPill status={row.status} />
+                          <span className="w-28 text-right text-sm">
+                            {left < 0 ? (
+                              <Money amount={-left} tone="expense" signed />
+                            ) : (
+                              <>
+                                <span className="text-muted-foreground">{t('budgets.leftShort')} </span>
+                                <Money amount={left} />
+                              </>
+                            )}
+                          </span>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
+              </>
+            )}
+          </section>
 
-        <section className="overflow-hidden rounded-(--radius-card) border bg-card" aria-labelledby="recurring-overview">
-          <CardHeader
-            title={t('recurring.waitingHeading', { count: waiting.length })}
-            to="/recurring"
-            linkLabel={waiting.length > SIDE_ROWS ? t('dashboard.viewAllCount', { count: waiting.length }) : t('dashboard.openRecurring')}
-          />
-          <h2 id="recurring-overview" className="sr-only">
-            {t('nav.recurring')}
-          </h2>
-          {pending.isPending ? (
-            <div className="p-5">
-              <Skeleton className="h-24 rounded-xl" />
-            </div>
-          ) : waiting.length === 0 ? (
-            <p className="m-4 rounded-xl border border-dashed px-4 py-4 text-sm text-muted-foreground sm:m-5">{t('recurring.nothingWaiting')}</p>
-          ) : (
-            <div className="mt-2 pb-2">
-              <PendingOccurrenceList occurrences={waiting.slice(0, SIDE_ROWS)} />
-            </div>
-          )}
-        </section>
+          <section className="overflow-hidden rounded-(--radius-card) border bg-card" aria-labelledby="recurring-overview">
+            <CardHeader
+              id="recurring-overview"
+              title={t('recurring.waitingHeading', { count: waiting.length })}
+              to="/recurring"
+              linkLabel={waiting.length > SIDE_ROWS ? t('dashboard.viewAllCount', { count: waiting.length }) : t('dashboard.openRecurring')}
+            />
+            {pending.isPending ? (
+              <div className="p-5">
+                <Skeleton className="h-24 rounded-xl" />
+              </div>
+            ) : waiting.length === 0 ? (
+              <p className="px-4 pt-2 pb-4 text-sm text-muted-foreground sm:px-5">{t('recurring.nothingWaiting')}</p>
+            ) : (
+              <div className="mt-2 pb-2">
+                <PendingOccurrenceList occurrences={waiting.slice(0, SIDE_ROWS)} />
+              </div>
+            )}
+          </section>
+        </div>
       </div>
     </>
   )

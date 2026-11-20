@@ -1,6 +1,6 @@
 /**
  * Category colours as palette keys (stored in categories.color). Each is a pale tile with the
- * dark of its own hue as ink (taste-skill pastel-consumer), with a dark-mode pair. No violet
+ * dark of its own hue as ink, with a dark-mode pair. No violet
  * or indigo; amber is kept for Locked Funds, so categories do not use it.
  */
 export const CATEGORY_COLORS = {

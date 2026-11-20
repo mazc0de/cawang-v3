@@ -1,0 +1,1575 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-20T18:32:39+00:00",
+  "title": "Design System: Cawang",
+  "extensions": {
+    "colorMeta": {
+      "shell": {
+        "role": "primary",
+        "displayName": "Branch Shell Green",
+        "canonical": "#1f4d27",
+        "oklch": "oklch(37.7% 0.081 147.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.031 147.4)",
+          "oklch(26.4% 0.055 147.4)",
+          "oklch(37.9% 0.078 147.4)",
+          "oklch(49.3% 0.081 147.4)",
+          "oklch(60.7% 0.081 147.4)",
+          "oklch(72.1% 0.078 147.4)",
+          "oklch(83.6% 0.055 147.4)",
+          "oklch(95.0% 0.031 147.4)"
+        ],
+        "purpose": "Chrome: sidebar, mobile top band, Dashboard balance band, auth side panel, landing closing band."
+      },
+      "shell-ink": {
+        "role": "neutral",
+        "displayName": "Shell Ink",
+        "canonical": "#f1f6ea",
+        "oklch": "oklch(96.6% 0.017 125.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.006 125.3)",
+          "oklch(26.4% 0.011 125.3)",
+          "oklch(37.9% 0.016 125.3)",
+          "oklch(49.3% 0.017 125.3)",
+          "oklch(60.7% 0.017 125.3)",
+          "oklch(72.1% 0.016 125.3)",
+          "oklch(83.6% 0.011 125.3)",
+          "oklch(95.0% 0.006 125.3)"
+        ],
+        "purpose": "Text on the shell."
+      },
+      "shell-muted": {
+        "role": "neutral",
+        "displayName": "Shell Muted",
+        "canonical": "#b9cdb1",
+        "oklch": "oklch(82.6% 0.044 136.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.017 136.7)",
+          "oklch(26.4% 0.030 136.7)",
+          "oklch(37.9% 0.042 136.7)",
+          "oklch(49.3% 0.044 136.7)",
+          "oklch(60.7% 0.044 136.7)",
+          "oklch(72.1% 0.042 136.7)",
+          "oklch(83.6% 0.030 136.7)",
+          "oklch(95.0% 0.017 136.7)"
+        ],
+        "purpose": "Secondary text on the shell."
+      },
+      "shell-raised": {
+        "role": "primary",
+        "displayName": "Shell Raised",
+        "canonical": "#2a5e32",
+        "oklch": "oklch(43.4% 0.091 147.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.035 147.1)",
+          "oklch(26.4% 0.061 147.1)",
+          "oklch(37.9% 0.087 147.1)",
+          "oklch(49.3% 0.091 147.1)",
+          "oklch(60.7% 0.091 147.1)",
+          "oklch(72.1% 0.087 147.1)",
+          "oklch(83.6% 0.061 147.1)",
+          "oklch(95.0% 0.035 147.1)"
+        ],
+        "purpose": "Tiles and active nav items inside the shell."
+      },
+      "shell-stem": {
+        "role": "primary",
+        "displayName": "Pale Stem",
+        "canonical": "#a7d69a",
+        "oklch": "oklch(82.8% 0.096 139.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.036 139.0)",
+          "oklch(26.4% 0.064 139.0)",
+          "oklch(37.9% 0.092 139.0)",
+          "oklch(49.3% 0.096 139.0)",
+          "oklch(60.7% 0.096 139.0)",
+          "oklch(72.1% 0.092 139.0)",
+          "oklch(83.6% 0.064 139.0)",
+          "oklch(95.0% 0.036 139.0)"
+        ],
+        "purpose": "Logo stem, focus ring and avatar dot inside the shell."
+      },
+      "logo-green": {
+        "role": "primary",
+        "displayName": "Logo Stem Green",
+        "canonical": "#2f6b2f",
+        "oklch": "oklch(47.3% 0.111 143.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.042 143.6)",
+          "oklch(26.4% 0.075 143.6)",
+          "oklch(37.9% 0.107 143.6)",
+          "oklch(49.3% 0.111 143.6)",
+          "oklch(60.7% 0.111 143.6)",
+          "oklch(72.1% 0.107 143.6)",
+          "oklch(83.6% 0.075 143.6)",
+          "oklch(95.0% 0.042 143.6)"
+        ],
+        "purpose": "Logo strokes, brand accent, focus ring, chart-1."
+      },
+      "coin-gold": {
+        "role": "secondary",
+        "displayName": "Coin Gold",
+        "canonical": "#e9b21a",
+        "oklch": "oklch(79.3% 0.158 85.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.044 85.3)",
+          "oklch(26.4% 0.056 85.3)",
+          "oklch(37.9% 0.073 85.3)",
+          "oklch(49.3% 0.093 85.3)",
+          "oklch(60.7% 0.115 85.3)",
+          "oklch(72.1% 0.137 85.3)",
+          "oklch(83.6% 0.106 85.3)",
+          "oklch(95.0% 0.049 85.3)"
+        ],
+        "purpose": "Logo coins, Safe-Pay due dots, Locked Funds inside the shell, landing hero coins."
+      },
+      "coin-ink": {
+        "role": "secondary",
+        "displayName": "Coin Ink",
+        "canonical": "#4d3800",
+        "oklch": "oklch(35.5% 0.073 85.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.028 85.0)",
+          "oklch(26.4% 0.049 85.0)",
+          "oklch(37.9% 0.070 85.0)",
+          "oklch(49.3% 0.073 85.0)",
+          "oklch(60.7% 0.073 85.0)",
+          "oklch(72.1% 0.070 85.0)",
+          "oklch(83.6% 0.049 85.0)",
+          "oklch(95.0% 0.028 85.0)"
+        ],
+        "purpose": "Text on filled landing coins."
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Branch Shell Green (button)",
+        "canonical": "#1f4d27",
+        "oklch": "oklch(37.7% 0.081 147.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.031 147.4)",
+          "oklch(26.4% 0.055 147.4)",
+          "oklch(37.9% 0.078 147.4)",
+          "oklch(49.3% 0.081 147.4)",
+          "oklch(60.7% 0.081 147.4)",
+          "oklch(72.1% 0.078 147.4)",
+          "oklch(83.6% 0.055 147.4)",
+          "oklch(95.0% 0.031 147.4)"
+        ],
+        "purpose": "Primary buttons, centre add, today cell."
+      },
+      "primary-ink": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.4% 0.000 89.9)",
+          "oklch(37.9% 0.000 89.9)",
+          "oklch(49.3% 0.000 89.9)",
+          "oklch(60.7% 0.000 89.9)",
+          "oklch(72.1% 0.000 89.9)",
+          "oklch(83.6% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ],
+        "purpose": "Text on primary."
+      },
+      "leaf-ground": {
+        "role": "neutral",
+        "displayName": "Leaf Ground",
+        "canonical": "#f6faee",
+        "oklch": "oklch(97.9% 0.016 121.8)",
+        "tonalRamp": [
+          "oklch(15.0% 0.006 121.8)",
+          "oklch(26.4% 0.011 121.8)",
+          "oklch(37.9% 0.016 121.8)",
+          "oklch(49.3% 0.016 121.8)",
+          "oklch(60.7% 0.016 121.8)",
+          "oklch(72.1% 0.016 121.8)",
+          "oklch(83.6% 0.011 121.8)",
+          "oklch(95.0% 0.006 121.8)"
+        ],
+        "purpose": "Page background."
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.4% 0.000 89.9)",
+          "oklch(37.9% 0.000 89.9)",
+          "oklch(49.3% 0.000 89.9)",
+          "oklch(60.7% 0.000 89.9)",
+          "oklch(72.1% 0.000 89.9)",
+          "oklch(83.6% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ],
+        "purpose": "Cards, popovers, inputs, chips."
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised Leaf",
+        "canonical": "#edf3e3",
+        "oklch": "oklch(95.5% 0.022 123.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 123.6)",
+          "oklch(26.4% 0.015 123.6)",
+          "oklch(37.9% 0.021 123.6)",
+          "oklch(49.3% 0.022 123.6)",
+          "oklch(60.7% 0.022 123.6)",
+          "oklch(72.1% 0.021 123.6)",
+          "oklch(83.6% 0.015 123.6)",
+          "oklch(95.0% 0.008 123.6)"
+        ],
+        "purpose": "Tinted full-width bands."
+      },
+      "leaf-wash": {
+        "role": "neutral",
+        "displayName": "Leaf Wash",
+        "canonical": "#ebf1e1",
+        "oklch": "oklch(94.9% 0.022 123.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 123.6)",
+          "oklch(26.4% 0.015 123.6)",
+          "oklch(37.9% 0.021 123.6)",
+          "oklch(49.3% 0.022 123.6)",
+          "oklch(60.7% 0.022 123.6)",
+          "oklch(72.1% 0.021 123.6)",
+          "oklch(83.6% 0.015 123.6)",
+          "oklch(95.0% 0.008 123.6)"
+        ],
+        "purpose": "Secondary/muted/hover fills."
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Field Ink",
+        "canonical": "#15211a",
+        "oklch": "oklch(23.4% 0.022 158.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 158.6)",
+          "oklch(26.4% 0.015 158.6)",
+          "oklch(37.9% 0.021 158.6)",
+          "oklch(49.3% 0.022 158.6)",
+          "oklch(60.7% 0.022 158.6)",
+          "oklch(72.1% 0.021 158.6)",
+          "oklch(83.6% 0.015 158.6)",
+          "oklch(95.0% 0.008 158.6)"
+        ],
+        "purpose": "Body text and headings."
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Moss Muted Ink",
+        "canonical": "#556657",
+        "oklch": "oklch(49.1% 0.031 148.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.012 148.4)",
+          "oklch(26.4% 0.021 148.4)",
+          "oklch(37.9% 0.030 148.4)",
+          "oklch(49.3% 0.031 148.4)",
+          "oklch(60.7% 0.031 148.4)",
+          "oklch(72.1% 0.030 148.4)",
+          "oklch(83.6% 0.021 148.4)",
+          "oklch(95.0% 0.012 148.4)"
+        ],
+        "purpose": "Labels and descriptions."
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#dfe7d3",
+        "oklch": "oklch(91.6% 0.028 124.8)",
+        "tonalRamp": [
+          "oklch(15.0% 0.011 124.8)",
+          "oklch(26.4% 0.019 124.8)",
+          "oklch(37.9% 0.027 124.8)",
+          "oklch(49.3% 0.028 124.8)",
+          "oklch(60.7% 0.028 124.8)",
+          "oklch(72.1% 0.027 124.8)",
+          "oklch(83.6% 0.019 124.8)",
+          "oklch(95.0% 0.011 124.8)"
+        ],
+        "purpose": "Card and divider borders."
+      },
+      "input-stroke": {
+        "role": "neutral",
+        "displayName": "Input Stroke",
+        "canonical": "#c9d5bb",
+        "oklch": "oklch(85.7% 0.038 127.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.014 127.5)",
+          "oklch(26.4% 0.025 127.5)",
+          "oklch(37.9% 0.036 127.5)",
+          "oklch(49.3% 0.038 127.5)",
+          "oklch(60.7% 0.038 127.5)",
+          "oklch(72.1% 0.036 127.5)",
+          "oklch(83.6% 0.025 127.5)",
+          "oklch(95.0% 0.014 127.5)"
+        ],
+        "purpose": "Input borders, switch track."
+      },
+      "brand-soft": {
+        "role": "primary",
+        "displayName": "Brand Soft",
+        "canonical": "#e2efd5",
+        "oklch": "oklch(93.5% 0.037 128.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.014 128.9)",
+          "oklch(26.4% 0.025 128.9)",
+          "oklch(37.9% 0.036 128.9)",
+          "oklch(49.3% 0.037 128.9)",
+          "oklch(60.7% 0.037 128.9)",
+          "oklch(72.1% 0.036 128.9)",
+          "oklch(83.6% 0.025 128.9)",
+          "oklch(95.0% 0.014 128.9)"
+        ],
+        "purpose": "Selection and pressed-choice fill."
+      },
+      "brand-ink": {
+        "role": "primary",
+        "displayName": "Brand Ink",
+        "canonical": "#1f4d27",
+        "oklch": "oklch(37.7% 0.081 147.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.031 147.4)",
+          "oklch(26.4% 0.055 147.4)",
+          "oklch(37.9% 0.078 147.4)",
+          "oklch(49.3% 0.081 147.4)",
+          "oklch(60.7% 0.081 147.4)",
+          "oklch(72.1% 0.078 147.4)",
+          "oklch(83.6% 0.055 147.4)",
+          "oklch(95.0% 0.031 147.4)"
+        ],
+        "purpose": "Brand text links and active bottom-nav label."
+      },
+      "income": {
+        "role": "tertiary",
+        "displayName": "Income Green",
+        "canonical": "#23803a",
+        "oklch": "oklch(53.0% 0.136 147.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.052 147.7)",
+          "oklch(26.4% 0.074 147.7)",
+          "oklch(37.9% 0.106 147.7)",
+          "oklch(49.3% 0.136 147.7)",
+          "oklch(60.7% 0.136 147.7)",
+          "oklch(72.1% 0.131 147.7)",
+          "oklch(83.6% 0.091 147.7)",
+          "oklch(95.0% 0.052 147.7)"
+        ],
+        "purpose": "Money in. Binding."
+      },
+      "income-soft": {
+        "role": "tertiary",
+        "displayName": "Income Soft",
+        "canonical": "#dcf2df",
+        "oklch": "oklch(94.0% 0.034 149.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.013 149.3)",
+          "oklch(26.4% 0.023 149.3)",
+          "oklch(37.9% 0.033 149.3)",
+          "oklch(49.3% 0.034 149.3)",
+          "oklch(60.7% 0.034 149.3)",
+          "oklch(72.1% 0.033 149.3)",
+          "oklch(83.6% 0.023 149.3)",
+          "oklch(95.0% 0.013 149.3)"
+        ],
+        "purpose": "Income tint."
+      },
+      "expense": {
+        "role": "tertiary",
+        "displayName": "Expense Brick",
+        "canonical": "#c2412b",
+        "oklch": "oklch(55.6% 0.169 32.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.064 32.1)",
+          "oklch(26.4% 0.102 32.1)",
+          "oklch(37.9% 0.146 32.1)",
+          "oklch(49.3% 0.169 32.1)",
+          "oklch(60.7% 0.169 32.1)",
+          "oklch(72.1% 0.163 32.1)",
+          "oklch(83.6% 0.083 32.1)",
+          "oklch(95.0% 0.025 32.1)"
+        ],
+        "purpose": "Money out, over-budget, destructive. Binding."
+      },
+      "expense-soft": {
+        "role": "tertiary",
+        "displayName": "Expense Soft",
+        "canonical": "#fbe6e1",
+        "oklch": "oklch(94.0% 0.024 33.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 33.5)",
+          "oklch(26.4% 0.016 33.5)",
+          "oklch(37.9% 0.023 33.5)",
+          "oklch(49.3% 0.024 33.5)",
+          "oklch(60.7% 0.024 33.5)",
+          "oklch(72.1% 0.023 33.5)",
+          "oklch(83.6% 0.016 33.5)",
+          "oklch(95.0% 0.009 33.5)"
+        ],
+        "purpose": "Expense tint."
+      },
+      "transfer": {
+        "role": "tertiary",
+        "displayName": "Transfer Slate",
+        "canonical": "#3f6698",
+        "oklch": "oklch(50.4% 0.092 255.2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.035 255.2)",
+          "oklch(26.4% 0.062 255.2)",
+          "oklch(37.9% 0.088 255.2)",
+          "oklch(49.3% 0.092 255.2)",
+          "oklch(60.7% 0.092 255.2)",
+          "oklch(72.1% 0.088 255.2)",
+          "oklch(83.6% 0.062 255.2)",
+          "oklch(95.0% 0.023 255.2)"
+        ],
+        "purpose": "Money between Accounts. Binding."
+      },
+      "transfer-soft": {
+        "role": "tertiary",
+        "displayName": "Transfer Soft",
+        "canonical": "#e2eaf5",
+        "oklch": "oklch(93.4% 0.017 256.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 256.3)",
+          "oklch(26.4% 0.012 256.3)",
+          "oklch(37.9% 0.017 256.3)",
+          "oklch(49.3% 0.017 256.3)",
+          "oklch(60.7% 0.017 256.3)",
+          "oklch(72.1% 0.017 256.3)",
+          "oklch(83.6% 0.012 256.3)",
+          "oklch(95.0% 0.007 256.3)"
+        ],
+        "purpose": "Transfer tint."
+      },
+      "locked": {
+        "role": "tertiary",
+        "displayName": "Locked Amber",
+        "canonical": "#8a5a00",
+        "oklch": "oklch(50.8% 0.108 73.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.041 73.3)",
+          "oklch(26.4% 0.059 73.3)",
+          "oklch(37.9% 0.076 73.3)",
+          "oklch(49.3% 0.097 73.3)",
+          "oklch(60.7% 0.108 73.3)",
+          "oklch(72.1% 0.104 73.3)",
+          "oklch(83.6% 0.073 73.3)",
+          "oklch(95.0% 0.037 73.3)"
+        ],
+        "purpose": "Locked Funds and Safe-Pay on light grounds. Binding."
+      },
+      "locked-soft": {
+        "role": "tertiary",
+        "displayName": "Locked Soft",
+        "canonical": "#fcf0cf",
+        "oklch": "oklch(95.6% 0.045 90.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.017 90.4)",
+          "oklch(26.4% 0.030 90.4)",
+          "oklch(37.9% 0.043 90.4)",
+          "oklch(49.3% 0.045 90.4)",
+          "oklch(60.7% 0.045 90.4)",
+          "oklch(72.1% 0.043 90.4)",
+          "oklch(83.6% 0.030 90.4)",
+          "oklch(95.0% 0.017 90.4)"
+        ],
+        "purpose": "Locked tint and hatch ground."
+      },
+      "caution": {
+        "role": "tertiary",
+        "displayName": "Caution Orange",
+        "canonical": "#b4520f",
+        "oklch": "oklch(55.4% 0.145 47.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.055 47.7)",
+          "oklch(26.4% 0.071 47.7)",
+          "oklch(37.9% 0.102 47.7)",
+          "oklch(49.3% 0.131 47.7)",
+          "oklch(60.7% 0.145 47.7)",
+          "oklch(72.1% 0.140 47.7)",
+          "oklch(83.6% 0.098 47.7)",
+          "oklch(95.0% 0.027 47.7)"
+        ],
+        "purpose": "Budget running low."
+      },
+      "caution-soft": {
+        "role": "tertiary",
+        "displayName": "Caution Soft",
+        "canonical": "#fdebd9",
+        "oklch": "oklch(95.0% 0.031 67.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.012 67.4)",
+          "oklch(26.4% 0.021 67.4)",
+          "oklch(37.9% 0.030 67.4)",
+          "oklch(49.3% 0.031 67.4)",
+          "oklch(60.7% 0.031 67.4)",
+          "oklch(72.1% 0.030 67.4)",
+          "oklch(83.6% 0.021 67.4)",
+          "oklch(95.0% 0.012 67.4)"
+        ],
+        "purpose": "Caution tint."
+      },
+      "chart-2": {
+        "role": "tertiary",
+        "displayName": "Chart 2",
+        "canonical": "#5f8f4e",
+        "oklch": "oklch(59.9% 0.107 137.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.041 137.9)",
+          "oklch(26.4% 0.072 137.9)",
+          "oklch(37.9% 0.103 137.9)",
+          "oklch(49.3% 0.107 137.9)",
+          "oklch(60.7% 0.107 137.9)",
+          "oklch(72.1% 0.103 137.9)",
+          "oklch(83.6% 0.072 137.9)",
+          "oklch(95.0% 0.041 137.9)"
+        ],
+        "purpose": "Chart series."
+      },
+      "chart-4": {
+        "role": "tertiary",
+        "displayName": "Chart 4",
+        "canonical": "#8aa07e",
+        "oklch": "oklch(67.9% 0.055 134.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.021 134.6)",
+          "oklch(26.4% 0.037 134.6)",
+          "oklch(37.9% 0.053 134.6)",
+          "oklch(49.3% 0.055 134.6)",
+          "oklch(60.7% 0.055 134.6)",
+          "oklch(72.1% 0.053 134.6)",
+          "oklch(83.6% 0.037 134.6)",
+          "oklch(95.0% 0.021 134.6)"
+        ],
+        "purpose": "Chart series."
+      },
+      "chart-5": {
+        "role": "tertiary",
+        "displayName": "Chart 5",
+        "canonical": "#b9c6ae",
+        "oklch": "oklch(81.0% 0.036 130.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.014 130.6)",
+          "oklch(26.4% 0.024 130.6)",
+          "oklch(37.9% 0.035 130.6)",
+          "oklch(49.3% 0.036 130.6)",
+          "oklch(60.7% 0.036 130.6)",
+          "oklch(72.1% 0.035 130.6)",
+          "oklch(83.6% 0.024 130.6)",
+          "oklch(95.0% 0.014 130.6)"
+        ],
+        "purpose": "Chart series."
+      },
+      "shell-dark": {
+        "role": "primary",
+        "displayName": "Branch Shell Green (dark)",
+        "canonical": "#11291a",
+        "oklch": "oklch(25.6% 0.042 154.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.016 154.7)",
+          "oklch(26.4% 0.028 154.7)",
+          "oklch(37.9% 0.040 154.7)",
+          "oklch(49.3% 0.042 154.7)",
+          "oklch(60.7% 0.042 154.7)",
+          "oklch(72.1% 0.040 154.7)",
+          "oklch(83.6% 0.028 154.7)",
+          "oklch(95.0% 0.016 154.7)"
+        ],
+        "purpose": "Chrome: sidebar, mobile top band, Dashboard balance band, auth side panel, landing closing band."
+      },
+      "shell-ink-dark": {
+        "role": "neutral",
+        "displayName": "Shell Ink (dark)",
+        "canonical": "#e6efdf",
+        "oklch": "oklch(94.1% 0.023 131.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 131.1)",
+          "oklch(26.4% 0.016 131.1)",
+          "oklch(37.9% 0.022 131.1)",
+          "oklch(49.3% 0.023 131.1)",
+          "oklch(60.7% 0.023 131.1)",
+          "oklch(72.1% 0.022 131.1)",
+          "oklch(83.6% 0.016 131.1)",
+          "oklch(95.0% 0.009 131.1)"
+        ],
+        "purpose": "Text on the shell."
+      },
+      "shell-muted-dark": {
+        "role": "neutral",
+        "displayName": "Shell Muted (dark)",
+        "canonical": "#9db497",
+        "oklch": "oklch(74.4% 0.048 139.2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.018 139.2)",
+          "oklch(26.4% 0.032 139.2)",
+          "oklch(37.9% 0.046 139.2)",
+          "oklch(49.3% 0.048 139.2)",
+          "oklch(60.7% 0.048 139.2)",
+          "oklch(72.1% 0.046 139.2)",
+          "oklch(83.6% 0.032 139.2)",
+          "oklch(95.0% 0.018 139.2)"
+        ],
+        "purpose": "Secondary text on the shell."
+      },
+      "shell-raised-dark": {
+        "role": "primary",
+        "displayName": "Shell Raised (dark)",
+        "canonical": "#1b3a23",
+        "oklch": "oklch(31.7% 0.055 150.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.021 150.6)",
+          "oklch(26.4% 0.037 150.6)",
+          "oklch(37.9% 0.053 150.6)",
+          "oklch(49.3% 0.055 150.6)",
+          "oklch(60.7% 0.055 150.6)",
+          "oklch(72.1% 0.053 150.6)",
+          "oklch(83.6% 0.037 150.6)",
+          "oklch(95.0% 0.021 150.6)"
+        ],
+        "purpose": "Tiles and active nav items inside the shell."
+      },
+      "shell-stem-dark": {
+        "role": "primary",
+        "displayName": "Pale Stem (dark)",
+        "canonical": "#8fcb7e",
+        "oklch": "oklch(78.2% 0.122 138.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.047 138.9)",
+          "oklch(26.4% 0.082 138.9)",
+          "oklch(37.9% 0.118 138.9)",
+          "oklch(49.3% 0.122 138.9)",
+          "oklch(60.7% 0.122 138.9)",
+          "oklch(72.1% 0.118 138.9)",
+          "oklch(83.6% 0.082 138.9)",
+          "oklch(95.0% 0.047 138.9)"
+        ],
+        "purpose": "Logo stem, focus ring and avatar dot inside the shell."
+      },
+      "logo-stem-dark": {
+        "role": "neutral",
+        "displayName": "Logo Stem (dark)",
+        "canonical": "#6fb35f",
+        "oklch": "oklch(70.1% 0.136 139.8)",
+        "tonalRamp": [
+          "oklch(15.0% 0.052 139.8)",
+          "oklch(26.4% 0.082 139.8)",
+          "oklch(37.9% 0.118 139.8)",
+          "oklch(49.3% 0.136 139.8)",
+          "oklch(60.7% 0.136 139.8)",
+          "oklch(72.1% 0.131 139.8)",
+          "oklch(83.6% 0.091 139.8)",
+          "oklch(95.0% 0.052 139.8)"
+        ]
+      },
+      "primary-dark": {
+        "role": "primary",
+        "displayName": "Branch Shell Green (button) (dark)",
+        "canonical": "#2f7a37",
+        "oklch": "oklch(51.6% 0.125 145.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.048 145.4)",
+          "oklch(26.4% 0.084 145.4)",
+          "oklch(37.9% 0.109 145.4)",
+          "oklch(49.3% 0.125 145.4)",
+          "oklch(60.7% 0.125 145.4)",
+          "oklch(72.1% 0.121 145.4)",
+          "oklch(83.6% 0.084 145.4)",
+          "oklch(95.0% 0.048 145.4)"
+        ],
+        "purpose": "Primary buttons, centre add, today cell."
+      },
+      "ground-dark": {
+        "role": "neutral",
+        "displayName": "Ground (dark)",
+        "canonical": "#0c120d",
+        "oklch": "oklch(17.4% 0.014 149.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.005 149.7)",
+          "oklch(26.4% 0.009 149.7)",
+          "oklch(37.9% 0.013 149.7)",
+          "oklch(49.3% 0.014 149.7)",
+          "oklch(60.7% 0.014 149.7)",
+          "oklch(72.1% 0.013 149.7)",
+          "oklch(83.6% 0.009 149.7)",
+          "oklch(95.0% 0.005 149.7)"
+        ]
+      },
+      "card-dark": {
+        "role": "neutral",
+        "displayName": "Card White (dark)",
+        "canonical": "#141c15",
+        "oklch": "oklch(21.6% 0.018 148.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 148.3)",
+          "oklch(26.4% 0.012 148.3)",
+          "oklch(37.9% 0.017 148.3)",
+          "oklch(49.3% 0.018 148.3)",
+          "oklch(60.7% 0.018 148.3)",
+          "oklch(72.1% 0.017 148.3)",
+          "oklch(83.6% 0.012 148.3)",
+          "oklch(95.0% 0.007 148.3)"
+        ],
+        "purpose": "Cards, popovers, inputs, chips."
+      },
+      "popover-dark": {
+        "role": "neutral",
+        "displayName": "Popover (dark)",
+        "canonical": "#19221a",
+        "oklch": "oklch(24.0% 0.020 147.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 147.9)",
+          "oklch(26.4% 0.013 147.9)",
+          "oklch(37.9% 0.019 147.9)",
+          "oklch(49.3% 0.020 147.9)",
+          "oklch(60.7% 0.020 147.9)",
+          "oklch(72.1% 0.019 147.9)",
+          "oklch(83.6% 0.013 147.9)",
+          "oklch(95.0% 0.008 147.9)"
+        ]
+      },
+      "raised-dark": {
+        "role": "neutral",
+        "displayName": "Raised Leaf (dark)",
+        "canonical": "#18211a",
+        "oklch": "oklch(23.6% 0.019 151.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 151.5)",
+          "oklch(26.4% 0.012 151.5)",
+          "oklch(37.9% 0.018 151.5)",
+          "oklch(49.3% 0.019 151.5)",
+          "oklch(60.7% 0.019 151.5)",
+          "oklch(72.1% 0.018 151.5)",
+          "oklch(83.6% 0.012 151.5)",
+          "oklch(95.0% 0.007 151.5)"
+        ],
+        "purpose": "Tinted full-width bands."
+      },
+      "leaf-wash-dark": {
+        "role": "neutral",
+        "displayName": "Leaf Wash (dark)",
+        "canonical": "#1d271e",
+        "oklch": "oklch(26.0% 0.022 147.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 147.6)",
+          "oklch(26.4% 0.015 147.6)",
+          "oklch(37.9% 0.021 147.6)",
+          "oklch(49.3% 0.022 147.6)",
+          "oklch(60.7% 0.022 147.6)",
+          "oklch(72.1% 0.021 147.6)",
+          "oklch(83.6% 0.015 147.6)",
+          "oklch(95.0% 0.008 147.6)"
+        ],
+        "purpose": "Secondary/muted/hover fills."
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Field Ink (dark)",
+        "canonical": "#e9f0e3",
+        "oklch": "oklch(94.6% 0.019 130.2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 130.2)",
+          "oklch(26.4% 0.013 130.2)",
+          "oklch(37.9% 0.018 130.2)",
+          "oklch(49.3% 0.019 130.2)",
+          "oklch(60.7% 0.019 130.2)",
+          "oklch(72.1% 0.018 130.2)",
+          "oklch(83.6% 0.013 130.2)",
+          "oklch(95.0% 0.007 130.2)"
+        ],
+        "purpose": "Body text and headings."
+      },
+      "muted-ink-dark": {
+        "role": "neutral",
+        "displayName": "Moss Muted Ink (dark)",
+        "canonical": "#a2b29e",
+        "oklch": "oklch(74.5% 0.033 139.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.013 139.4)",
+          "oklch(26.4% 0.022 139.4)",
+          "oklch(37.9% 0.032 139.4)",
+          "oklch(49.3% 0.033 139.4)",
+          "oklch(60.7% 0.033 139.4)",
+          "oklch(72.1% 0.032 139.4)",
+          "oklch(83.6% 0.022 139.4)",
+          "oklch(95.0% 0.013 139.4)"
+        ],
+        "purpose": "Labels and descriptions."
+      },
+      "hairline-dark": {
+        "role": "neutral",
+        "displayName": "Hairline (dark)",
+        "canonical": "#243025",
+        "oklch": "oklch(29.4% 0.026 147.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.010 147.1)",
+          "oklch(26.4% 0.017 147.1)",
+          "oklch(37.9% 0.025 147.1)",
+          "oklch(49.3% 0.026 147.1)",
+          "oklch(60.7% 0.026 147.1)",
+          "oklch(72.1% 0.025 147.1)",
+          "oklch(83.6% 0.017 147.1)",
+          "oklch(95.0% 0.010 147.1)"
+        ],
+        "purpose": "Card and divider borders."
+      },
+      "input-stroke-dark": {
+        "role": "neutral",
+        "displayName": "Input Stroke (dark)",
+        "canonical": "#34433a",
+        "oklch": "oklch(36.7% 0.025 158.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 158.6)",
+          "oklch(26.4% 0.017 158.6)",
+          "oklch(37.9% 0.024 158.6)",
+          "oklch(49.3% 0.025 158.6)",
+          "oklch(60.7% 0.025 158.6)",
+          "oklch(72.1% 0.024 158.6)",
+          "oklch(83.6% 0.017 158.6)",
+          "oklch(95.0% 0.009 158.6)"
+        ],
+        "purpose": "Input borders, switch track."
+      },
+      "brand-dark": {
+        "role": "neutral",
+        "displayName": "Brand (dark)",
+        "canonical": "#8fcb7e",
+        "oklch": "oklch(78.2% 0.122 138.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.047 138.9)",
+          "oklch(26.4% 0.082 138.9)",
+          "oklch(37.9% 0.118 138.9)",
+          "oklch(49.3% 0.122 138.9)",
+          "oklch(60.7% 0.122 138.9)",
+          "oklch(72.1% 0.118 138.9)",
+          "oklch(83.6% 0.082 138.9)",
+          "oklch(95.0% 0.047 138.9)"
+        ]
+      },
+      "brand-soft-dark": {
+        "role": "primary",
+        "displayName": "Brand Soft (dark)",
+        "canonical": "#1b2e1d",
+        "oklch": "oklch(27.9% 0.040 147.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.015 147.0)",
+          "oklch(26.4% 0.027 147.0)",
+          "oklch(37.9% 0.038 147.0)",
+          "oklch(49.3% 0.040 147.0)",
+          "oklch(60.7% 0.040 147.0)",
+          "oklch(72.1% 0.038 147.0)",
+          "oklch(83.6% 0.027 147.0)",
+          "oklch(95.0% 0.015 147.0)"
+        ],
+        "purpose": "Selection and pressed-choice fill."
+      },
+      "brand-ink-dark": {
+        "role": "primary",
+        "displayName": "Brand Ink (dark)",
+        "canonical": "#c4e5b8",
+        "oklch": "oklch(88.6% 0.070 137.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.027 137.4)",
+          "oklch(26.4% 0.047 137.4)",
+          "oklch(37.9% 0.067 137.4)",
+          "oklch(49.3% 0.070 137.4)",
+          "oklch(60.7% 0.070 137.4)",
+          "oklch(72.1% 0.067 137.4)",
+          "oklch(83.6% 0.047 137.4)",
+          "oklch(95.0% 0.027 137.4)"
+        ],
+        "purpose": "Brand text links and active bottom-nav label."
+      },
+      "income-dark": {
+        "role": "tertiary",
+        "displayName": "Income Green (dark)",
+        "canonical": "#5cc46e",
+        "oklch": "oklch(73.7% 0.156 147.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.054 147.4)",
+          "oklch(26.4% 0.076 147.4)",
+          "oklch(37.9% 0.110 147.4)",
+          "oklch(49.3% 0.140 147.4)",
+          "oklch(60.7% 0.156 147.4)",
+          "oklch(72.1% 0.150 147.4)",
+          "oklch(83.6% 0.105 147.4)",
+          "oklch(95.0% 0.060 147.4)"
+        ],
+        "purpose": "Money in. Binding."
+      },
+      "income-soft-dark": {
+        "role": "tertiary",
+        "displayName": "Income Soft (dark)",
+        "canonical": "#15291a",
+        "oklch": "oklch(25.9% 0.038 151.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.015 151.0)",
+          "oklch(26.4% 0.026 151.0)",
+          "oklch(37.9% 0.037 151.0)",
+          "oklch(49.3% 0.038 151.0)",
+          "oklch(60.7% 0.038 151.0)",
+          "oklch(72.1% 0.037 151.0)",
+          "oklch(83.6% 0.026 151.0)",
+          "oklch(95.0% 0.015 151.0)"
+        ],
+        "purpose": "Income tint."
+      },
+      "expense-dark": {
+        "role": "tertiary",
+        "displayName": "Expense Brick (dark)",
+        "canonical": "#f07a66",
+        "oklch": "oklch(71.0% 0.149 31.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.057 31.1)",
+          "oklch(26.4% 0.100 31.1)",
+          "oklch(37.9% 0.144 31.1)",
+          "oklch(49.3% 0.149 31.1)",
+          "oklch(60.7% 0.149 31.1)",
+          "oklch(72.1% 0.144 31.1)",
+          "oklch(83.6% 0.090 31.1)",
+          "oklch(95.0% 0.025 31.1)"
+        ],
+        "purpose": "Money out, over-budget, destructive. Binding."
+      },
+      "expense-soft-dark": {
+        "role": "tertiary",
+        "displayName": "Expense Soft (dark)",
+        "canonical": "#2e1915",
+        "oklch": "oklch(24.1% 0.035 31.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.013 31.4)",
+          "oklch(26.4% 0.023 31.4)",
+          "oklch(37.9% 0.034 31.4)",
+          "oklch(49.3% 0.035 31.4)",
+          "oklch(60.7% 0.035 31.4)",
+          "oklch(72.1% 0.034 31.4)",
+          "oklch(83.6% 0.023 31.4)",
+          "oklch(95.0% 0.013 31.4)"
+        ],
+        "purpose": "Expense tint."
+      },
+      "transfer-dark": {
+        "role": "tertiary",
+        "displayName": "Transfer Slate (dark)",
+        "canonical": "#7fa6da",
+        "oklch": "oklch(71.7% 0.088 255.8)",
+        "tonalRamp": [
+          "oklch(15.0% 0.033 255.8)",
+          "oklch(26.4% 0.059 255.8)",
+          "oklch(37.9% 0.084 255.8)",
+          "oklch(49.3% 0.088 255.8)",
+          "oklch(60.7% 0.088 255.8)",
+          "oklch(72.1% 0.084 255.8)",
+          "oklch(83.6% 0.059 255.8)",
+          "oklch(95.0% 0.022 255.8)"
+        ],
+        "purpose": "Money between Accounts. Binding."
+      },
+      "transfer-soft-dark": {
+        "role": "tertiary",
+        "displayName": "Transfer Soft (dark)",
+        "canonical": "#152237",
+        "oklch": "oklch(25.1% 0.044 259.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.017 259.7)",
+          "oklch(26.4% 0.030 259.7)",
+          "oklch(37.9% 0.042 259.7)",
+          "oklch(49.3% 0.044 259.7)",
+          "oklch(60.7% 0.044 259.7)",
+          "oklch(72.1% 0.042 259.7)",
+          "oklch(83.6% 0.030 259.7)",
+          "oklch(95.0% 0.017 259.7)"
+        ],
+        "purpose": "Transfer tint."
+      },
+      "locked-dark": {
+        "role": "tertiary",
+        "displayName": "Locked Amber (dark)",
+        "canonical": "#f0be45",
+        "oklch": "oklch(82.5% 0.145 85.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.045 85.6)",
+          "oklch(26.4% 0.058 85.6)",
+          "oklch(37.9% 0.074 85.6)",
+          "oklch(49.3% 0.095 85.6)",
+          "oklch(60.7% 0.117 85.6)",
+          "oklch(72.1% 0.140 85.6)",
+          "oklch(83.6% 0.098 85.6)",
+          "oklch(95.0% 0.050 85.6)"
+        ],
+        "purpose": "Locked Funds and Safe-Pay on light grounds. Binding."
+      },
+      "locked-soft-dark": {
+        "role": "tertiary",
+        "displayName": "Locked Soft (dark)",
+        "canonical": "#2b2310",
+        "oklch": "oklch(26.0% 0.034 87.2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.013 87.2)",
+          "oklch(26.4% 0.023 87.2)",
+          "oklch(37.9% 0.032 87.2)",
+          "oklch(49.3% 0.034 87.2)",
+          "oklch(60.7% 0.034 87.2)",
+          "oklch(72.1% 0.032 87.2)",
+          "oklch(83.6% 0.023 87.2)",
+          "oklch(95.0% 0.013 87.2)"
+        ],
+        "purpose": "Locked tint and hatch ground."
+      },
+      "caution-dark": {
+        "role": "tertiary",
+        "displayName": "Caution Orange (dark)",
+        "canonical": "#f59a52",
+        "oklch": "oklch(76.6% 0.140 56.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.053 56.9)",
+          "oklch(26.4% 0.068 56.9)",
+          "oklch(37.9% 0.088 56.9)",
+          "oklch(49.3% 0.113 56.9)",
+          "oklch(60.7% 0.140 56.9)",
+          "oklch(72.1% 0.134 56.9)",
+          "oklch(83.6% 0.094 56.9)",
+          "oklch(95.0% 0.028 56.9)"
+        ],
+        "purpose": "Budget running low."
+      },
+      "caution-soft-dark": {
+        "role": "tertiary",
+        "displayName": "Caution Soft (dark)",
+        "canonical": "#2e1e12",
+        "oklch": "oklch(25.2% 0.033 57.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.012 57.5)",
+          "oklch(26.4% 0.022 57.5)",
+          "oklch(37.9% 0.031 57.5)",
+          "oklch(49.3% 0.033 57.5)",
+          "oklch(60.7% 0.033 57.5)",
+          "oklch(72.1% 0.031 57.5)",
+          "oklch(83.6% 0.022 57.5)",
+          "oklch(95.0% 0.012 57.5)"
+        ],
+        "purpose": "Caution tint."
+      },
+      "chart-4-dark": {
+        "role": "tertiary",
+        "displayName": "Chart 4 (dark)",
+        "canonical": "#6f8569",
+        "oklch": "oklch(59.1% 0.049 139.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.019 139.0)",
+          "oklch(26.4% 0.033 139.0)",
+          "oklch(37.9% 0.047 139.0)",
+          "oklch(49.3% 0.049 139.0)",
+          "oklch(60.7% 0.049 139.0)",
+          "oklch(72.1% 0.047 139.0)",
+          "oklch(83.6% 0.033 139.0)",
+          "oklch(95.0% 0.019 139.0)"
+        ],
+        "purpose": "Chart series."
+      },
+      "chart-5-dark": {
+        "role": "tertiary",
+        "displayName": "Chart 5 (dark)",
+        "canonical": "#46563f",
+        "oklch": "oklch(43.3% 0.042 136.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.016 136.3)",
+          "oklch(26.4% 0.028 136.3)",
+          "oklch(37.9% 0.040 136.3)",
+          "oklch(49.3% 0.042 136.3)",
+          "oklch(60.7% 0.042 136.3)",
+          "oklch(72.1% 0.040 136.3)",
+          "oklch(83.6% 0.028 136.3)",
+          "oklch(95.0% 0.016 136.3)"
+        ],
+        "purpose": "Chart series."
+      },
+      "category-blue": {
+        "role": "tertiary",
+        "displayName": "Category Blue",
+        "canonical": "#2f6fdb",
+        "oklch": "oklch(56.1% 0.178 260.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.068 260.3)",
+          "oklch(26.4% 0.120 260.3)",
+          "oklch(37.9% 0.155 260.3)",
+          "oklch(49.3% 0.178 260.3)",
+          "oklch(60.7% 0.178 260.3)",
+          "oklch(72.1% 0.139 260.3)",
+          "oklch(83.6% 0.079 260.3)",
+          "oklch(95.0% 0.024 260.3)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-sky": {
+        "role": "tertiary",
+        "displayName": "Category Sky",
+        "canonical": "#1694c9",
+        "oklch": "oklch(62.9% 0.127 233.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.039 233.9)",
+          "oklch(26.4% 0.056 233.9)",
+          "oklch(37.9% 0.080 233.9)",
+          "oklch(49.3% 0.103 233.9)",
+          "oklch(60.7% 0.127 233.9)",
+          "oklch(72.1% 0.122 233.9)",
+          "oklch(83.6% 0.085 233.9)",
+          "oklch(95.0% 0.029 233.9)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-teal": {
+        "role": "tertiary",
+        "displayName": "Category Teal",
+        "canonical": "#149384",
+        "oklch": "oklch(59.7% 0.103 182.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.035 182.1)",
+          "oklch(26.4% 0.046 182.1)",
+          "oklch(37.9% 0.065 182.1)",
+          "oklch(49.3% 0.084 182.1)",
+          "oklch(60.7% 0.103 182.1)",
+          "oklch(72.1% 0.099 182.1)",
+          "oklch(83.6% 0.069 182.1)",
+          "oklch(95.0% 0.039 182.1)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-green": {
+        "role": "tertiary",
+        "displayName": "Category Green",
+        "canonical": "#2f9e58",
+        "oklch": "oklch(62.0% 0.144 151.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.049 151.6)",
+          "oklch(26.4% 0.071 151.6)",
+          "oklch(37.9% 0.101 151.6)",
+          "oklch(49.3% 0.130 151.6)",
+          "oklch(60.7% 0.144 151.6)",
+          "oklch(72.1% 0.139 151.6)",
+          "oklch(83.6% 0.097 151.6)",
+          "oklch(95.0% 0.055 151.6)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-lime": {
+        "role": "tertiary",
+        "displayName": "Category Lime",
+        "canonical": "#6f9a12",
+        "oklch": "oklch(63.1% 0.158 127.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.054 127.3)",
+          "oklch(26.4% 0.070 127.3)",
+          "oklch(37.9% 0.100 127.3)",
+          "oklch(49.3% 0.128 127.3)",
+          "oklch(60.7% 0.142 127.3)",
+          "oklch(72.1% 0.152 127.3)",
+          "oklch(83.6% 0.106 127.3)",
+          "oklch(95.0% 0.060 127.3)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-orange": {
+        "role": "tertiary",
+        "displayName": "Category Orange",
+        "canonical": "#e0731f",
+        "oklch": "oklch(67.0% 0.161 51.8)",
+        "tonalRamp": [
+          "oklch(15.0% 0.055 51.8)",
+          "oklch(26.4% 0.071 51.8)",
+          "oklch(37.9% 0.092 51.8)",
+          "oklch(49.3% 0.118 51.8)",
+          "oklch(60.7% 0.145 51.8)",
+          "oklch(72.1% 0.156 51.8)",
+          "oklch(83.6% 0.098 51.8)",
+          "oklch(95.0% 0.027 51.8)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-rose": {
+        "role": "tertiary",
+        "displayName": "Category Rose",
+        "canonical": "#d6456a",
+        "oklch": "oklch(60.4% 0.182 9.2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.069 9.2)",
+          "oklch(26.4% 0.110 9.2)",
+          "oklch(37.9% 0.142 9.2)",
+          "oklch(49.3% 0.182 9.2)",
+          "oklch(60.7% 0.182 9.2)",
+          "oklch(72.1% 0.175 9.2)",
+          "oklch(83.6% 0.089 9.2)",
+          "oklch(95.0% 0.024 9.2)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-pink": {
+        "role": "tertiary",
+        "displayName": "Category Pink",
+        "canonical": "#c24597",
+        "oklch": "oklch(58.8% 0.182 343.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.069 343.9)",
+          "oklch(26.4% 0.110 343.9)",
+          "oklch(37.9% 0.158 343.9)",
+          "oklch(49.3% 0.182 343.9)",
+          "oklch(60.7% 0.182 343.9)",
+          "oklch(72.1% 0.175 343.9)",
+          "oklch(83.6% 0.110 343.9)",
+          "oklch(95.0% 0.030 343.9)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-brown": {
+        "role": "tertiary",
+        "displayName": "Category Brown",
+        "canonical": "#9a6a43",
+        "oklch": "oklch(56.6% 0.082 59.2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.031 59.2)",
+          "oklch(26.4% 0.055 59.2)",
+          "oklch(37.9% 0.079 59.2)",
+          "oklch(49.3% 0.082 59.2)",
+          "oklch(60.7% 0.082 59.2)",
+          "oklch(72.1% 0.079 59.2)",
+          "oklch(83.6% 0.055 59.2)",
+          "oklch(95.0% 0.028 59.2)"
+        ],
+        "purpose": "Category chart mid-tone."
+      },
+      "category-slate": {
+        "role": "tertiary",
+        "displayName": "Category Slate",
+        "canonical": "#6b7785",
+        "oklch": "oklch(56.4% 0.026 252.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.010 252.3)",
+          "oklch(26.4% 0.018 252.3)",
+          "oklch(37.9% 0.025 252.3)",
+          "oklch(49.3% 0.026 252.3)",
+          "oklch(60.7% 0.026 252.3)",
+          "oklch(72.1% 0.025 252.3)",
+          "oklch(83.6% 0.018 252.3)",
+          "oklch(95.0% 0.010 252.3)"
+        ],
+        "purpose": "Category chart mid-tone."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Landing hero h1 only; tops out at 4.5rem."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Landing section headings and closing band title."
+      },
+      "headline-list": {
+        "displayName": "Headline List",
+        "purpose": "Landing feature-list heading."
+      },
+      "balance": {
+        "displayName": "Balance",
+        "purpose": "Saldo Tersedia in the shell band, desktop."
+      },
+      "balance-mobile": {
+        "displayName": "Balance (phone)",
+        "purpose": "Saldo Tersedia in the shell band below lg."
+      },
+      "page-title": {
+        "displayName": "Page Title",
+        "purpose": "Each app screen h1 (24px on phones)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card headings."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Income/expense/net figures inside cards."
+      },
+      "body-lead": {
+        "displayName": "Body Lead",
+        "purpose": "Landing leads, max 48-52ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Rows, descriptions, card text."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Default button label."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Muted figure labels and group labels; never uppercase."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Cycle strip weekdays, bottom-nav labels."
+      },
+      "currency-mark": {
+        "displayName": "Currency Mark",
+        "purpose": "The quiet Rp before every amount (70% opacity)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "add-button-lift",
+        "value": "0 6px 16px -4px rgb(31 77 39 / 0.45)",
+        "purpose": "Mobile centre add button, with a 4px card-coloured ring."
+      },
+      {
+        "name": "coin-drop",
+        "value": "0 18px 40px -18px rgb(120 90 0 / 0.6)",
+        "purpose": "Filled gold coins of the landing hero."
+      },
+      {
+        "name": "sample-card-float",
+        "value": "0 24px 60px -24px rgb(0 0 0 / 0.45)",
+        "purpose": "Sample balance card on the auth shell panel."
+      },
+      {
+        "name": "overlay-md",
+        "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "purpose": "Popovers, menus, selects (with a 1px foreground/10 ring)."
+      },
+      {
+        "name": "overlay-lg",
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "purpose": "Sheets and submenus."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The easing of every authored moment."
+      },
+      {
+        "name": "today-settle",
+        "value": "700ms cubic-bezier(0.16, 1, 0.3, 1) 150ms both; scale(0.86) + 6px primary halo at 25% -> none",
+        "purpose": "The app's one authored motion: today's Cycle strip cell settles once on load. Reduced motion: static."
+      },
+      {
+        "name": "branch-draw",
+        "value": "900ms cubic-bezier(0.16, 1, 0.3, 1) both; stroke-dashoffset 1 -> 0 on pathLength=1; delays 0 / 250ms / 350ms",
+        "purpose": "Landing hero: the logo branch draws upward. Reduced motion: static."
+      },
+      {
+        "name": "coin-settle",
+        "value": "700ms cubic-bezier(0.16, 1, 0.3, 1) both; scale(0.82) -> none; delays 600 / 700 / 850ms",
+        "purpose": "Landing hero: the three coins settle after the branch. Coins visible from frame one. Reduced motion: static."
+      },
+      {
+        "name": "state-transition",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Colour/background state changes on hover and selection (kit default). Not an authored moment."
+      },
+      {
+        "name": "press",
+        "value": "translateY(1px) on buttons; scale(0.95) on chips, calculator keys and the add button",
+        "purpose": "Tactile press feedback."
+      },
+      {
+        "name": "coin-state",
+        "value": "background-color/box-shadow 300ms; branch stroke-opacity 500ms",
+        "purpose": "Landing Safe-Pay switch emptying/refilling the locked coin."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Wider gutters (24px app, 32px landing); card gutter 20px."
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "purpose": "Inputs drop to 14px text; landing nav shows Fitur."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "Sidebar replaces top band and bottom nav; landing hero goes two-column."
+      },
+      {
+        "name": "xl",
+        "value": "1280px",
+        "purpose": "Cycle strip stops scrolling and shares the row evenly."
+      }
+    ],
+    "scopes": [
+      {
+        "name": ".shell",
+        "purpose": "Green chrome surface: re-points foreground, muted, accent, border, ring to shell inks; --locked -> --gold; --logo-stem -> --shell-stem."
+      },
+      {
+        "name": ".unshell",
+        "purpose": "Restores page tokens for a page card placed inside a shell surface."
+      },
+      {
+        "name": ".dark",
+        "purpose": "Dark theme token set; html.dark sets color-scheme: dark."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Shell-green fill, white label. The default call to action everywhere.",
+      "html": "<button class=\"ds-btn-primary\">Tambah transaksi</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border: 1px solid transparent; border-radius: 10px; background: var(--primary, #1f4d27); color: var(--primary-foreground, #ffffff); font: 500 14px/1 \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; cursor: pointer; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms; } .ds-btn-primary:hover { background: color-mix(in srgb, var(--primary, #1f4d27) 80%, transparent); } .ds-btn-primary:focus-visible { outline: none; border-color: var(--ring, #2f6b2f); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring, #2f6b2f) 50%, transparent); } .ds-btn-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Outline and Secondary Buttons",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Outline (hairline on ground) for the second action; secondary (Leaf Wash) for steppers and quiet actions.",
+      "html": "<div class=\"ds-row\"><button class=\"ds-btn-outline\">Masuk</button><button class=\"ds-btn-secondary\" aria-label=\"Lebih awal\">&minus;</button></div>",
+      "css": ".ds-row { display: flex; gap: 12px; } .ds-btn-outline, .ds-btn-secondary { height: 40px; padding: 0 16px; border-radius: 10px; font: 500 14px/1 \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; color: var(--foreground, #15211a); cursor: pointer; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-outline { background: var(--background, #f6faee); border: 1px solid var(--border, #dfe7d3); } .ds-btn-outline:hover { background: var(--muted, #ebf1e1); } .ds-btn-secondary { width: 40px; padding: 0; background: var(--secondary, #ebf1e1); border: 1px solid transparent; font-size: 18px; } .ds-btn-secondary:hover { background: color-mix(in oklch, var(--secondary, #ebf1e1), var(--foreground, #15211a) 5%); } .ds-btn-outline:focus-visible, .ds-btn-secondary:focus-visible { outline: none; border-color: var(--ring, #2f6b2f); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring, #2f6b2f) 50%, transparent); } .ds-btn-outline:active, .ds-btn-secondary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "On-Shell Buttons",
+      "kind": "button",
+      "refersTo": "button-on-shell",
+      "description": "Inside the green closing band: white primary with shell-green text, transparent secondary with a 40% white border.",
+      "html": "<div class=\"ds-shellbar\"><button class=\"ds-btn-onshell\">Daftar gratis</button><button class=\"ds-btn-onshell-ghost\">Masuk</button></div>",
+      "css": ".ds-shellbar { display: flex; gap: 12px; padding: 24px; background: var(--shell, #1f4d27); border-radius: 20px; } .ds-btn-onshell, .ds-btn-onshell-ghost { height: 48px; padding: 0 24px; border-radius: 10px; font: 500 16px/1 \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; cursor: pointer; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-onshell { background: #ffffff; color: var(--shell, #1f4d27); border: 1px solid transparent; } .ds-btn-onshell:hover { background: rgb(255 255 255 / 0.9); } .ds-btn-onshell-ghost { background: transparent; color: var(--shell-foreground, #f1f6ea); border: 1px solid rgb(255 255 255 / 0.4); } .ds-btn-onshell-ghost:hover { background: rgb(255 255 255 / 0.1); } .ds-btn-onshell:focus-visible, .ds-btn-onshell-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--shell-stem, #a7d69a) 50%, transparent); }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "White field, Input Stroke border, 10px corners, ring on focus.",
+      "html": "<label class=\"ds-field\"><span>Email</span><input class=\"ds-input\" type=\"email\" placeholder=\"nama@email.com\"></label>",
+      "css": ".ds-field { display: grid; gap: 8px; font: 500 14px/1.4 \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; color: var(--foreground, #15211a); max-width: 380px; } .ds-input { height: 40px; padding: 4px 12px; border: 1px solid var(--input, #c9d5bb); border-radius: 10px; background: var(--card, #ffffff); color: var(--foreground, #15211a); font: 400 14px \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; transition: border-color 150ms, box-shadow 150ms; } .ds-input::placeholder { color: var(--muted-foreground, #556657); } .ds-input:focus-visible { outline: none; border-color: var(--ring, #2f6b2f); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring, #2f6b2f) 50%, transparent); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat white card, hairline border, 20px corners; interior divided by hairline rules, never nested cards.",
+      "html": "<section class=\"ds-card\"><div class=\"ds-card-head\"><h3>Hari ini</h3><a href=\"#\">Transaksi</a></div><div class=\"ds-card-figs\"><div><p>Pemasukan</p><span class=\"ds-money ds-income\"><span class=\"ds-rp\">Rp</span>250.000</span></div><div><p>Pengeluaran</p><span class=\"ds-money ds-expense\"><span class=\"ds-rp\">Rp</span>62.000</span></div></div><p class=\"ds-card-foot\">Belum ada transaksi lain hari ini.</p></section>",
+      "css": ".ds-card { max-width: 420px; background: var(--card, #ffffff); color: var(--card-foreground, #15211a); border: 1px solid var(--border, #dfe7d3); border-radius: 20px; overflow: hidden; font-family: \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; } .ds-card-head { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 20px 0; } .ds-card-head h3 { margin: 0; font-size: 16px; font-weight: 700; } .ds-card-head a { font-size: 14px; font-weight: 600; color: var(--brand-ink, #1f4d27); text-decoration: none; } .ds-card-head a:hover { text-decoration: underline; } .ds-card-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 8px 20px 14px; } .ds-card-figs p { margin: 0; font-size: 13px; color: var(--muted-foreground, #556657); } .ds-money { display: block; margin-top: 2px; font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; } .ds-rp { margin-right: 0.2em; font-size: 0.72em; font-weight: 500; opacity: 0.7; } .ds-income { color: var(--income, #23803a); } .ds-expense { color: var(--expense, #c2412b); } .ds-card-foot { margin: 0; padding: 16px 20px; border-top: 1px solid var(--border, #dfe7d3); font-size: 14px; color: var(--muted-foreground, #556657); }"
+    },
+    {
+      "name": "Shell Balance Band",
+      "kind": "custom",
+      "refersTo": "shell-band",
+      "description": "Dashboard first block: Saldo Tersedia on shell green, Total and Dana Terkunci tiles; Locked reads gold inside the shell.",
+      "html": "<section class=\"ds-band\"><div><p class=\"ds-band-label\">Saldo Tersedia</p><p class=\"ds-band-fig\"><span class=\"ds-rp\">Rp</span>4.130.000</p></div><div class=\"ds-band-tiles\"><div class=\"ds-tile\"><p>Total Saldo</p><b><span class=\"ds-rp\">Rp</span>4.780.000</b><small>Dari 3 akun</small></div><a class=\"ds-tile\" href=\"#\"><p><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/></svg> Dana Terkunci</p><b class=\"ds-gold\"><span class=\"ds-rp\">Rp</span>650.000</b></a></div></section>",
+      "css": ".ds-band { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 40px; padding: 24px 28px; border-radius: 20px; background: var(--shell, #1f4d27); color: var(--shell-foreground, #f1f6ea); font-family: \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; } .ds-band-label { margin: 0; font-size: 14px; font-weight: 500; color: var(--shell-muted, #b9cdb1); } .ds-band-fig { margin: 4px 0 0; font-size: 44px; line-height: 52px; font-weight: 800; letter-spacing: -0.025em; font-variant-numeric: tabular-nums; } .ds-rp { margin-right: 0.2em; font-size: 0.72em; font-weight: 500; opacity: 0.7; } .ds-band-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; min-width: 320px; } .ds-tile { display: block; padding: 10px 14px; border-radius: 18px; background: var(--shell-raised, #2a5e32); color: inherit; text-decoration: none; transition: background-color 150ms; } a.ds-tile:hover { background: rgb(255 255 255 / 0.1); } a.ds-tile:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--shell-stem, #a7d69a) 50%, transparent); } .ds-tile p { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; font-weight: 500; color: var(--shell-muted, #b9cdb1); } .ds-tile b { display: block; margin-top: 2px; font-size: 16px; font-variant-numeric: tabular-nums; } .ds-tile small { display: block; margin-top: 2px; font-size: 11px; color: var(--shell-muted, #b9cdb1); } .ds-gold { color: var(--gold, #e9b21a); }"
+    },
+    {
+      "name": "Cycle Strip",
+      "kind": "custom",
+      "refersTo": "cycle-day-today",
+      "description": "Signature: every day from payday to payday; payday ringed, today filled green and settling once, spend bars in Expense at 60%, gold dot on Safe-Pay due days, next payday dashed.",
+      "html": "<ol class=\"ds-strip\"><li class=\"ds-day\"><span class=\"ds-wd\">Min</span><span class=\"ds-d ds-payday\">25</span><span class=\"ds-dot\"></span><span class=\"ds-barslot\"><i style=\"height:6px\"></i></span></li><li class=\"ds-day\"><span class=\"ds-wd\">Sen</span><span class=\"ds-d\">26</span><span class=\"ds-dot\"></span><span class=\"ds-barslot\"><i style=\"height:14px\"></i></span></li><li class=\"ds-day\"><span class=\"ds-wd\">Sel</span><span class=\"ds-d\">27</span><span class=\"ds-dot\"><b></b></span><span class=\"ds-barslot\"><i style=\"height:9px\"></i></span></li><li class=\"ds-day ds-today\"><span class=\"ds-wd\">Rab</span><span class=\"ds-d\">28</span><span class=\"ds-dot\"></span><span class=\"ds-barslot\"><i style=\"height:11px\"></i></span></li><li class=\"ds-day ds-future\"><span class=\"ds-wd\">Kam</span><span class=\"ds-d\">29</span><span class=\"ds-dot\"></span><span class=\"ds-barslot\"></span></li><li class=\"ds-day ds-next\"><span class=\"ds-wd\">Gajian</span><span class=\"ds-d\">25</span></li></ol>",
+      "css": ".ds-strip { display: flex; gap: 4px; margin: 0; padding: 12px; list-style: none; background: var(--card, #ffffff); border: 1px solid var(--border, #dfe7d3); border-radius: 20px; font-family: \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; width: max-content; } .ds-day { display: flex; flex-direction: column; align-items: center; width: 40px; padding: 8px 0 6px; border-radius: 14px; color: var(--foreground, #15211a); transition: background-color 150ms; } .ds-day:not(.ds-today):not(.ds-next):hover { background: var(--muted, #ebf1e1); } .ds-wd { font-size: 10px; line-height: 1; font-weight: 600; color: var(--muted-foreground, #556657); } .ds-d { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin-top: 6px; border-radius: 9999px; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; } .ds-payday { box-shadow: inset 0 0 0 2px var(--brand, #2f6b2f); } .ds-dot { display: flex; align-items: center; height: 6px; margin-top: 4px; } .ds-dot b { width: 6px; height: 6px; border-radius: 9999px; background: var(--gold, #e9b21a); } .ds-barslot { display: flex; align-items: flex-end; height: 18px; } .ds-barslot i { display: block; width: 14px; border-radius: 3px 3px 0 0; background: color-mix(in srgb, var(--expense, #c2412b) 60%, transparent); } .ds-today { background: var(--primary, #1f4d27); color: var(--primary-foreground, #ffffff); animation: ds-today-settle 700ms cubic-bezier(0.16, 1, 0.3, 1) 150ms both; } .ds-today .ds-wd { color: rgb(255 255 255 / 0.8); } .ds-today .ds-barslot i { background: rgb(255 255 255 / 0.6); } .ds-future .ds-d { font-weight: 600; color: var(--muted-foreground, #556657); } .ds-next { color: var(--brand-ink, #1f4d27); } .ds-next .ds-wd { font-weight: 700; color: inherit; } .ds-next .ds-d { border: 2px dashed var(--brand, #2f6b2f); } @keyframes ds-today-settle { from { transform: scale(0.86); box-shadow: 0 0 0 6px color-mix(in oklch, var(--primary, #1f4d27), transparent 75%); } to { transform: none; box-shadow: 0 0 0 0 transparent; } } @media (prefers-reduced-motion: reduce) { .ds-today { animation: none; } }"
+    },
+    {
+      "name": "Sidebar Navigation",
+      "kind": "nav",
+      "refersTo": "sidebar-item-active",
+      "description": "Desktop 240px shell column: muted group labels, 36px items, Shell Raised for active.",
+      "html": "<nav class=\"ds-sidebar\"><p class=\"ds-group\">Uang</p><a class=\"ds-item ds-active\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg>Dasbor</a><a class=\"ds-item\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 3 4 7l4 4\"/><path d=\"M4 7h16\"/><path d=\"m16 21 4-4-4-4\"/><path d=\"M20 17H4\"/></svg>Transaksi</a><a class=\"ds-item\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/></svg>Safe-Pay</a></nav>",
+      "css": ".ds-sidebar { display: flex; flex-direction: column; gap: 2px; width: 240px; padding: 24px 12px; background: var(--shell, #1f4d27); font-family: \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; } .ds-group { margin: 0 0 6px; padding: 0 10px; font-size: 12px; font-weight: 500; color: var(--shell-muted, #b9cdb1); } .ds-item { display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 10px; border-radius: 10px; font-size: 14px; font-weight: 500; color: var(--shell-muted, #b9cdb1); text-decoration: none; transition: background-color 150ms, color 150ms; } .ds-item:hover { background: color-mix(in srgb, var(--shell-raised, #2a5e32) 60%, transparent); color: var(--shell-foreground, #f1f6ea); } .ds-item:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--shell-stem, #a7d69a) 50%, transparent); } .ds-active { background: var(--shell-raised, #2a5e32); color: #ffffff; font-weight: 600; }"
+    },
+    {
+      "name": "Amount Preset Chips",
+      "kind": "chip",
+      "refersTo": "chip-amount",
+      "description": "One-tap additive amounts under an amount field, like counting out cash.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\">+5K</button><button class=\"ds-chip\">+10K</button><button class=\"ds-chip\">+20K</button><button class=\"ds-chip\">+50K</button><button class=\"ds-chip\">+100K</button></div>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 8px; } .ds-chip { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border: 1px solid var(--border, #dfe7d3); border-radius: 9999px; background: var(--card, #ffffff); color: var(--foreground, #15211a); font: 500 14px \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; font-variant-numeric: tabular-nums; cursor: pointer; transition: background-color 150ms, transform 150ms; } .ds-chip:hover { background: var(--muted, #ebf1e1); } .ds-chip:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring, #2f6b2f) 50%, transparent); } .ds-chip:active { transform: scale(0.95); }"
+    },
+    {
+      "name": "Landing Logo Coin",
+      "kind": "custom",
+      "refersTo": "coin",
+      "description": "One of the three logo coins on the landing hero holding a live balance. Gold here because it is the mark (the named exception).",
+      "html": "<div class=\"ds-coin\"><span class=\"ds-coin-ring\"></span><span class=\"ds-coin-label\">Saldo Tersedia</span><span class=\"ds-coin-fig\"><span class=\"ds-rp\">Rp</span>4.130.000</span><span class=\"ds-coin-sub\">4 hari lagi gajian</span></div>",
+      "css": ".ds-coin { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 260px; aspect-ratio: 1; border-radius: 9999px; background: var(--gold, #e9b21a); color: #4d3800; box-shadow: 0 18px 40px -18px rgb(120 90 0 / 0.6); text-align: center; font-family: \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; animation: ds-coin-settle 700ms cubic-bezier(0.16, 1, 0.3, 1) 500ms both; } .ds-coin-ring { position: absolute; inset: 7%; border: 3px solid rgb(255 255 255 / 0.55); border-radius: 9999px; } .ds-coin-label { position: relative; font-size: 15px; font-weight: 700; } .ds-coin-fig { position: relative; margin-top: 2px; font-size: 30px; font-weight: 800; letter-spacing: -0.025em; font-variant-numeric: tabular-nums; } .ds-rp { margin-right: 0.2em; font-size: 0.72em; font-weight: 500; opacity: 0.7; } .ds-coin-sub { position: relative; margin-top: 4px; font-size: 13px; font-weight: 600; } @keyframes ds-coin-settle { from { transform: scale(0.82); } to { transform: none; } } @media (prefers-reduced-motion: reduce) { .ds-coin { animation: none; } }"
+    },
+    {
+      "name": "Budget Row with Plan Bar",
+      "kind": "custom",
+      "refersTo": "status-pill-running-low",
+      "description": "Category tile, name, status pill and remaining amount over a plan bar: spent fill by status, pending Safe-Pays as an amber hatch.",
+      "html": "<div class=\"ds-budget\"><div class=\"ds-budget-row\"><span class=\"ds-tile-cat\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\"/><path d=\"M7 2v20\"/><path d=\"M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7\"/></svg></span><span class=\"ds-budget-name\">Makan</span><span class=\"ds-pill\">Menipis</span><span class=\"ds-left\">sisa <span class=\"ds-rp\">Rp</span>180.000</span></div><div class=\"ds-plan\"><span class=\"ds-spent\"></span><span class=\"ds-pending\"></span></div></div>",
+      "css": ".ds-budget { max-width: 420px; padding: 12px 20px; font-family: \"Manrope Variable\", Manrope, Inter, system-ui, sans-serif; color: var(--foreground, #15211a); background: var(--card, #ffffff); border: 1px solid var(--border, #dfe7d3); border-radius: 20px; } .ds-budget-row { display: flex; align-items: center; gap: 12px; } .ds-tile-cat { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 10px; background: #ffe7d6; color: #7a2e0a; } .ds-budget-name { flex: 1; font-size: 14px; font-weight: 600; } .ds-pill { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 9999px; font-size: 12px; font-weight: 500; background: var(--caution-soft, #fdebd9); color: var(--caution, #b4520f); } .ds-left { font-size: 14px; font-variant-numeric: tabular-nums; color: var(--muted-foreground, #556657); } .ds-rp { margin-right: 0.2em; font-size: 0.72em; font-weight: 500; opacity: 0.7; } .ds-plan { display: flex; height: 10px; margin-top: 10px; border-radius: 9999px; overflow: hidden; background: var(--muted, #ebf1e1); } .ds-spent { width: 72%; background: var(--caution, #b4520f); } .ds-pending { width: 14%; background: repeating-linear-gradient(45deg, var(--locked, #8a5a00) 0 2.5px, var(--locked-soft, #fcf0cf) 2.5px 6px); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Tanggal Gajian",
+    "overview": "Cawang is a clean, familiar finance app whose whole identity is its logo: a deep branch-green stem that splits into three gold coins. The system takes the mark's three materials literally. The branch green becomes the chrome (sidebar, mobile top band, the Dashboard balance band, the landing's closing band and the primary buttons), the pale cream behind the favicon becomes the page ground, and the coin gold is held back for the mark itself and for money that is locked aside. Everything the user reads sits on flat white cards with hairline green-grey borders, set in Manrope with tabular figures.\n\nThe rhythm of the product is the payday, not the calendar, and the one signature component makes that visible: the Cycle strip, every day from this payday to the next in a single row, payday ringed, today filled green, a quiet red bar for each day's spending and a gold dot where a Safe-Pay falls due. It appears on the Dashboard and, unlinked, as proof on the landing page. The landing goes one step further and draws the logo at page scale, so its three coins hold the three balances (Total, Dana terkunci, Saldo Tersedia) and move when the visitor flips Safe-Pay or taps a quick spend.\n\nDensity is calm but working: cards carry real rows, figures are large and bold, labels are small and muted. Motion is nearly absent. The app has one authored moment (today's cell settling in the Cycle strip) and the landing has one orchestrated moment (the branch draws, the coins settle). Light and dark are both first-class; dark turns the ground near-black green and the shell a deep forest band. It refuses the grey-card-plus-one-accent default, themed costume, and the centred-headline-over-feature-cards landing.",
+    "keyCharacteristics": [
+      "The logo's own three colours are the palette: branch green chrome, coin gold accent, leaf cream ground.",
+      "Semantic money colours are fixed and never borrowed: green Income, red Expense, slate blue Transfer, amber/gold Locked Funds.",
+      "Flat white cards with 1px hairline borders and 20px corners, never nested.",
+      "Manrope everywhere; money in tabular figures with a smaller, quieter \"Rp\".",
+      "The Cycle strip is the signature; payday sets the rhythm of every summary.",
+      "One authored motion per surface family, all of it static under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Binding Money Colours Rule",
+        "body": "Green is Income, red is Expense, blue/neutral is Transfer, amber/gold is Locked Funds and Safe-Pay. These four never trade places, never decorate, and the brand never borrows them: the shell green is deliberately darker than Income green so the two cannot be confused.",
+        "section": "colors"
+      },
+      {
+        "name": "The Shell Is Chrome Rule",
+        "body": "Branch Shell Green fills only chrome: the desktop sidebar, the mobile top band, the Dashboard balance band, the auth page's side panel, the landing's closing band, and primary buttons (including the centre add button and today's Cycle cell). Content cards are never green. Inside a `.shell` surface the shared tokens re-point to shell inks; a page card placed inside one must restore the page tokens with `.unshell`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Coin Gold Rule",
+        "body": "Gold appears on the logo and on Locked Funds / Safe-Pay, nowhere else. The one named exception is the landing hero, which draws the logo itself at page scale: its three coins (Total, Terkunci, Tersedia) are gold because they are the mark, not because that money is locked. Nowhere else may gold carry money that is not locked.",
+        "section": "colors"
+      },
+      {
+        "name": "The Quiet Rp Rule",
+        "body": "Every IDR amount renders through the Money component: tabular figures, \"Rp\" at 0.72em, weight 500, 70% opacity. Never set \"Rp\" at the digits' size or weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The 6rem Ceiling Rule",
+        "body": "Display type never exceeds 6rem; the shipped landing h1 stops at 4.5rem.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Card Rule",
+        "body": "Cards at rest have a 1px hairline border and no shadow. Only the four floating roles above carry a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the four money colours binding: Income green (#23803a), Expense red (#c2412b), Transfer blue (#3f6698), Locked amber (#8a5a00 on light, gold inside the shell).",
+      "Do put Branch Shell Green (#1f4d27) only on chrome: sidebar, mobile top band, Dashboard balance band, auth side panel, landing closing band and primary buttons.",
+      "Do wrap any page card that sits inside a shell surface in `.unshell` so its tokens return to the page set.",
+      "Do render every amount with the Money component (tabular, Rp at 0.72em, 70% opacity).",
+      "Do use flat white cards with a 1px hairline border and 20px corners, separated by 16px (phones) or 24px (desktop) gaps.",
+      "Do design every screen in light and dark together; both are first-class.",
+      "Do label any sample money on public pages as made up.",
+      "Do honour reduced motion: `today-settle`, `branch-draw` and `coin-settle` only run under `prefers-reduced-motion: no-preference`."
+    ],
+    "donts": [
+      "Don't use gold for money that is not locked. The landing hero's three logo coins are the single named exception, because they are the mark.",
+      "Don't fill content cards, list rows or charts with shell green; it is chrome.",
+      "Don't nest a card inside a card; divide a card's interior with hairline rules instead.",
+      "Don't add shadows to cards at rest; only the add button, the hero coins, the auth sample card and overlays float.",
+      "Don't add a second authored motion to the app or section entrance animations to the landing; the app has `today-settle`, the landing has its one branch-and-coins moment.",
+      "Don't set display type above 6rem.",
+      "Don't use amber, violet or indigo as a category colour.",
+      "Don't set \"Rp\" at full size and weight beside the digits."
+    ]
+  }
+}
