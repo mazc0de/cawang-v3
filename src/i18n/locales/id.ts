@@ -125,6 +125,7 @@ export const id: Messages = {
     registerShort: 'Daftar',
     openDashboard: 'Buka Dasbor',
     hero: {
+      sampleNote: 'Contoh dengan angka rekaan.',
       line1: 'Bulanmu mulai',
       line2: 'saat gajian.',
       supporting: 'Cawang mencatat uang masuk dan keluar, mengunci dana untuk tagihan yang belum dibayar, dan menghitung budget dari tanggal gajianmu, bukan dari tanggal 1.',
@@ -475,8 +476,6 @@ export const id: Messages = {
     net: 'Selisih',
   },
   dashboard: {
-    subtitle_one: 'Cycle {{range}} · Cycle berikutnya mulai besok',
-    subtitle_other: 'Cycle {{range}} · Cycle berikutnya {{count}} hari lagi',
     accountsCount_one: 'Dari {{count}} akun',
     accountsCount_other: 'Dari {{count}} akun',
     today: 'Hari ini',
@@ -490,6 +489,15 @@ export const id: Messages = {
     noBudgets: 'Belum ada budget. Tetapkan batas per kategori untuk melihatnya di sini.',
     allBudgetsSafe: 'Semua budget masih aman.',
     openRecurring: 'Berulang',
+    stripLabel: 'Hari-hari di Cycle ini',
+    stripDay: '{{date}}, buka transaksinya',
+    nextPayday: 'Gajian berikutnya',
+    paydayIn_one: 'Besok gajian',
+    paydayIn_other: '{{count}} hari lagi gajian',
+    payday: 'Gajian',
+    safePayDue: 'Safe-Pay jatuh tempo',
+    net: 'Selisih',
+    spendingBar: 'Pengeluaran per hari',
   },
   reports: {
     byCategory: 'Pengeluaran per kategori',

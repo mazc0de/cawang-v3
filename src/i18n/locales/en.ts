@@ -124,6 +124,7 @@ export const en = {
     registerShort: 'Sign up',
     openDashboard: 'Open Dashboard',
     hero: {
+      sampleNote: 'Example with made-up figures.',
       line1: 'Payday starts',
       line2: 'your month.',
       supporting: "Cawang records money in and out, locks funds for bills you haven't paid, and counts your budget from payday, not from the 1st.",
@@ -475,8 +476,6 @@ export const en = {
     net: 'Net',
   },
   dashboard: {
-    subtitle_one: 'Cycle {{range}} · next Cycle starts tomorrow',
-    subtitle_other: 'Cycle {{range}} · next Cycle in {{count}} days',
     accountsCount_one: 'Across {{count}} account',
     accountsCount_other: 'Across {{count}} accounts',
     today: 'Today',
@@ -490,6 +489,15 @@ export const en = {
     noBudgets: 'No budgets yet. Set limits per category to see them here.',
     allBudgetsSafe: 'Every budget is on track.',
     openRecurring: 'Recurring',
+    stripLabel: 'Days in this Cycle',
+    stripDay: '{{date}}, open its transactions',
+    nextPayday: 'Next payday',
+    paydayIn_one: 'Payday is tomorrow',
+    paydayIn_other: 'Payday in {{count}} days',
+    payday: 'Payday',
+    safePayDue: 'Safe-Pay due',
+    net: 'Net',
+    spendingBar: 'Spending per day',
   },
   reports: {
     byCategory: 'Expense by category',

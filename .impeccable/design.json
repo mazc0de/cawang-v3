@@ -1,0 +1,541 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-20T17:31:34Z",
+  "title": "Design System: Cawang",
+  "extensions": {
+    "colorMeta": {
+      "shell": {
+        "role": "primary",
+        "displayName": "Branch Shell Green",
+        "canonical": "#1f4d27",
+        "tonalRamp": [
+          "#040e05",
+          "#162b19",
+          "#2c4a30",
+          "#446d49",
+          "#648f69",
+          "#8daf90",
+          "#b8d1ba",
+          "#e3f4e4"
+        ],
+        "oklch": "oklch(37.7% 0.081 147.4)",
+        "note": "CSS --shell; chrome surface only. Dark pair shell-dark."
+      },
+      "logo-green": {
+        "role": "primary",
+        "displayName": "Logo Stem Green",
+        "canonical": "#2f6b2f",
+        "tonalRamp": [
+          "#030f03",
+          "#112c11",
+          "#254d25",
+          "#3b703a",
+          "#5c925a",
+          "#87b285",
+          "#b3d4b1",
+          "#e0f5df"
+        ],
+        "oklch": "oklch(47.3% 0.111 143.6)",
+        "note": "CSS --brand / --ring; the stem as drawn in the logo."
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Branch Shell Green (action)",
+        "canonical": "#1f4d27",
+        "tonalRamp": [
+          "#040e05",
+          "#162b19",
+          "#2c4a30",
+          "#446d49",
+          "#648f69",
+          "#8daf90",
+          "#b8d1ba",
+          "#e3f4e4"
+        ],
+        "oklch": "oklch(37.7% 0.081 147.4)",
+        "note": "CSS --primary; primary button, today cell, centre +."
+      },
+      "coin-gold": {
+        "role": "secondary",
+        "displayName": "Coin Gold",
+        "canonical": "#e9b21a",
+        "tonalRamp": [
+          "#150800",
+          "#372000",
+          "#5d3b00",
+          "#855700",
+          "#a97900",
+          "#c59f4a",
+          "#e2c68b",
+          "#ffedc7"
+        ],
+        "oklch": "oklch(79.3% 0.158 85.3)",
+        "note": "CSS --gold; logo coins and Locked Funds / Safe-Pay only."
+      },
+      "leaf-ground": {
+        "role": "neutral",
+        "displayName": "Leaf Ground",
+        "canonical": "#f6faee",
+        "tonalRamp": [
+          "#0b0c09",
+          "#242621",
+          "#41433c",
+          "#606359",
+          "#81847a",
+          "#a4a69e",
+          "#c8cac4",
+          "#eeefeb"
+        ],
+        "oklch": "oklch(97.9% 0.016 121.8)",
+        "note": "CSS --background; the logo ground."
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Forest Ink",
+        "canonical": "#15211a",
+        "tonalRamp": [
+          "#090c0a",
+          "#212723",
+          "#3b453f",
+          "#58655d",
+          "#79867e",
+          "#9da8a1",
+          "#c3cbc6",
+          "#ebf0ed"
+        ],
+        "oklch": "oklch(23.4% 0.022 158.6)",
+        "note": "CSS --foreground."
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Moss Grey",
+        "canonical": "#556657",
+        "tonalRamp": [
+          "#080c09",
+          "#202721",
+          "#3a453b",
+          "#576658",
+          "#778779",
+          "#9ca99d",
+          "#c2ccc3",
+          "#eaf0eb"
+        ],
+        "oklch": "oklch(49.1% 0.031 148.4)",
+        "note": "CSS --muted-foreground."
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#dfe7d3",
+        "tonalRamp": [
+          "#0a0c08",
+          "#23261f",
+          "#3f4438",
+          "#5e6454",
+          "#7f8575",
+          "#a2a79a",
+          "#c7cbc1",
+          "#edf0e9"
+        ],
+        "oklch": "oklch(91.6% 0.028 124.8)",
+        "note": "CSS --border; every card border and divider."
+      },
+      "income": {
+        "role": "tertiary",
+        "displayName": "Income Green",
+        "canonical": "#23803a",
+        "tonalRamp": [
+          "#001002",
+          "#042e0f",
+          "#124f21",
+          "#227335",
+          "#489656",
+          "#7ab682",
+          "#abd6af",
+          "#dbf7de"
+        ],
+        "oklch": "oklch(53.0% 0.136 147.7)",
+        "note": "Semantic: Income only."
+      },
+      "expense": {
+        "role": "tertiary",
+        "displayName": "Expense Brick",
+        "canonical": "#c2412b",
+        "tonalRamp": [
+          "#1d0100",
+          "#470d05",
+          "#752012",
+          "#a63521",
+          "#cd5944",
+          "#e68774",
+          "#fdb4a5",
+          "#ffe2d7"
+        ],
+        "oklch": "oklch(55.6% 0.169 32.1)",
+        "note": "Semantic: Expense and destructive only."
+      },
+      "transfer": {
+        "role": "tertiary",
+        "displayName": "Transfer Slate",
+        "canonical": "#3f6698",
+        "tonalRamp": [
+          "#040b18",
+          "#14263c",
+          "#294364",
+          "#406390",
+          "#6085b4",
+          "#8aa7ce",
+          "#b5cbe9",
+          "#e1f0ff"
+        ],
+        "oklch": "oklch(50.4% 0.092 255.2)",
+        "note": "Semantic: Transfer only."
+      },
+      "locked": {
+        "role": "tertiary",
+        "displayName": "Locked Amber",
+        "canonical": "#8a5a00",
+        "tonalRamp": [
+          "#140800",
+          "#352000",
+          "#5a3b05",
+          "#825711",
+          "#a6793a",
+          "#c39e6e",
+          "#e0c4a1",
+          "#feebd5"
+        ],
+        "oklch": "oklch(50.8% 0.108 73.3)",
+        "note": "Semantic: Locked Funds / Safe-Pay; inside the shell it re-points to coin-gold."
+      },
+      "caution": {
+        "role": "tertiary",
+        "displayName": "Caution Orange",
+        "canonical": "#b4520f",
+        "tonalRamp": [
+          "#1a0400",
+          "#411600",
+          "#6c2c00",
+          "#9a4407",
+          "#c06634",
+          "#da916b",
+          "#f3bb9f",
+          "#ffe6d3"
+        ],
+        "oklch": "oklch(55.4% 0.145 47.7)",
+        "note": "Budget running low only."
+      },
+      "shell-dark": {
+        "role": "primary",
+        "displayName": "Forest Night",
+        "canonical": "#11291a",
+        "note": "Dark-theme shell band."
+      },
+      "brand-dark": {
+        "role": "primary",
+        "displayName": "Lit Leaf",
+        "canonical": "#8fcb7e",
+        "note": "Dark-theme brand, ring and active nav."
+      },
+      "ground-dark": {
+        "role": "neutral",
+        "displayName": "Night Ground",
+        "canonical": "#0c120d",
+        "note": "Dark-theme page background."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Landing headlines only (hero, how-it-works, CTA). clamp(64px, 7vw, 6rem) desktop, 11.5vw phones. Hero lines use the masked rise."
+      },
+      "balance": {
+        "displayName": "Balance",
+        "purpose": "Available Balance in the shell band; 38px/44px on phones, 44px/52px desktop."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page h1 (24px phones, 28px desktop) and auth headings."
+      },
+      "section": {
+        "displayName": "Section",
+        "purpose": "Landing section headings; 28px phones, 36px from sm."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card headings."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Summary amounts under a 13px label; tabular."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "List rows, nav items, empty states; 15px for secondary reading text."
+      },
+      "body-lead": {
+        "displayName": "Body Lead",
+        "purpose": "Landing paragraphs, 40-48ch."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Button labels; on-shell landing buttons go bold 17px."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Figure and group labels in Moss Grey, sentence case."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Cycle strip weekdays (10px) and bottom-nav labels (11px) only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "add-button-lift",
+        "value": "0 6px 16px -4px rgb(31 77 39 / 0.45), 0 0 0 4px var(--card)",
+        "purpose": "Centre + in the bottom nav, lifted out of the bar."
+      },
+      {
+        "name": "floating-sample",
+        "value": "0 24px 60px -24px rgb(0 0 0 / 0.45)",
+        "purpose": "Sample balance card on the auth green panel."
+      },
+      {
+        "name": "landing-chip-float",
+        "value": "0 10px 30px -12px rgb(0 0 0 / 0.35)",
+        "purpose": "Landing hero interactive chips."
+      },
+      {
+        "name": "overlay",
+        "value": "library shadow-md / shadow-lg",
+        "purpose": "Popovers, dropdowns, selects, chart tooltips, sheets."
+      },
+      {
+        "name": "card",
+        "value": "none",
+        "purpose": "Cards are flat with a 1px hairline (The Flat Card Rule)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one authored easing, shared by today-settle and the landing entrance."
+      },
+      {
+        "name": "today-settle",
+        "value": "700ms ease-out-expo 150ms both; scale(0.86) + 0 0 0 6px primary@25% -> none",
+        "purpose": "The app's one authored moment: today's Cycle strip cell settles once on load. Skipped under prefers-reduced-motion."
+      },
+      {
+        "name": "rise-from-baseline",
+        "value": "900ms ease-out-expo both; translateY(105%) -> 0 inside an overflow mask; line 2 delayed 110ms",
+        "purpose": "Landing hero headline only."
+      },
+      {
+        "name": "fade-up",
+        "value": "600ms ease-out-expo 650ms both; opacity 0, translateY(16px) -> rest",
+        "purpose": "Landing hero supporting text and actions after the headline."
+      },
+      {
+        "name": "state-transition",
+        "value": "transition colors 150ms (library default)",
+        "purpose": "Hover and active colour changes; no other app motion."
+      },
+      {
+        "name": "press",
+        "value": "translateY(1px) on buttons; scale(0.95) on the centre + and calculator keys",
+        "purpose": "Press feedback."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "note": "Card padding 20px, page gutter 24px, 3-column cycle totals."
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "note": "Inputs drop to 14px text."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "note": "Green sidebar replaces top bar and bottom nav; balance band becomes a card; 3:2 dashboard split; auth splits 50/50."
+      },
+      {
+        "name": "xl",
+        "value": "1280px",
+        "note": "Cycle strip stops scrolling and fills the width."
+      }
+    ],
+    "scopes": [
+      {
+        "name": "shell",
+        "purpose": "Applied to the sidebar, mobile top bar, Dashboard balance band, auth side panel and landing hero/CTA. Re-points foreground, muted-foreground, muted, accent, border and ring to shell inks, sets --locked to coin gold and --logo-stem to shell-stem, and paints the shell background."
+      },
+      {
+        "name": "unshell",
+        "purpose": "Restores the page (light or dark) tokens for a white card placed inside a shell band."
+      },
+      {
+        "name": "logo-stem",
+        "purpose": "BrandMark stem colour: #2f6b2f on light grounds (inline fallback), shell-stem inside the shell, #6fb35f in dark mode. Coins stay #e9b21a everywhere."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one main action on a screen: solid shell green, white label, 10px corners.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"M12 5v14\"/></svg>Tambah transaksi</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px 0 12px; border: 1px solid transparent; border-radius: 10px; background: var(--primary, #1f4d27); color: var(--primary-foreground, #ffffff); font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background-color 150ms, box-shadow 150ms, transform 150ms; } .ds-btn-primary:hover { background: color-mix(in oklch, var(--primary, #1f4d27) 80%, transparent); } .ds-btn-primary:focus-visible { outline: none; border-color: var(--ring, #2f6b2f); box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring, #2f6b2f) 50%, transparent); } .ds-btn-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Secondary and Ghost Buttons",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Tonal leaf-wash secondary and borderless ghost; everything that is not the main action.",
+      "html": "<div class=\"ds-row\"><button class=\"ds-btn-secondary\">Batal</button><button class=\"ds-btn-outline\">Ekspor</button><button class=\"ds-btn-ghost\">Lewati</button></div>",
+      "css": ".ds-row { display: flex; gap: 8px; } .ds-btn-secondary, .ds-btn-outline, .ds-btn-ghost { height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid transparent; font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; font-size: 14px; font-weight: 500; color: var(--foreground, #15211a); cursor: pointer; transition: background-color 150ms, box-shadow 150ms; } .ds-btn-secondary { background: var(--secondary, #ebf1e1); } .ds-btn-secondary:hover { background: color-mix(in oklch, var(--secondary, #ebf1e1), var(--foreground, #15211a) 5%); } .ds-btn-outline { background: var(--background, #f6faee); border-color: var(--border, #dfe7d3); } .ds-btn-outline:hover, .ds-btn-ghost:hover { background: var(--muted, #ebf1e1); } .ds-btn-ghost { background: transparent; } .ds-btn-secondary:focus-visible, .ds-btn-outline:focus-visible, .ds-btn-ghost:focus-visible { outline: none; border-color: var(--ring, #2f6b2f); box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring, #2f6b2f) 50%, transparent); }"
+    },
+    {
+      "name": "On-Shell Button",
+      "kind": "button",
+      "refersTo": "button-on-shell",
+      "description": "Primary action on a green band (landing hero and CTA): white with shell-green ink, outline partner at 40% white.",
+      "html": "<div class=\"ds-shell-demo\"><a class=\"ds-btn-onshell\" href=\"#\">Daftar gratis</a><a class=\"ds-btn-onshell-outline\" href=\"#\">Masuk</a></div>",
+      "css": ".ds-shell-demo { display: flex; gap: 12px; padding: 24px; background: var(--shell, #1f4d27); border-radius: 20px; } .ds-btn-onshell, .ds-btn-onshell-outline { display: inline-flex; align-items: center; height: 48px; padding: 0 28px; border-radius: 10px; font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; font-size: 17px; text-decoration: none; transition: background-color 150ms, box-shadow 150ms; } .ds-btn-onshell { background: #ffffff; color: var(--shell, #1f4d27); font-weight: 700; } .ds-btn-onshell:hover { background: rgb(255 255 255 / 0.9); } .ds-btn-onshell-outline { border: 1px solid rgb(255 255 255 / 0.4); color: var(--shell-foreground, #f1f6ea); font-weight: 500; } .ds-btn-onshell-outline:hover { background: rgb(255 255 255 / 0.1); } .ds-btn-onshell:focus-visible, .ds-btn-onshell-outline:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklch, var(--shell-stem, #a7d69a) 50%, transparent); }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "White field, input-stroke border, 10px corners, green focus ring.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Catatan</span><input class=\"ds-input\" placeholder=\"Nasi goreng, parkir...\" /></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; } .ds-field-label { font-size: 14px; font-weight: 500; color: var(--foreground, #15211a); } .ds-input { height: 40px; padding: 4px 12px; border: 1px solid var(--input, #c9d5bb); border-radius: 10px; background: var(--card, #ffffff); color: var(--foreground, #15211a); font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; font-size: 14px; outline: none; transition: border-color 150ms, box-shadow 150ms; } .ds-input::placeholder { color: var(--muted-foreground, #556657); } .ds-input:focus-visible { border-color: var(--ring, #2f6b2f); box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring, #2f6b2f) 50%, transparent); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat white card, 1px hairline, 20px corners; inner groups split by hairline dividers, never nested cards.",
+      "html": "<section class=\"ds-card\"><div class=\"ds-card-head\"><h2>Hari ini</h2><a href=\"#\">Transaksi</a></div><div class=\"ds-card-figs\"><div><p>Pemasukan</p><span class=\"ds-money ds-income\"><span class=\"ds-rp\">Rp</span>250.000</span></div><div><p>Pengeluaran</p><span class=\"ds-money ds-expense\"><span class=\"ds-rp\">Rp</span>68.500</span></div></div><p class=\"ds-card-empty\">Belum ada transaksi lain hari ini.</p></section>",
+      "css": ".ds-money { font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-rp { font-size: 0.72em; font-weight: 500; opacity: 0.7; margin-right: 0.2em; } .ds-card { width: 360px; background: var(--card, #ffffff); color: var(--card-foreground, #15211a); border: 1px solid var(--border, #dfe7d3); border-radius: 20px; overflow: hidden; font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; } .ds-card-head { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 20px 0; } .ds-card-head h2 { margin: 0; font-size: 16px; font-weight: 700; } .ds-card-head a { font-size: 14px; font-weight: 600; color: var(--brand-ink, #1f4d27); text-decoration: none; } .ds-card-head a:hover { text-decoration: underline; } .ds-card-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 8px 20px 12px; } .ds-card-figs p { margin: 0; font-size: 13px; color: var(--muted-foreground, #556657); } .ds-card-figs .ds-money { display: block; margin-top: 2px; font-size: 17px; font-weight: 700; } .ds-income { color: var(--income, #23803a); } .ds-expense { color: var(--expense, #c2412b); } .ds-card-empty { margin: 0; padding: 16px 20px; border-top: 1px solid var(--border, #dfe7d3); font-size: 14px; color: var(--muted-foreground, #556657); }"
+    },
+    {
+      "name": "Shell Balance Band",
+      "kind": "custom",
+      "refersTo": "shell-band",
+      "description": "Green band with Available Balance and two shell-raised tiles; Locked Funds shows in coin gold inside the shell.",
+      "html": "<section class=\"ds-band\"><p class=\"ds-band-label\">Saldo Tersedia</p><span class=\"ds-money ds-band-fig\"><span class=\"ds-rp\">Rp</span>4.130.000</span><div class=\"ds-band-tiles\"><div class=\"ds-band-tile\"><p>Total Saldo</p><span class=\"ds-money ds-tile-fig\"><span class=\"ds-rp\">Rp</span>4.780.000</span><small>Dari 3 akun</small></div><a class=\"ds-band-tile\" href=\"#\"><p><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/></svg> Dana Terkunci</p><span class=\"ds-money ds-tile-fig ds-gold\"><span class=\"ds-rp\">Rp</span>650.000</span></a></div></section>",
+      "css": ".ds-money { font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-rp { font-size: 0.72em; font-weight: 500; opacity: 0.7; margin-right: 0.2em; } .ds-band { width: 380px; padding: 24px 28px; border-radius: 20px; background: var(--shell, #1f4d27); color: var(--shell-foreground, #f1f6ea); font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; } .ds-band-label { margin: 0; font-size: 14px; font-weight: 500; color: var(--shell-muted, #b9cdb1); } .ds-band-fig { display: block; margin-top: 4px; font-size: 44px; line-height: 52px; font-weight: 800; letter-spacing: -0.025em; } .ds-band-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; } .ds-band-tile { display: block; padding: 10px 14px; border-radius: 18px; background: var(--shell-raised, #2a5e32); color: inherit; text-decoration: none; transition: background-color 150ms; } a.ds-band-tile:hover { background: color-mix(in oklch, var(--shell-raised, #2a5e32), #ffffff 10%); } a.ds-band-tile:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklch, var(--shell-stem, #a7d69a) 50%, transparent); } .ds-band-tile p { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; font-weight: 500; color: var(--shell-muted, #b9cdb1); } .ds-tile-fig { display: block; margin-top: 2px; font-size: 16px; font-weight: 700; } .ds-band-tile small { display: block; margin-top: 2px; font-size: 11px; color: var(--shell-muted, #b9cdb1); } .ds-gold { color: var(--gold, #e9b21a); }"
+    },
+    {
+      "name": "Cycle Strip",
+      "kind": "custom",
+      "refersTo": "cycle-day",
+      "description": "Signature: payday to payday in one row. Payday ringed, today filled green and settling once, gold dot on Safe-Pay due days, expense bars under past days, dashed next payday.",
+      "html": "<ol class=\"ds-strip\"><li><a class=\"ds-day\" href=\"#\"><span class=\"ds-wd\">Min</span><span class=\"ds-dn ds-payday\">25</span><span class=\"ds-dot\"></span><span class=\"ds-barslot\"><span class=\"ds-bar\" style=\"height:6px\"></span></span></a></li><li><a class=\"ds-day\" href=\"#\"><span class=\"ds-wd\">Sen</span><span class=\"ds-dn\">26</span><span class=\"ds-dot\"></span><span class=\"ds-barslot\"><span class=\"ds-bar\" style=\"height:12px\"></span></span></a></li><li><a class=\"ds-day\" href=\"#\"><span class=\"ds-wd\">Sel</span><span class=\"ds-dn\">27</span><span class=\"ds-dot\"><i></i></span><span class=\"ds-barslot\"><span class=\"ds-bar\" style=\"height:4px\"></span></span></a></li><li><a class=\"ds-day ds-today\" href=\"#\" aria-current=\"date\"><span class=\"ds-wd\">Rab</span><span class=\"ds-dn\">28</span><span class=\"ds-dot\"></span><span class=\"ds-barslot\"><span class=\"ds-bar\" style=\"height:9px\"></span></span></a></li><li><div class=\"ds-day ds-future\"><span class=\"ds-wd\">Kam</span><span class=\"ds-dn\">29</span><span class=\"ds-dot\"></span><span class=\"ds-barslot\"></span></div></li><li><div class=\"ds-day ds-next\"><span class=\"ds-wd\">Gajian</span><span class=\"ds-dn ds-nextring\">25</span></div></li></ol>",
+      "css": ".ds-strip { display: flex; gap: 4px; margin: 0; padding: 12px; list-style: none; background: var(--card, #ffffff); border: 1px solid var(--border, #dfe7d3); border-radius: 20px; font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; } .ds-day { display: flex; flex-direction: column; align-items: center; width: 40px; padding: 8px 0 6px; border-radius: 14px; color: var(--foreground, #15211a); text-decoration: none; transition: background-color 150ms; } a.ds-day:not(.ds-today):hover { background: var(--muted, #ebf1e1); } a.ds-day:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring, #2f6b2f) 50%, transparent); } .ds-wd { font-size: 10px; line-height: 1; font-weight: 600; color: var(--muted-foreground, #556657); } .ds-dn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin-top: 6px; border-radius: 9999px; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; } .ds-payday { box-shadow: inset 0 0 0 2px var(--brand, #2f6b2f); } .ds-dot { display: flex; align-items: center; height: 6px; margin-top: 4px; } .ds-dot i { width: 6px; height: 6px; border-radius: 9999px; background: var(--gold, #e9b21a); } .ds-barslot { display: flex; align-items: flex-end; height: 18px; } .ds-bar { width: 14px; border-radius: 3px 3px 0 0; background: color-mix(in oklch, var(--expense, #c2412b) 60%, transparent); } .ds-today { background: var(--primary, #1f4d27); color: var(--primary-foreground, #ffffff); animation: ds-today-settle 700ms cubic-bezier(0.16, 1, 0.3, 1) 150ms both; } .ds-today .ds-wd { color: rgb(255 255 255 / 0.8); } .ds-today .ds-bar { background: rgb(255 255 255 / 0.6); } .ds-future .ds-dn { font-weight: 600; color: var(--muted-foreground, #556657); } .ds-next { color: var(--brand-ink, #1f4d27); } .ds-next .ds-wd { color: inherit; font-weight: 700; } .ds-nextring { border: 2px dashed var(--brand, #2f6b2f); } @keyframes ds-today-settle { from { transform: scale(0.86); box-shadow: 0 0 0 6px color-mix(in oklch, var(--primary, #1f4d27), transparent 75%); } to { transform: none; box-shadow: 0 0 0 0 transparent; } } @media (prefers-reduced-motion: reduce) { .ds-today { animation: none; } }"
+    },
+    {
+      "name": "Sidebar Navigation",
+      "kind": "nav",
+      "refersTo": "sidebar-item-active",
+      "description": "Desktop green sidebar: shell-muted items, shell-raised active pill with white semibold text.",
+      "html": "<nav class=\"ds-side\"><p class=\"ds-side-group\">Uang</p><a class=\"ds-side-item ds-active\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\"/></svg>Dasbor</a><a class=\"ds-side-item\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 3 4 7l4 4\"/><path d=\"M4 7h16\"/><path d=\"m16 21 4-4-4-4\"/><path d=\"M20 17H4\"/></svg>Transaksi</a></nav>",
+      "css": ".ds-side { display: flex; flex-direction: column; gap: 2px; width: 216px; padding: 24px 12px; background: var(--shell, #1f4d27); border-radius: 20px; font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; } .ds-side-group { margin: 0 0 6px; padding: 0 10px; font-size: 12px; font-weight: 500; color: var(--shell-muted, #b9cdb1); } .ds-side-item { display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 10px; border-radius: 10px; font-size: 14px; font-weight: 500; color: var(--shell-muted, #b9cdb1); text-decoration: none; transition: background-color 150ms, color 150ms; } .ds-side-item:hover { background: color-mix(in oklch, var(--shell-raised, #2a5e32) 60%, transparent); color: var(--shell-foreground, #f1f6ea); } .ds-side-item:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklch, var(--shell-stem, #a7d69a) 50%, transparent); } .ds-side-item.ds-active { background: var(--shell-raised, #2a5e32); color: #ffffff; font-weight: 600; }"
+    },
+    {
+      "name": "Bottom Nav with Centre Add",
+      "kind": "nav",
+      "refersTo": "bottom-nav-add",
+      "description": "Mobile white bar, five cells, active in bold shell green, lifted green + in the centre.",
+      "html": "<nav class=\"ds-bnav\"><a class=\"ds-bcell ds-bactive\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1\"/><rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\"/></svg>Dasbor</a><a class=\"ds-bcell\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 3 4 7l4 4\"/><path d=\"M4 7h16\"/><path d=\"m16 21 4-4-4-4\"/><path d=\"M20 17H4\"/></svg>Transaksi</a><span class=\"ds-bmid\"><a class=\"ds-badd\" href=\"#\" aria-label=\"Tambah transaksi\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"M12 5v14\"/></svg></a></span><a class=\"ds-bcell\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 2v4\"/><path d=\"M16 2v4\"/><rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>Kalender</a><a class=\"ds-bcell\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16\"/><path d=\"M4 6h16\"/><path d=\"M4 18h16\"/></svg>Lainnya</a></nav>",
+      "css": ".ds-bnav { display: grid; grid-template-columns: repeat(5, 1fr); width: 375px; height: 64px; background: var(--card, #ffffff); border-top: 1px solid var(--border, #dfe7d3); font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; } .ds-bcell { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 11px; line-height: 1; font-weight: 500; color: var(--muted-foreground, #556657); text-decoration: none; } .ds-bactive { color: var(--brand-ink, #1f4d27); font-weight: 700; } .ds-bmid { display: flex; align-items: center; justify-content: center; } .ds-badd { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; margin-top: -20px; border-radius: 18px; background: var(--primary, #1f4d27); color: var(--primary-foreground, #ffffff); box-shadow: 0 6px 16px -4px rgb(31 77 39 / 0.45), 0 0 0 4px var(--card, #ffffff); transition: transform 150ms; } .ds-badd:active { transform: scale(0.95); } .ds-badd:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--card, #ffffff), 0 0 0 7px color-mix(in oklch, var(--ring, #2f6b2f) 50%, transparent); }"
+    },
+    {
+      "name": "Budget Row",
+      "kind": "chip",
+      "refersTo": "status-pill-running-low",
+      "description": "Status pills (caution / expense soft) and the budget bar with the amber hatch for pending Safe-Pays.",
+      "html": "<div class=\"ds-budget\"><div class=\"ds-budget-head\"><span>Makan</span><span class=\"ds-pill ds-pill-low\">Hampir habis</span><span class=\"ds-pill ds-pill-over\">Lewat</span></div><div class=\"ds-track\"><span class=\"ds-spent\" style=\"width:62%\"></span><span class=\"ds-pending\" style=\"width:18%\"></span></div><span class=\"ds-locked-chip\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/></svg> Dana Terkunci <span class=\"ds-money\"><span class=\"ds-rp\">Rp</span>650.000</span></span></div>",
+      "css": ".ds-money { font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-rp { font-size: 0.72em; font-weight: 500; opacity: 0.7; margin-right: 0.2em; } .ds-budget { display: flex; flex-direction: column; gap: 10px; width: 340px; font-family: 'Manrope Variable', Manrope, Inter, system-ui, sans-serif; } .ds-budget-head { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--foreground, #15211a); } .ds-budget-head > span:first-child { flex: 1; } .ds-pill { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 9999px; font-size: 12px; font-weight: 500; white-space: nowrap; } .ds-pill-low { background: var(--caution-soft, #fdebd9); color: var(--caution, #b4520f); } .ds-pill-over { background: var(--expense-soft, #fbe6e1); color: var(--expense, #c2412b); } .ds-track { display: flex; height: 10px; overflow: hidden; border-radius: 9999px; background: var(--muted, #ebf1e1); } .ds-spent { background: var(--caution, #b4520f); } .ds-pending { background: repeating-linear-gradient(45deg, var(--locked, #8a5a00) 0 2.5px, var(--locked-soft, #fcf0cf) 2.5px 6px); } .ds-locked-chip { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 2px 10px; border-radius: 9999px; background: var(--locked-soft, #fcf0cf); color: var(--locked, #8a5a00); font-size: 14px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Tanggal Gajian",
+    "overview": "Cawang looks like a clean, familiar finance app that happens to have grown out of its own logo. The deep branch green of the stem is the chrome: the desktop sidebar, the mobile top bar, and the balance band that continues it down into the Dashboard. Everything the user reads and edits sits below that chrome on a pale leaf ground in white cards with hairline green-grey borders. The logo's coin gold is not a brand accent; it appears only on the mark itself and on money that is locked for a Safe-Pay.\n\nThe system's one signature is the Cycle strip: every day from this payday to the next in a single row, the payday ringed, today filled green, a gold dot where a Safe-Pay falls due, a small expense bar under each past day, and the next payday closing the row as a dashed ring. Payday, not the calendar month, is the rhythm the eye learns. Density is calm and phone-first: one column of cards on a phone, a 3:2 split on desktop, generous 16-20px card padding, figures in tabular numerals with \"Rp\" set smaller and quieter than the digits.\n\nThe world refuses the grey-card-plus-one-accent default and any themed costume. It is quiet by construction: flat cards, one authored motion in the app, and colour that carries meaning (Income, Expense, Transfer, Locked) rather than decoration. Light and dark are equally finished; dark mode turns the ground near-black green and the shell into a deep forest band.",
+    "keyCharacteristics": [
+      "Branch-green shell chrome (sidebar, mobile top bar, Dashboard balance band) over a pale leaf ground.",
+      "White, flat, bordered cards with 20px corners; controls at 10px.",
+      "Coin gold reserved for the logo and Locked Funds / Safe-Pay.",
+      "Four fixed money hues: Income green, Expense brick red, Transfer slate blue, Locked amber.",
+      "Manrope throughout, extrabold for figures and titles, tabular numerals everywhere money appears.",
+      "The Cycle strip as the signature component; today's cell settles once on load and nothing else in the app animates."
+    ],
+    "rules": [
+      {
+        "name": "The Chrome-Only Shell Rule",
+        "body": "Branch Shell Green as a surface belongs to chrome: the sidebar, the mobile top bar, the Dashboard balance band, the auth side panel and the landing hero and CTA bands. Content cards never turn green; a card placed inside a green band restores page tokens with the unshell scope.",
+        "section": "colors"
+      },
+      {
+        "name": "The Coin Gold Rule",
+        "body": "Gold appears on the logo and on Locked Funds / Safe-Pay, nowhere else. It is never a highlight, a badge, a chart series or a call to action.",
+        "section": "colors"
+      },
+      {
+        "name": "The Four Money States Rule",
+        "body": "Income is green, Expense is red, Transfer is blue, Locked is amber/gold, in both themes, on every screen. Brand colour, Category colours and status colours never take one of these roles, and money is always shown through the Money figure with its tone, never by hand-picking a colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Small Rp Rule",
+        "body": "Every amount is set in tabular figures with \"Rp\" at 0.72em, weight 500, 70% opacity, before the digits; hidden amounts keep the Rp and replace the digits with a mask. Money is never typeset without this treatment.",
+        "section": "typography"
+      },
+      {
+        "name": "The 6rem Ceiling Rule",
+        "body": "Display type tops out at 6rem. The app's largest type is the 44px Available Balance; anything bigger lives on the landing page under the ceiling.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Card Rule",
+        "body": "Cards, list rows and the balance band carry no shadow. If something needs to stand out, it changes tone or border, not elevation.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No Nested Cards Rule",
+        "body": "A card never sits inside another card. Inside a card, group with dividers (hairline top borders) and spacing; inside the green band, group with shell-raised tiles, which have no border.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep Branch Shell Green as a surface on chrome only: sidebar, mobile top bar, Dashboard balance band, auth side panel, landing hero and CTA bands.",
+      "**Do** wrap anything placed on a green band in the shell scope so text, borders and focus rings resolve to shell inks, and restore page tokens with the unshell scope for a white card on green.",
+      "**Do** render every amount through the Money figure with its semantic tone: green Income, red Expense, blue Transfer, amber Locked (gold inside the shell).",
+      "**Do** use gold only on the logo and on Locked Funds / Safe-Pay (the Locked figure on green, the Safe-Pay due dot, the Safe-Pay switch).",
+      "**Do** build cards as flat white surfaces with a 1px hairline and 20px corners, and controls at 10px.",
+      "**Do** separate groups inside a card with hairline dividers and spacing, and groups inside the green band with shell-raised tiles.",
+      "**Do** finish every screen in both light and dark; each token has a dark pair and both themes are first-class.",
+      "**Do** use Manrope only, weight 800 for figures and titles, tabular numerals for all numbers, and sentence case for labels.",
+      "**Do** keep the today-settle moment as the app's one authored motion; state changes use plain colour transitions and press feedback only."
+    ],
+    "donts": [
+      "**Don't** fill content cards, list rows or dialogs with shell green, and don't use shell green as a generic accent.",
+      "**Don't** use gold or amber for highlights, badges, chart series, Category colours or calls to action.",
+      "**Don't** colour money by hand, or let brand green stand in for Income or red stand in for anything but Expense and destructive actions.",
+      "**Don't** nest a card inside a card.",
+      "**Don't** add shadows to cards; shadows belong only to overlays, the floating + button, the auth sample card and the landing hero chips.",
+      "**Don't** add entrance, scroll or hover animations to app screens beyond the today-settle moment; the component library's quick overlay open and close fades are state feedback, not authored motion.",
+      "**Don't** set display type above 6rem, and don't use display sizes inside the signed-in app.",
+      "**Don't** introduce a second typeface or uppercase-tracked labels."
+    ]
+  }
+}

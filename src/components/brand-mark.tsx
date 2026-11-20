@@ -1,29 +1,42 @@
 import { cn } from '@/lib/utils'
 
 /**
- * The C of Cawang holding two rising candlesticks: money tracked over time. Drawn for Cawang on a
- * 24-unit grid, not taken from an icon set.
+ * The Cawang logo: a branch ("cawang", "cabang") growing three gold coins. Drawn from
+ * public/favicon.svg without its square ground. The stem takes `--logo-stem` (the branch
+ * green on light grounds, a lighter leaf green inside the shell band); the coins keep the
+ * logo's gold everywhere.
  */
 export function BrandMark({ className }: { className?: string }) {
   return (
-    <span
+    <svg
+      viewBox="23 34 158 158"
       aria-hidden="true"
-      className={cn('inline-flex size-8 shrink-0 items-center justify-center rounded-[10px] bg-brand-soft text-brand-ink', className)}
+      className={cn('size-8 shrink-0', className)}
+      style={{ stroke: 'var(--logo-stem, #2f6b2f)' }}
     >
-      <svg viewBox="0 0 24 24" className="size-[86%]" fill="none" stroke="currentColor" strokeLinecap="round">
-        <path d="M17.54 19.09A9 9 0 1 1 17.54 4.91" strokeWidth="2.6" />
-        <path d="M10.2 9v7.2M14.6 6.8v9.6" strokeWidth="1.4" />
-        <rect x="8.8" y="10.6" width="2.8" height="4" rx="1" fill="currentColor" stroke="none" />
-        <rect x="13.2" y="8.4" width="2.8" height="5.8" rx="1" fill="currentColor" stroke="none" />
-      </svg>
-    </span>
+      <g fill="none" strokeLinecap="round">
+        <path d="M100 182V90" strokeWidth="14" />
+        <path d="M100 146C100 124 82 112 64 106" strokeWidth="12" />
+        <path d="M100 126C100 104 120 92 138 86" strokeWidth="12" />
+      </g>
+      <g stroke="none" fill="#e9b21a">
+        <circle cx="52" cy="100" r="22" />
+        <circle cx="150" cy="80" r="24" />
+        <circle cx="100" cy="62" r="26" />
+      </g>
+      <g fill="none" stroke="#ffffff" strokeOpacity="0.55" strokeWidth="4">
+        <circle cx="52" cy="100" r="12" />
+        <circle cx="150" cy="80" r="13" />
+        <circle cx="100" cy="62" r="14" />
+      </g>
+    </svg>
   )
 }
 
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <span className={cn('inline-flex items-center gap-2.5 text-[17px] font-semibold tracking-tight', className)}>
-      <BrandMark />
+    <span className={cn('inline-flex items-center gap-2 text-[17px] font-extrabold tracking-tight', className)}>
+      <BrandMark className="size-7" />
       Cawang
     </span>
   )

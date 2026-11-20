@@ -3,7 +3,7 @@ import { CATEGORY_ICONS } from '@/lib/category-icons'
 import { categoryColorClass } from '@/lib/palette'
 import { cn } from '@/lib/utils'
 
-/** The Category's icon on a pale tile of its own colour (taste-skill pastel-consumer). */
+/** The Category's icon on a pale tile of its own colour. */
 export function CategoryTile({ icon, color, className }: { icon: string; color: string; className?: string }) {
   const Icon = CATEGORY_ICONS[icon] ?? Tag
   return (

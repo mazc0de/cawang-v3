@@ -40,9 +40,9 @@ pnpm dev        # http://localhost:8888
 | `src/layouts/` | App shell (sidebar, mobile top bar + bottom nav), auth layout |
 | `src/components/ui/` | shadcn/ui components (generated, lightly tuned) |
 | `src/i18n/` | EN/ID messages; `en.ts` defines the keys |
-| `src/pages/landing/` | Public landing page (taste-skill page direction in `.taste-skill/landing/`) |
+| `src/pages/landing/` | Public landing page |
 | `public/landing/` | Landing photographs from Wikimedia Commons, credits in `credits.json` and the page footer |
-| `.claude/skills/` | Project-local Claude skills (taste-skill `design-taste-frontend`) |
+| `.claude/skills/` | Project-local Claude skills: `impeccable`, `frontend-design`, `web-design-guidelines` |
 
-UI follows taste-skill's app style **pastel-consumer** (tokens in `src/index.css`). The app is a PWA
+UI follows the **Tanggal Gajian** direction (tokens in `src/index.css`, rules in `DESIGN.md`). The app is a PWA
 (`vite-plugin-pwa`): installable, `start_url` `/dashboard`, read-only offline cache of Supabase reads.

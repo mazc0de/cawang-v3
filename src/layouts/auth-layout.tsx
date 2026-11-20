@@ -20,7 +20,7 @@ export function AuthLayout() {
           </div>
         </main>
       </div>
-      <aside className="hidden items-center justify-center bg-raised p-10 lg:flex">
+      <aside className="shell hidden items-center justify-center p-10 lg:flex">
         <AlwaysShowAmounts>
           <BalanceFragment />
         </AlwaysShowAmounts>

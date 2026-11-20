@@ -20,9 +20,9 @@ export function BalanceFragment() {
 
   return (
     <figure data-ui className="w-full max-w-[420px]">
-      <div className="rounded-(--radius-card) bg-card p-6 border">
+      <div className="unshell rounded-(--radius-card) border bg-card p-6 shadow-[0_24px_60px_-24px_rgb(0_0_0/0.45)]">
         <p className="text-sm text-muted-foreground">{t('money.availableBalance')}</p>
-        <Money amount={available} className="mt-1 block text-[32px] leading-10 font-semibold tracking-tight" />
+        <Money amount={available} className="mt-1 block text-[32px] leading-10 font-extrabold tracking-tight" />
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
           <span className="text-muted-foreground">
             {t('money.totalBalance')} <Money amount={total} className="text-foreground" />

@@ -23,7 +23,6 @@ import {
   ReportsFragment,
   SafePayFragment,
 } from './fragments'
-import { useReveal } from './use-reveal'
 import { AlwaysShowAmounts } from '@/providers/amount-visibility'
 import { APP_VERSION_LABEL } from '@/lib/version'
 
@@ -34,23 +33,9 @@ const SAMPLE_SAFE_PAY = 650_000
 const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 const COPYRIGHT_YEAR = new Date().getFullYear()
 
-function Reveal({
-  index = 0,
-  heading = false,
-  className,
-  children,
-}: {
-  index?: number
-  /** Headings rise without fading, so they are readable at every moment. */
-  heading?: boolean
-  className?: string
-  children: ReactNode
-}) {
-  return (
-    <div data-reveal={heading ? 'heading' : ''} className={className} style={{ '--reveal-index': index } as React.CSSProperties}>
-      {children}
-    </div>
-  )
+/** A layout wrapper; sections render at rest (the masked hero headline is the page's one entrance). */
+function Reveal({ className, children }: { index?: number; heading?: boolean; className?: string; children: ReactNode }) {
+  return <div className={className}>{children}</div>
 }
 
 /** The hero's three working controls, each a real piece of the product (data-ui). */
@@ -59,7 +44,7 @@ function Chip({ className, children }: { className?: string; children: ReactNode
     <div
       data-ui
       className={cn(
-        'rounded-(--radius-card) bg-[color-mix(in_oklch,var(--foreground),var(--background)_12%)] px-4 py-3 text-background',
+        'rounded-(--radius-card) bg-shell-raised px-4 py-3 text-foreground shadow-[0_10px_30px_-12px_rgb(0_0_0/0.35)]',
         className,
       )}
     >
@@ -79,17 +64,17 @@ function Hero({ payday, onPaydayChange }: { payday: number; onPaydayChange: (day
   const step = (delta: number) => onPaydayChange(((payday - 1 + delta + 31) % 31) + 1)
 
   return (
-    <section className="relative flex min-h-svh flex-col bg-foreground px-4 py-5 text-background sm:px-7" aria-labelledby="hero-title">
+    <section className="shell relative flex min-h-svh flex-col px-4 py-5 sm:px-7" aria-labelledby="hero-title">
       <div className="flex items-center justify-between gap-3">
-        <Link to="/" className="inline-flex items-center gap-2.5 rounded-lg text-[15px] font-semibold">
-          <BrandMark className="size-7" />
+        <Link to="/" className="inline-flex shrink-0 items-center gap-1.5 rounded-lg text-[15px] font-extrabold tracking-tight sm:gap-2 sm:text-[17px]">
+          <BrandMark className="size-7 sm:size-8" />
           Cawang
         </Link>
-        <div className="flex items-center gap-1 [&_button]:text-background/80 [&_button:hover]:bg-background/10 [&_button:hover]:text-background [&_button_span]:text-background">
+        <div className="flex items-center gap-1">
           <LanguageSwitch />
           <ThemeToggle />
           {session ? (
-            <Button asChild className="ml-2 bg-background text-foreground hover:bg-background/90">
+            <Button asChild className="ml-2 bg-white text-shell hover:bg-white/90">
               <Link to="/dashboard">{t('landing.openDashboard')}</Link>
             </Button>
           ) : (
@@ -97,7 +82,7 @@ function Hero({ payday, onPaydayChange }: { payday: number; onPaydayChange: (day
               <Link to="/login" className="hidden px-3 text-sm underline-offset-4 hover:underline sm:inline">
                 {t('landing.login')}
               </Link>
-              <Button asChild className="ml-1 bg-background text-foreground hover:bg-background/90">
+              <Button asChild className="ml-1 bg-white text-shell hover:bg-white/90">
                 <Link to="/register">
                   <span className="sm:hidden">{t('landing.registerShort')}</span>
                   <span className="hidden sm:inline">{t('landing.register')}</span>
@@ -116,7 +101,7 @@ function Hero({ payday, onPaydayChange }: { payday: number; onPaydayChange: (day
               type="button"
               aria-label={t('landing.hero.paydayEarlier')}
               onClick={() => step(-1)}
-              className="inline-flex size-9 items-center justify-center rounded-full bg-background/10 transition-transform hover:bg-background/20 active:scale-95"
+              className="inline-flex size-9 items-center justify-center rounded-full bg-white/10 transition-transform hover:bg-white/20 active:scale-95"
             >
               <Minus className="size-4" />
             </button>
@@ -127,7 +112,7 @@ function Hero({ payday, onPaydayChange }: { payday: number; onPaydayChange: (day
               type="button"
               aria-label={t('landing.hero.paydayLater')}
               onClick={() => step(1)}
-              className="inline-flex size-9 items-center justify-center rounded-full bg-background/10 transition-transform hover:bg-background/20 active:scale-95"
+              className="inline-flex size-9 items-center justify-center rounded-full bg-white/10 transition-transform hover:bg-white/20 active:scale-95"
             >
               <Plus className="size-4" />
             </button>
@@ -135,7 +120,7 @@ function Hero({ payday, onPaydayChange }: { payday: number; onPaydayChange: (day
           <p className="mt-2 text-[15px] opacity-75">{formatCycleRange(cycle, language)}</p>
         </Chip>
 
-        <h1 id="hero-title" className="my-8 text-center text-[11.5vw] leading-[0.98] font-semibold tracking-[-0.045em] sm:my-10 lg:text-[clamp(64px,8vw,132px)]">
+        <h1 id="hero-title" className="my-8 text-center text-[min(11.5vw,6rem)] leading-[0.98] font-extrabold tracking-[-0.04em] sm:my-10 lg:text-[clamp(64px,7vw,6rem)]">
           <span className="masked-line">
             <span>{t('landing.hero.line1')}</span>
           </span>
@@ -156,27 +141,28 @@ function Hero({ payday, onPaydayChange }: { payday: number; onPaydayChange: (day
                 <span className="block text-[15px] opacity-75">Safe-Pay</span>
                 <span className="block text-[15px] font-medium">{t('landing.hero.lockRent', { amount: formatIDR(SAMPLE_SAFE_PAY) })}</span>
               </span>
-              <Switch checked={locked} onCheckedChange={setLocked} />
+              <Switch checked={locked} onCheckedChange={setLocked} className="data-checked:bg-gold data-unchecked:bg-white/25 dark:data-unchecked:bg-white/25" />
             </label>
           </Chip>
         </div>
 
-        <p className="after-headline mt-12 max-w-[40ch] text-center text-[17px] leading-relaxed text-background/80">{t('landing.hero.supporting')}</p>
+        <p className="mt-4 w-full text-center text-xs text-muted-foreground">{t('landing.hero.sampleNote')}</p>
+        <p className="after-headline mt-10 max-w-[40ch] text-center text-[17px] leading-relaxed text-muted-foreground">{t('landing.hero.supporting')}</p>
         <div className="after-headline mt-8 flex w-full max-w-[72%] flex-col items-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
           {session ? (
-            <Button asChild size="lg" className="h-12 w-full bg-background px-7 text-[17px] text-foreground hover:bg-background/90 sm:w-auto">
+            <Button asChild size="lg" className="h-12 w-full bg-white px-7 text-[17px] font-bold text-shell hover:bg-white/90 sm:w-auto">
               <Link to="/dashboard">{t('landing.openDashboard')}</Link>
             </Button>
           ) : (
             <>
-              <Button asChild size="lg" className="h-12 w-full bg-background px-7 text-[17px] text-foreground hover:bg-background/90 sm:w-auto">
+              <Button asChild size="lg" className="h-12 w-full bg-white px-7 text-[17px] font-bold text-shell hover:bg-white/90 sm:w-auto">
                 <Link to="/register">{t('landing.register')}</Link>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-12 w-full border-background/40 bg-transparent px-7 text-[17px] text-background hover:bg-background/10 hover:text-background sm:w-auto"
+                className="h-12 w-full border-white/40 bg-transparent px-7 text-[17px] text-foreground hover:bg-white/10 hover:text-foreground sm:w-auto"
               >
                 <Link to="/login">{t('landing.login')}</Link>
               </Button>
@@ -211,7 +197,7 @@ function Showcase({ payday }: { payday: number }) {
             <div
               className={cn(
                 'h-[28svh] overflow-hidden rounded-t-(--radius-card) px-4 text-center sm:h-[46vh] sm:px-6',
-                specimen.inverse ? 'bg-brand text-white dark:text-[#0b0b0c]' : 'bg-card',
+                specimen.inverse ? 'bg-primary text-primary-foreground' : 'bg-card',
               )}
             >
               <p
@@ -311,11 +297,11 @@ function Features() {
         </div>
         <div className="mt-10 grid items-start gap-8 lg:grid-cols-12">
           <ul className="flex flex-col gap-1 lg:col-span-6">
-            {FEATURES.map((feature, index) => {
+            {FEATURES.map((feature) => {
               const isActive = feature.key === active.key
               const Fragment = feature.fragment
               return (
-                <li key={feature.key} data-reveal style={{ '--reveal-index': index } as React.CSSProperties}>
+                <li key={feature.key}>
                   <button
                     type="button"
                     aria-pressed={isActive}
@@ -324,7 +310,7 @@ function Features() {
                     onFocus={() => setSelected(feature.key)}
                     className={cn(
                       'block w-full rounded-xl px-5 py-3 text-left transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
-                      isActive ? 'bg-brand text-white dark:text-[#0b0b0c]' : 'hover:bg-card',
+                      isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-card',
                     )}
                   >
                     <span className="block text-[26px] leading-tight font-semibold tracking-[-0.02em] sm:text-[clamp(26px,2.5vw,36px)]">
@@ -351,9 +337,9 @@ function Features() {
 }
 
 const STAGES = [
-  { key: 'signup', tone: 'bg-[#d9f2fb] text-[#064a63] dark:bg-[#10282f] dark:text-[#8fd6ee]' },
-  { key: 'setup', tone: 'bg-[#dcf5e3] text-[#14532d] dark:bg-[#13281a] dark:text-[#8ddba6]' },
-  { key: 'daily', tone: 'bg-brand text-white dark:text-[#0b0b0c]' },
+  { key: 'signup', tone: 'border bg-card text-foreground' },
+  { key: 'setup', tone: 'bg-brand-soft text-brand-ink' },
+  { key: 'daily', tone: 'bg-primary text-primary-foreground' },
 ] as const
 
 function HowItWorks() {
@@ -363,7 +349,7 @@ function HowItWorks() {
       <div className="mx-auto max-w-[1180px]">
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <Reveal heading className="lg:col-span-7">
-            <h2 id="how-title" className="text-[11.5vw] leading-[0.98] font-semibold tracking-[-0.045em] lg:text-[clamp(64px,8vw,132px)]">
+            <h2 id="how-title" className="text-[min(11.5vw,6rem)] leading-[0.98] font-extrabold tracking-[-0.04em] lg:text-[clamp(64px,7vw,6rem)]">
               {t('landing.how.title')}
             </h2>
           </Reveal>
@@ -373,12 +359,10 @@ function HowItWorks() {
         </div>
         {/* The daily block is the widest: setting up is quick, recording is the product. */}
         <ol data-ui className="mt-16 grid gap-2 md:grid-cols-[1fr_1fr_2fr]">
-          {STAGES.map((stage, index) => (
+          {STAGES.map((stage) => (
             <li
               key={stage.key}
-              data-reveal
-              style={{ '--reveal-index': index } as React.CSSProperties}
-              className={cn('grow-x flex min-h-44 flex-col justify-between gap-6 rounded-xl p-6', stage.tone)}
+              className={cn('flex min-h-44 flex-col justify-between gap-6 rounded-xl p-6', stage.tone)}
             >
               <span className="text-[26px] leading-tight font-semibold sm:text-[clamp(24px,2.2vw,32px)]">{t(`landing.how.${stage.key}.duration`)}</span>
               <span className="max-w-[34ch] text-[17px]">{t(`landing.how.${stage.key}.clause`)}</span>
@@ -394,44 +378,44 @@ function CallToAction() {
   const { t } = useTranslation()
   const { session } = useAuth()
   return (
-    <section className="bg-foreground px-4 py-24 text-background sm:px-7 lg:py-36" aria-labelledby="cta-title">
+    <section className="shell px-4 py-24 sm:px-7 lg:py-36" aria-labelledby="cta-title">
       <div className="mx-auto flex max-w-[1180px] flex-col items-center text-center">
         <Reveal heading>
-          <h2 id="cta-title" className="max-w-[14ch] text-[11.5vw] leading-[0.98] font-semibold tracking-[-0.045em] lg:text-[clamp(64px,8vw,132px)]">
+          <h2 id="cta-title" className="max-w-[14ch] text-[min(11.5vw,6rem)] leading-[0.98] font-extrabold tracking-[-0.04em] lg:text-[clamp(64px,7vw,6rem)]">
             {t('landing.cta.line1')} {t('landing.cta.line2')}
           </h2>
         </Reveal>
         <Reveal index={1} className="mt-10 flex w-full flex-col items-center gap-4">
           <div className="flex w-full max-w-[72%] flex-col items-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:gap-6">
             {session ? (
-              <Button asChild size="lg" className="h-14 w-full bg-background px-8 text-[17px] text-foreground hover:bg-background/90 sm:w-[220px]">
+              <Button asChild size="lg" className="h-14 w-full bg-white px-8 text-[17px] font-bold text-shell hover:bg-white/90 sm:w-[220px]">
                 <Link to="/dashboard">{t('landing.openDashboard')}</Link>
               </Button>
             ) : (
               <>
-                <Button asChild size="lg" className="h-14 w-full bg-background px-8 text-[17px] text-foreground hover:bg-background/90 sm:w-[220px]">
+                <Button asChild size="lg" className="h-14 w-full bg-white px-8 text-[17px] font-bold text-shell hover:bg-white/90 sm:w-[220px]">
                   <Link to="/register">{t('landing.register')}</Link>
                 </Button>
-                <span className="text-[17px] text-background/70">{t('common.or')}</span>
+                <span className="text-[17px] text-muted-foreground">{t('common.or')}</span>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-14 w-full border-background/40 bg-transparent px-8 text-[17px] text-background hover:bg-background/10 hover:text-background sm:w-[220px]"
+                  className="h-14 w-full border-white/40 bg-transparent px-8 text-[17px] text-foreground hover:bg-white/10 hover:text-foreground sm:w-[220px]"
                 >
                   <Link to="/login">{t('landing.login')}</Link>
                 </Button>
               </>
             )}
           </div>
-          <p className="max-w-[46ch] text-[17px] text-background/75">{t('landing.cta.after')}</p>
+          <p className="max-w-[46ch] text-[17px] text-muted-foreground">{t('landing.cta.after')}</p>
         </Reveal>
       </div>
     </section>
   )
 }
 
-// Wikimedia Commons, via taste-skill assets.mjs (public/landing/credits.json).
+// Wikimedia Commons (public/landing/credits.json).
 const PHOTO_CREDITS = [
   { title: 'Batagor vendor 2', byline: 'by Gunawan Kartapranata, CC BY-SA 4.0', page: 'https://commons.wikimedia.org/w/index.php?curid=99474283' },
   { title: 'Warna-Warni Buah di Pasar Tradisional', byline: 'by Febaryanto, CC BY-SA 4.0', page: 'https://commons.wikimedia.org/w/index.php?curid=73854487' },
@@ -512,7 +496,6 @@ function Footer() {
 
 export function LandingPage() {
   const [payday, setPayday] = useState(25)
-  useReveal()
   return (
     <AlwaysShowAmounts>
     <main>

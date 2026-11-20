@@ -29,9 +29,9 @@ function SidebarLink({ item }: { item: NavItem }) {
       to={item.to}
       className={({ isActive }) =>
         cn(
-          'flex h-8 items-center gap-2.5 rounded-lg px-2.5 text-sm transition-colors',
+          'flex h-9 items-center gap-2.5 rounded-[10px] px-2.5 text-sm font-medium transition-colors',
           isActive
-            ? 'bg-sidebar-accent text-sidebar-accent-foreground'
+            ? 'bg-sidebar-accent font-semibold text-sidebar-accent-foreground'
             : 'text-muted-foreground hover:bg-sidebar-accent/60 hover:text-foreground',
         )
       }
@@ -47,14 +47,14 @@ function Sidebar() {
   const user = useUser()
   const signOut = useSignOut()
   return (
-    <aside className="sticky top-0 hidden h-svh w-60 shrink-0 flex-col bg-sidebar px-3 py-6 lg:flex">
-      <Link to="/dashboard" className="mx-2.5 rounded-lg">
+    <aside className="shell sticky top-0 hidden h-svh w-60 shrink-0 flex-col px-3 py-6 lg:flex">
+      <Link to="/dashboard" className="mx-2.5 self-start rounded-lg">
         <Wordmark />
       </Link>
-      <nav aria-label={t('nav.mainMenu')} className="mt-6 flex flex-1 flex-col gap-6 overflow-y-auto">
+      <nav aria-label={t('nav.mainMenu')} className="mt-8 flex flex-1 flex-col gap-6 overflow-y-auto">
         {SIDEBAR_GROUPS.map((group) => (
           <div key={group.label}>
-            <p className="mb-1.5 px-2.5 text-xs text-muted-foreground">{t(group.label)}</p>
+            <p className="mb-1.5 px-2.5 text-xs font-medium text-muted-foreground">{t(group.label)}</p>
             <ul className="flex flex-col gap-0.5">
               {group.items.map((item) => (
                 <li key={item.to}>
@@ -67,12 +67,12 @@ function Sidebar() {
       </nav>
       <div className="flex flex-col gap-2">
         <InstallAppMenuItem
-          className="flex h-8 items-center gap-2.5 rounded-lg px-2.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent/60 hover:text-foreground"
+          className="flex h-9 items-center gap-2.5 rounded-[10px] px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-sidebar-accent/60 hover:text-foreground"
           iconClassName="size-4 shrink-0"
         />
         <SidebarLink item={NAV.settings} />
-        <div className="flex items-center gap-2.5 rounded-lg px-2.5 py-1.5">
-          <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand-ink uppercase">
+        <div className="flex items-center gap-2.5 rounded-lg border-t border-sidebar-border px-2.5 pt-3 pb-1.5">
+          <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-shell-stem text-xs font-bold text-shell uppercase">
             {user.email?.[0] ?? '?'}
           </span>
           <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">{user.email}</span>
@@ -88,7 +88,7 @@ function Sidebar() {
 
 function MobileTopBar() {
   return (
-    <div className="sticky top-0 z-30 flex h-14 items-center justify-between bg-background/95 px-4 lg:hidden">
+    <div className="shell sticky top-0 z-30 flex h-14 items-center justify-between px-4 lg:hidden">
       <Link to="/dashboard" className="rounded-lg">
         <Wordmark />
       </Link>
@@ -102,9 +102,9 @@ function BottomNav() {
   const signOut = useSignOut()
   const [moreOpen, setMoreOpen] = useState(false)
 
-  const cell = 'flex flex-col items-center justify-center gap-1 text-[11px] leading-none'
+  const cell = 'flex flex-col items-center justify-center gap-1 text-[11px] font-medium leading-none'
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    cn(cell, isActive ? 'text-foreground font-medium' : 'text-muted-foreground')
+    cn(cell, isActive ? 'text-brand-ink font-bold dark:text-brand' : 'text-muted-foreground')
 
   return (
     <nav
@@ -124,9 +124,9 @@ function BottomNav() {
           <Link
             to="/transactions?new=1"
             aria-label={t('nav.addTransaction')}
-            className="inline-flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform active:scale-95"
+            className="-mt-5 inline-flex size-13 items-center justify-center rounded-[18px] bg-primary text-primary-foreground shadow-[0_6px_16px_-4px_rgb(31_77_39/0.45)] ring-4 ring-card transition-transform active:scale-95"
           >
-            <Plus className="size-6" />
+            <Plus className="size-6" strokeWidth={2.25} />
           </Link>
         </div>
         <NavLink to={NAV.calendar.to} className={linkClass}>

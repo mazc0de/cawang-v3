@@ -7,7 +7,8 @@
   versi pnpm.
 - Project Supabase yang sudah dijalankan `schema.sql`-nya (lihat
   [`supabase/README.md`](../supabase/README.md)).
-- Untuk pemeriksaan desain taste-skill: Google Chrome, Edge, atau Chromium.
+- Untuk pemeriksaan desain Impeccable (`impeccable shot`/`detect`): koneksi internet saat pertama kali
+  dipakai, untuk mengunduh engine-nya.
 
 ## Setup lokal
 
@@ -95,22 +96,20 @@ sebaiknya ditaruh di `src/lib` bersama tesnya.
 - Gunakan token di `src/index.css` (`bg-card`, `text-muted-foreground`, `text-income`, `text-expense`,
   `text-transfer`, `text-locked`, `bg-brand-soft`, `text-caution`, …), jangan warna hex baru, kecuali
   palet kategori di `lib/palette.ts`.
-- Aturan gaya pastel-consumer dan house rules taste-skill:
-  - tanpa gradient, glow, atau blur;
+- Aturan arah Tanggal Gajian ada di `DESIGN.md`. Ringkasnya:
+  - hijau shell hanya untuk chrome (sidebar, top bar mobile, pita saldo); data memakai warna semantik;
+  - emas (`gold`, `text-locked`) hanya untuk logo dan Dana Terkunci/Safe-Pay;
   - kartu memakai border 1px, tanpa bayangan saat diam;
   - satu `h1` per layar;
-  - angka rata kanan dengan digit tabular (`num`);
-  - warna untuk data dan status, bukan dekorasi.
-- Pemeriksaan dengan taste-skill (dijalankan dari folder `app/`):
+  - angka rata kanan dengan digit tabular (`num`).
+- Pemeriksaan dengan Impeccable (dijalankan dari folder `app/`):
 
   ```bash
-  node .claude/skills/design-taste-frontend/scripts/lint.mjs --app src
-  node .claude/skills/design-taste-frontend/scripts/inspect.mjs http://localhost:8888/dashboard --app
+  .claude/skills/impeccable/scripts/impeccable detect --json --changed
+  .claude/skills/impeccable/scripts/impeccable shot http://localhost:8888/ --viewport 1440x900,390x844
   ```
 
-  Inspector membuka layar di 1440, 768, dan 390px, mengukur aturan, dan menyimpan screenshot di
-  `.taste-skill/inspect/`. Untuk landing page, jalankan dari folder `.taste-skill/landing/` supaya
-  memakai sheet halaman, bukan sheet app.
+  `shot` tidak membawa sesi login, jadi layar app perlu diperiksa di browser sendiri.
 
 ## Menambah fitur
 
